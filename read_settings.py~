@@ -1,0 +1,6 @@
+def read_settings_file():
+    print("Hello world")
+
+
+if __name__ == "__main__":
+    read_settings_file()
