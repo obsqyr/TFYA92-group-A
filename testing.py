@@ -1,4 +1,6 @@
 import ase.io
+import math as m
+import numpy as np
 
 NACL = ase.io.read("nacl.cif", None)
 
@@ -7,7 +9,9 @@ print (x)
 print (len(x))
 
 y = NACL.get_positions()
-print (y[3])
+#print (y[3])
 print (y)
-print (len(y))
-print (y[3,2])
+#print (len(y))
+#print (y[3,2])
+
+print (2*y)
