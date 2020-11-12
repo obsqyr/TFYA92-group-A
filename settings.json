@@ -1,4 +1,7 @@
 {
     "time_step": 10,
-    "max_time": 30
+    "max_steps": 1000,
+    "temperature": 300,
+    "ensemble": "NVE",
+    "friction": 0.001
 }
