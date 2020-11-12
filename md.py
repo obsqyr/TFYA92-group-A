@@ -35,8 +35,7 @@ def run_md():
     # Method to calculate forces
     # Code to read in and implement correct LJ-parameters should be below
     # ..... 
-    atoms.calc = LennardJones([18], [settings['LJ_epsilon']], [settings['LJ_sigma']],
-                                                              rCut = settings['LJ_rcutoff'], modified = True)
+    atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
 
     # Set the momenta corresponding to T=300K
     MaxwellBoltzmannDistribution(atoms, settings['temperature'] * units.kB)

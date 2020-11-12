@@ -26,18 +26,6 @@ def read_settings_file():
             data['friction']
         except Exception as e:
             data['friction'] = "0.001"
-        try:
-            data['LJ_epsilon']
-        except Exception as e:
-            data['LJ_epsilon'] = 0.010323
-        try:
-            data['LJ_sigma']
-        except Exception as e:
-            data['LJ_sigma'] = 3.40
-        try:
-            data['LJ_rcutoff']
-        except Exception as e:
-            data['LJ_rcutoff'] = 6.625
         return data
 
 if __name__ == "__main__":
