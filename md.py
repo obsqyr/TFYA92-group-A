@@ -21,27 +21,28 @@ def run_md():
 
     if use_asap:
         from asap3 import LennardJones
-        size = 10
+        size = 6
     else:
         from ase.calculators.emt import LennardJones
         size = 3
     
     # Set up a crystal
     atoms = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
-                                  symbol="Cu",
+                                  symbol="Ar",
+                                  latticeconstant = 5.256,
                                   size=(size, size, size),
                                   pbc=True)
 
     # Describe the interatomic interactions with the Effective Medium Theory
-    atoms.calc = EMT()
+    atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
         
     # Set the momenta corresponding to T=300K
-    MaxwellBoltzmannDistribution(atoms, 300 * units.kB)
+    MaxwellBoltzmannDistribution(atoms, 40 * units.kB)
 
     # We want to run MD with constant energy using the VelocityVerlet algorithm.
-    dyn = VelocityVerlet(atoms, 5 * units.fs)  # 5 fs time step.
-    traj = Trajectory('cu.traj', 'w', atoms)
-    dyn.attach(traj.write, interval=10)
+    dyn = VelocityVerlet(atoms, 1 * units.fs)  # 5 fs time step.
+    traj = Trajectory('ar.traj', 'w', atoms)
+    dyn.attach(traj.write, interval=100)
 
 
     def printenergy(a=atoms):  # store a reference to atoms in the definition.
@@ -53,8 +54,8 @@ def run_md():
     # Now run the dynamics
     dyn.attach(printenergy, interval=10)
     printenergy()
-    dyn.run(200)
-
+    dyn.run(20000)
+    
 
 if __name__ == "__main__":
     run_md()
