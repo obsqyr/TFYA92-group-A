@@ -3,5 +3,8 @@
     "max_steps": 1000,
     "temperature": 300,
     "ensemble": "NVE",
-    "friction": 0.001
+    "friction": 0.001,
+    "LJ_epsilon": 0.010323,
+    "LJ_sigma": 3.40,
+    "LJ_rcutoff": 6.626
 }

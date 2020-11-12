@@ -5,6 +5,7 @@ from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
 #from ase.md.verlet import VelocityVerlet
 from ase import units
 from asap3 import Trajectory
+from asap3 import LennardJones
 from read_settings import read_settings_file
 
 def calcenergy(a):
@@ -19,23 +20,12 @@ def run_md():
 
     settings = read_settings_file()
 
-#--------Provisional?--------
-    # Use Asap for a huge performance increase if it is installed
-    use_asap = True
-
-    if use_asap:
-        from asap3 import LennardJones
-        size = 6
-    else:
-        from ase.calculators.emt import LennardJones
-        size = 3
-#----------------------------
-
     # Set up a crystal
     # Atomic structure should be read from some cif-file
     # Should this cif-file be an argument of run_md()? I.e. run_md("Atoms.cif")
     # atoms = ase.io.read("Atoms.cif", None)
 
+    size = 6
     atoms = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
                                   symbol="Ar",
                                   latticeconstant = 5.256,
@@ -44,8 +34,9 @@ def run_md():
 
     # Method to calculate forces
     # Code to read in and implement correct LJ-parameters should be below
-    # .....
-    atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
+    # ..... 
+    atoms.calc = LennardJones([18], [settings['LJ_epsilon']], [settings['LJ_sigma']],
+                                                              rCut = settings['LJ_rcutoff'], modified = True)
 
     # Set the momenta corresponding to T=300K
     MaxwellBoltzmannDistribution(atoms, settings['temperature'] * units.kB)
