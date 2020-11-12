@@ -8,7 +8,7 @@ def distance(pos1, pos2):
     return math.sqrt(distance2(pos1, pos2))
 
 
-def meansquaredisp(atoms, org_atoms)
+def meansquaredisp(atoms, old_atoms)
     pos = atoms.get_positions()
     old_pos = old_atoms.get_positions()
     length = len(pos)
@@ -22,4 +22,4 @@ def meansquaredisp(atoms, org_atoms)
     for atom in range(length):
         msd =+ distance2(pos[atom], old_pos[atom])
 
-    return msd
+    return msd/length
