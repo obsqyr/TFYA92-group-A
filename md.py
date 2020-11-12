@@ -5,6 +5,7 @@ from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
 from ase.md.verlet import VelocityVerlet
 from ase import units
 from asap3 import Trajectory
+from ase.calculators.kim.kim import KIM
 
 def calcenergy(a):
     epot = a.get_potential_energy() / len(a)
@@ -15,6 +16,8 @@ def calcenergy(a):
     
 
 def run_md():
+    # Use KIM for potentials from OpenKIM
+    use_kim = True
     
     # Use Asap for a huge performance increase if it is installed
     use_asap = True
@@ -23,7 +26,7 @@ def run_md():
         from asap3 import LennardJones
         size = 6
     else:
-        from ase.calculators.emt import LennardJones
+        from ase.calculators.lj import LennardJones
         size = 3
     
     # Set up a crystal
@@ -33,8 +36,11 @@ def run_md():
                                   size=(size, size, size),
                                   pbc=True)
 
-    # Describe the interatomic interactions with the Effective Medium Theory
-    atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
+    # Describe the interatomic interactions with Lennard Jones
+    if use_kim: # use KIM potential
+        atoms.calc = KIM("ex_model_Ar_P_Morse_07C") #an example potential
+    else: # otherwise, default to asap3 LennardJones
+        atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
         
     # Set the momenta corresponding to T=300K
     MaxwellBoltzmannDistribution(atoms, 40 * units.kB)
