@@ -33,7 +33,7 @@ def run_md():
                                   pbc=True)
 
     # Describe the interatomic interactions with the Effective Medium Theory
-    atoms.calc = EMT()
+    atoms.calc = LennardJones([atomic_number], [epsilon], [sigma],rCut=cutoff, modified=True)
         
     # Set the momenta corresponding to T=300K
     MaxwellBoltzmannDistribution(atoms, 300 * units.kB)
