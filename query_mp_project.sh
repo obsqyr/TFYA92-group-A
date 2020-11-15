@@ -44,7 +44,7 @@ MP_API_KEY=$(cat MP_API_KEY)
 
 #curl https://www.materialsproject.org/rest/v2/materials/mp-1234/vasp?API_KEY=$MP_API_KEY
 
-CRITERIA='{"elements": {"$in": ['$IN'], "$all": ['$ALL']}, "nelements":1}'
+CRITERIA='{"elements": {"$in": ['$IN'], "$all": ['$ALL']}, "nelements":2}'
 PROPERTIES='["material_id", "pretty_formula", "elements", "nelements", "energy", "energy_per_atom", "density", "volume", "nsites", "band_gap", "total_magnetization", "elasticity", "piezo", "diel", "copyright", "cif"]'
 
 curl -s --header "X-API-KEY: $MP_API_KEY" "https://www.materialsproject.org/rest/v2/query" -F "criteria=$CRITERIA" -F "properties=$PROPERTIES"
