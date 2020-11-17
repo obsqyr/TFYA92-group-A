@@ -61,7 +61,7 @@ def run_md():
             settings['temperature'] * units.kB, settings['friction'])
 
     traj = Trajectory('ar.traj', 'w', atoms)
-    dyn.attach(traj.write, interval=100)
+    dyn.attach(traj.write, interval=1000)
 
 
     def printenergy(a=atoms):  # store a reference to atoms in the definition.
@@ -71,10 +71,11 @@ def run_md():
               'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
 
     # Now run the dynamics
-    dyn.attach(printenergy, interval=10)
+    dyn.attach(printenergy, interval=100)
     printenergy()
     dyn.run(settings['max_steps'])
-
+    
+    return atoms
 
 if __name__ == "__main__":
     run_md()
