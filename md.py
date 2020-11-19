@@ -5,6 +5,7 @@ from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
 #from ase.md.verlet import VelocityVerlet
 from ase import units
 from asap3 import Trajectory
+from asap3 import LennardJones
 from read_settings import read_settings_file
 import properties
 
@@ -45,9 +46,11 @@ def run_md():
     traj = Trajectory('ar.traj', 'w', atoms)
     dyn.attach(traj.write, interval=1000)
 
+    # Identity number (code?) to keep track of properties
+    id = "0001"
     # Calculation and writing of properties
-    properties.initialize_properties_file(atoms)
-    dyn.attach(properties.calc_properties, 100, old_atoms, atoms)
+    properties.initialize_properties_file(atoms, id)
+    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id)
 
     # Running the dynamics
     dyn.run(settings['max_steps'])
