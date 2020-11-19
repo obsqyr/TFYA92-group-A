@@ -5,32 +5,31 @@ from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
 #from ase.md.verlet import VelocityVerlet
 from ase import units
 from asap3 import Trajectory
+from ase.calculators.kim.kim import KIM
 from asap3 import LennardJones
+import ase.io
 from read_settings import read_settings_file
 import properties
 
 def run_md():
-
+    # Read settings
     settings = read_settings_file()
+    
+    # Use KIM for potentials from OpenKIM
+    use_kim = True
+    
+    # Use Asap for a huge performance increase if it is installed
+    use_asap = True
 
     # Set up a crystal
-    # Atomic structure should be read from some cif-file
-    # Should this cif-file be an argument of run_md()? I.e. run_md("Atoms.cif")
-    # atoms = ase.io.read("Atoms.cif", None)
-
-    size = 6
-    atoms = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
-                                  symbol="Ar",
-                                  latticeconstant = 5.256,
-                                  size=(size, size, size),
-                                  pbc=True)
-    old_atoms = atoms
-
-    # Method to calculate forces
-    # Code to read in and implement correct LJ-parameters should be below
-    # ..... 
-    atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
-
+    atoms = ase.io.read("nacl.cif") # read from .cif file
+    
+    # Describe the interatomic interactions with OpenKIM potential
+    if use_kim: # use KIM potential
+        atoms.calc = KIM("LJ_ElliottAkerson_2015_Universal__MO_959249795837_003")
+    else: # otherwise, default to asap3 LennardJones
+        atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
+    
     # Set the momenta corresponding to T=300K
     MaxwellBoltzmannDistribution(atoms, settings['temperature'] * units.kB)
 
@@ -55,8 +54,8 @@ def run_md():
 
     # Running the dynamics
     dyn.run(settings['max_steps'])
-
-    return atoms
-
+    
+    return atom
+  
 if __name__ == "__main__":
     run_md()
