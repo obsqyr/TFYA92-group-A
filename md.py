@@ -17,6 +17,7 @@ def run_md():
     # Atomic structure should be read from some cif-file
     # Should this cif-file be an argument of run_md()? I.e. run_md("Atoms.cif")
     # atoms = ase.io.read("Atoms.cif", None)
+
     size = 6
     atoms = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
                                   symbol="Ar",
@@ -27,7 +28,7 @@ def run_md():
 
     # Method to calculate forces
     # Code to read in and implement correct LJ-parameters should be below
-    # .....
+    # ..... 
     atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
 
     # Set the momenta corresponding to T=300K
