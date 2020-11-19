@@ -8,41 +8,22 @@ from asap3 import Trajectory
 from read_settings import read_settings_file
 import properties
 
-#def calcenergy(a):
-#    epot = a.get_potential_energy() / len(a)
-#    ekin = a.get_kinetic_energy() / len(a)
-#    t = ekin / (1.5 * units.kB)
-#
-#    return epot, ekin, t
-
-
 def run_md():
 
     settings = read_settings_file()
-
-#--------Provisional?--------
-    # Use Asap for a huge performance increase if it is installed
-    use_asap = True
-
-    if use_asap:
-        from asap3 import LennardJones
-        size = 6
-    else:
-        from ase.calculators.emt import LennardJones
-        size = 3
-#----------------------------
 
     # Set up a crystal
     # Atomic structure should be read from some cif-file
     # Should this cif-file be an argument of run_md()? I.e. run_md("Atoms.cif")
     # atoms = ase.io.read("Atoms.cif", None)
-
+    size = 6
     atoms = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
                                   symbol="Ar",
                                   latticeconstant = 5.256,
                                   size=(size, size, size),
                                   pbc=True)
     old_atoms = atoms
+
     # Method to calculate forces
     # Code to read in and implement correct LJ-parameters should be below
     # .....
@@ -64,20 +45,11 @@ def run_md():
     traj = Trajectory('ar.traj', 'w', atoms)
     dyn.attach(traj.write, interval=1000)
 
-
-#    def printenergy(a=atoms):  # store a reference to atoms in the definition.
-#        """Function to print the potential, kinetic and total energy."""
-#        epot, ekin, t = calcenergy(a)
-#        print('Energy per atom: Epot = %.3feV  Ekin = %.3feV (T=%3.0fK)  '
-#              'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
-
+    # Calculation and writing of properties
     properties.initialize_properties_file(atoms)
-
-    # Now run the dynamics
-    #dyn.attach(printenergy, interval=100)
-    #printenergy()
-    #dyn.attach(properties.calc_properties(atoms, old_atoms), interval=100)
     dyn.attach(properties.calc_properties, 100, old_atoms, atoms)
+
+    # Running the dynamics
     dyn.run(settings['max_steps'])
 
     return atoms
