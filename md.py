@@ -7,14 +7,7 @@ from ase import units
 from asap3 import Trajectory
 from asap3 import LennardJones
 from read_settings import read_settings_file
-
-def calcenergy(a):
-    epot = a.get_potential_energy() / len(a)
-    ekin = a.get_kinetic_energy() / len(a)
-    t = ekin / (1.5 * units.kB)
-
-    return epot, ekin, t
-
+import properties
 
 def run_md():
 
@@ -31,6 +24,7 @@ def run_md():
                                   latticeconstant = 5.256,
                                   size=(size, size, size),
                                   pbc=True)
+    old_atoms = atoms
 
     # Method to calculate forces
     # Code to read in and implement correct LJ-parameters should be below
@@ -51,20 +45,18 @@ def run_md():
             settings['temperature'] * units.kB, settings['friction'])
 
     traj = Trajectory('ar.traj', 'w', atoms)
-    dyn.attach(traj.write, interval=100)
+    dyn.attach(traj.write, interval=1000)
 
+    # Identity number (code?) to keep track of properties
+    id = "0001"
+    # Calculation and writing of properties
+    properties.initialize_properties_file(atoms, id)
+    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id)
 
-    def printenergy(a=atoms):  # store a reference to atoms in the definition.
-        """Function to print the potential, kinetic and total energy."""
-        epot, ekin, t = calcenergy(a)
-        print('Energy per atom: Epot = %.3feV  Ekin = %.3feV (T=%3.0fK)  '
-              'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
-
-    # Now run the dynamics
-    dyn.attach(printenergy, interval=10)
-    printenergy()
+    # Running the dynamics
     dyn.run(settings['max_steps'])
 
+    return atoms
 
 if __name__ == "__main__":
     run_md()
