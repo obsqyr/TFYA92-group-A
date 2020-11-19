@@ -1,6 +1,7 @@
 import math
-from ase import atoms
-
+from ase import Atoms
+from ase import units
+#from ase.atoms import get_potential_energy
 # This file contains functions to calculate material properties
 
 def distance2(pos1, pos2):
@@ -35,21 +36,20 @@ def energies_and_temp(a):
     return epot, ekin, etot, t
 
 def initialize_properties_file(a):
-    file = open("properties.txt", "a+")
+    file=open("properties.txt", "w+")
+    print(file)
     file.write("Unit cell composition: "+a.get_chemical_formula() + "\n")
     file.write("Material: "+a.get_chemical_formula(mode='hill', empirical=True) + "\n")
     file.write("Properties:\nepot ekin etot temp msd \n")
-    epot, ekin, etot, temp = energies_and_temp(a)
-
-    file.write(str(epot)+" "+str(ekin)+" "+str(etot)+" "+str(temp)+" 0")
-
+    file.close()
     return
 
-def calc_properties(a, a_old):
+def calc_properties(a_old, a):
     epot, ekin, etot, temp = energies_and_temp(a)
     msd = meansquaredisp(a, a_old)
 
-    file = open("properties.txt", "a")
+    file=open("properties.txt", "a+")
+    print(file)
     file.write(str(epot)+" "+str(ekin)+" "+str(etot)+" "+str(temp)+" "+str(msd)+"\n")
-
+    file.close()
     return
