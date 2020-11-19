@@ -6,6 +6,8 @@ from ase.md.verlet import VelocityVerlet
 from ase import units
 from asap3 import Trajectory
 from ase.calculators.kim.kim import KIM
+from asap3 import LennardJones
+import ase.io
 
 def calcenergy(a):
     epot = a.get_potential_energy() / len(a)
@@ -21,24 +23,13 @@ def run_md():
     
     # Use Asap for a huge performance increase if it is installed
     use_asap = True
-
-    if use_asap:
-        from asap3 import LennardJones
-        size = 6
-    else:
-        from ase.calculators.lj import LennardJones
-        size = 3
     
     # Set up a crystal
-    atoms = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
-                                  symbol="Ar",
-                                  latticeconstant = 5.256,
-                                  size=(size, size, size),
-                                  pbc=True)
-
-    # Describe the interatomic interactions with Lennard Jones
+    atoms = ase.io.read("nacl.cif") # read from .cif file
+    
+    # Describe the interatomic interactions with OpenKIM potential
     if use_kim: # use KIM potential
-        atoms.calc = KIM("ex_model_Ar_P_Morse_07C") #an example potential
+        atoms.calc = KIM("LJ_ElliottAkerson_2015_Universal__MO_959249795837_003")
     else: # otherwise, default to asap3 LennardJones
         atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
         
@@ -49,7 +40,6 @@ def run_md():
     dyn = VelocityVerlet(atoms, 1 * units.fs)  # 5 fs time step.
     traj = Trajectory('ar.traj', 'w', atoms)
     dyn.attach(traj.write, interval=100)
-
 
     def printenergy(a=atoms):  # store a reference to atoms in the definition.
         """Function to print the potential, kinetic and total energy."""
@@ -62,6 +52,5 @@ def run_md():
     printenergy()
     dyn.run(2000)
     
-
 if __name__ == "__main__":
     run_md()
