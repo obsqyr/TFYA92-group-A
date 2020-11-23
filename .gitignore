@@ -3,3 +3,4 @@
 *.traj
 __pycache__
 property_calculations
+kim.log
