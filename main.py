@@ -17,8 +17,9 @@ def main():
             print("\n \n \nRUNNING MOLECULAR DYNAMICS")
             try:
                 md.run_md(atoms, str(id))
-            except:
+            except Exception as e:
                 print("\n ERROR IN RUNNING MD \n")
+                print("Exception: ", e)
             os.remove("tmp_cif.cif")
     except KeyboardInterrupt:
         pass
