@@ -6,6 +6,7 @@ from read_settings import read_settings_file
 from md import run_md
 from properties import initialize_properties_file
 from properties import calc_properties
+import properties
 from ase.lattice.cubic import FaceCenteredCubic
 
 NACL = ase.io.read("nacl.cif", None)
@@ -23,12 +24,32 @@ NACL = ase.io.read("nacl.cif", None)
 old_a = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
                           symbol="Ar",
                           latticeconstant = 5.256,
-                          size=(6, 6, 6),
+                          size=(1, 1, 1),
                           pbc=True)
+
+a = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+                          symbol="Ar",
+                          latticeconstant = 5.256,
+                          size=(1, 1, 1),
+                          pbc=True)
+
+a.set_positions([[0, 0, 10], [2.628, 2.628, 0], [2.628, 0, 2.628], [0, 2.628, 2.628]])
 
 
 #a = run_md()
 
-#msqdisp = meansquaredisp(a, old_a)
+#msqdisp = properties.meansquaredisp(a, old_a)
 
 #print(msqdisp)
+
+atoms_old = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+                            symbol="Ar",
+                            latticeconstant = 5.256,
+                            size=(3, 3, 3),
+                            pbc=True)
+
+#final_atoms = run_md()
+
+#print(properties.meansquaredisp(atoms_old, final_atoms))
+
+print(properties.ss("Test", 3))

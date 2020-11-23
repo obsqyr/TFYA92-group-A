@@ -25,7 +25,11 @@ def read_settings_file():
         try:
             data['friction']
         except Exception as e:
-            data['friction'] = "0.001"
+            data['friction'] = 0.001
+        try:
+            data['decimals']
+        except Exception as e:
+            data['decimals'] = 5
         return data
 
 if __name__ == "__main__":

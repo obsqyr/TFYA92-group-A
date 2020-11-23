@@ -8,6 +8,7 @@ from asap3 import Trajectory
 from asap3 import LennardJones
 from read_settings import read_settings_file
 import properties
+import copy
 
 def run_md():
 
@@ -18,17 +19,17 @@ def run_md():
     # Should this cif-file be an argument of run_md()? I.e. run_md("Atoms.cif")
     # atoms = ase.io.read("Atoms.cif", None)
 
-    size = 6
+    size = 3
     atoms = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
                                   symbol="Ar",
                                   latticeconstant = 5.256,
                                   size=(size, size, size),
                                   pbc=True)
-    old_atoms = atoms
+    old_atoms = copy.deepcopy(atoms)
 
     # Method to calculate forces
     # Code to read in and implement correct LJ-parameters should be below
-    # ..... 
+    # .....
     atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
 
     # Set the momenta corresponding to T=300K
@@ -49,9 +50,11 @@ def run_md():
 
     # Identity number (code?) to keep track of properties
     id = "0001"
+    # Number of decimals (for most properties)
+    decimals = settings['decimals']
     # Calculation and writing of properties
-    properties.initialize_properties_file(atoms, id)
-    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id)
+    properties.initialize_properties_file(atoms, id, decimals)
+    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id, decimals)
 
     # Running the dynamics
     dyn.run(settings['max_steps'])
