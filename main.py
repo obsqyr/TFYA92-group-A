@@ -22,6 +22,7 @@ def main():
                 print("Exception: ", e)
             os.remove("tmp_cif.cif")
     except KeyboardInterrupt:
+        os.remove("tmp_cif.cif")
         pass
 
 if __name__ == "__main__":
