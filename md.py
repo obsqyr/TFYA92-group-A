@@ -11,10 +11,6 @@ import ase.io
 from read_settings import read_settings_file
 import properties
 
-os.mkdir("traj-files")
-# creating a directory called 'traj-files' in current wd
-# don't forget 'import os' at top
-
 def run_md(atoms, id):
     # Read settings
     settings = read_settings_file()
@@ -47,13 +43,9 @@ def run_md(atoms, id):
         dyn = Langevin(atoms, settings['time_step'] * units.fs,
             settings['temperature'] * units.kB, settings['friction'])
 
-    file = atoms.get_chemical_formula(mode = 'hill', empirical = True) + ".traj"
+    file = "traj-files/" + str(atoms.get_chemical_formula(mode = 'hill', empirical = True)) + ".traj"
     traj = Trajectory(file, 'w', atoms)
-    shutil.move(traj, "traj-files")
     dyn.attach(traj.write, interval=1000)
-    # 'traj-files' must be an already existing folder in your wd
-    # don't forget 'import shutil' at top
-    # .traj files will be created for each material and moved to 'traj-files'
 
     # Identity number given as func. parameter to keep track of properties
     # Calculation and writing of properties
