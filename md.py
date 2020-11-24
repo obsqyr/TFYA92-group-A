@@ -46,6 +46,7 @@ def run_md(atoms, id, file):
 
     traj = Trajectory(file, 'w', atoms)
     dyn.attach(traj.write, interval=1000)
+    view(file)
 
     # Identity number given as func. parameter to keep track of properties
     # Calculation and writing of properties
