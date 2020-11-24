@@ -44,7 +44,7 @@ def run_md(atoms, id):
         dyn = Langevin(atoms, settings['time_step'] * units.fs,
             settings['temperature'] * units.kB, settings['friction'])
 
-    file = atoms.get_chemical_formula(mode = 'hill', empirical = True) + '.traj'
+    file = atoms.get_chemical_formula(mode = 'hill', empirical = True) + ".traj"
     traj = Trajectory(file, 'w', atoms)
     dyn.attach(traj.write, interval=1000)
     view(file)
