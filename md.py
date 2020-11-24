@@ -11,6 +11,9 @@ import ase.io
 from read_settings import read_settings_file
 import properties
 
+os.mkdir("traj-files")
+# creating a directory called 'traj-files' in current wd
+# don't forget 'import os' at top
 
 def run_md(atoms, id):
     # Read settings
