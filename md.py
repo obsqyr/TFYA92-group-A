@@ -47,7 +47,7 @@ def run_md(atoms, id):
     file = atoms.get_chemical_formula(mode = 'hill', empirical = True) + ".traj"
     traj = Trajectory(file, 'w', atoms)
     dyn.attach(traj.write, interval=1000)
-    view(file)
+    # skapa mapp för filerna?
 
     # Identity number given as func. parameter to keep track of properties
     # Calculation and writing of properties
