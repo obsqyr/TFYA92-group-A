@@ -1,7 +1,8 @@
 {
-    "time_step": 5,
-    "max_steps": 1000,
-    "temperature": 300,
+    "time_step": 10,
+    "max_steps": 2000,
+    "temperature": 500,
     "ensemble": "NVE",
-    "friction": 0.001
+    "friction": 0.001,
+    "decimals": 5
 }
