@@ -9,6 +9,7 @@ def main():
     mp_properties = read_mp_properties('test_120_materials.json')
 
     try:
+        os.mkdir('property_calculations')
         for id, cif in enumerate(mp_properties['cif']):
             f = open("tmp_cif.cif", "w+")
             f.write(cif)
