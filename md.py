@@ -5,32 +5,33 @@ from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
 #from ase.md.verlet import VelocityVerlet
 from ase import units
 from asap3 import Trajectory
+from ase.calculators.kim.kim import KIM
 from asap3 import LennardJones
+import ase.io
 from read_settings import read_settings_file
 import properties
 
-def run_md():
 
+def run_md(atoms, id):
+    # Read settings
     settings = read_settings_file()
 
+    # Use KIM for potentials from OpenKIM
+    use_kim = True
+
+    # Use Asap for a huge performance increase if it is installed
+    use_asap = True
+
     # Set up a crystal
-    # Atomic structure should be read from some cif-file
-    # Should this cif-file be an argument of run_md()? I.e. run_md("Atoms.cif")
-    # atoms = ase.io.read("Atoms.cif", None)
-    size = 6
-    atoms = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
-                                  symbol="Ar",
-                                  latticeconstant = 5.256,
-                                  size=(size, size, size),
-                                  pbc=True)
     old_atoms = atoms
 
-    # Method to calculate forces
-    # Code to read in and implement correct LJ-parameters should be below
-    # .....
-    atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
+    # Describe the interatomic interactions with OpenKIM potential
+    if use_kim: # use KIM potential
+        atoms.calc = KIM("LJ_ElliottAkerson_2015_Universal__MO_959249795837_003")
+    else: # otherwise, default to asap3 LennardJones
+        atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
 
-    # Set the momenta corresponding to T=300K
+    # Set the momenta corresponding to temperature from settings file
     MaxwellBoltzmannDistribution(atoms, settings['temperature'] * units.kB)
 
     # Select integrator
@@ -46,13 +47,24 @@ def run_md():
     traj = Trajectory('ar.traj', 'w', atoms)
     dyn.attach(traj.write, interval=1000)
 
-    # Identity number (code?) to keep track of properties
-    id = "0001"
+    # Identity number given as func. parameter to keep track of properties
     # Calculation and writing of properties
     properties.initialize_properties_file(atoms, id)
     dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id)
 
+    # unnecessary, used for logging md runs
+    # we should write some kind of logger for the MD
+    def logger(a=atoms):  # store a reference to atoms in the definition.
+        """Function to print the potential, kinetic and total energy."""
+        epot = a.get_potential_energy() / len(a)
+        ekin = a.get_kinetic_energy() / len(a)
+        t = ekin / (1.5 * units.kB)
+        print('Energy per atom: Epot = %.3feV  Ekin = %.3feV (T=%3.0fK)  '
+              'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
+
     # Running the dynamics
+    dyn.attach(logger, interval = 10)
+    logger()
     dyn.run(settings['max_steps'])
 
     return atoms
