@@ -23,8 +23,8 @@ def run_md(atoms, id):
     # Use Asap for a huge performance increase if it is installed
     use_asap = True
 
-    # Set up a crystal
-    old_atoms = atoms
+    # Create a copy of the initial atoms object for future reference
+    old_atoms = copy.deepcopy(atoms)
 
     # Describe the interatomic interactions with OpenKIM potential
     if use_kim: # use KIM potential
