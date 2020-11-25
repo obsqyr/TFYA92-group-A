@@ -33,6 +33,7 @@ def energies_and_temp(a):
 
     return epot, ekin, etot, t
 
+
 def lattice_constants(a):
     # NOTE: Not lattice constats yet, just cell lengths.    ?????
     lc = list(a.get_cell_lengths_and_angles())
@@ -40,12 +41,9 @@ def lattice_constants(a):
 
 # Calculate internal pressure
 
-
-
-
-# Initializes the "properties_id.txt" file
 def initialize_properties_file(a, id, d):
-    file=open("properties_"+id+".txt", "w+")
+    file=open("property_calculations/properties_"+id+".txt", "w+")
+
     file.write("Material ID: "+id+"\n")
     file.write("Unit cell composition: "+a.get_chemical_formula() + "\n")
     file.write("Material: "+a.get_chemical_formula(mode='hill', empirical=True) + "\n")
@@ -67,16 +65,18 @@ def ss(value, decimals):
     tmp = str(round(value, decimals))
     return tmp.ljust(decimals + 6)
 
+
 # Calculates prioperties and writes them in a file
 def calc_properties(a_old, a, id, d):
     # d = number of decimals
     epot, ekin, etot, temp = energies_and_temp(a)
     msd =  meansquaredisp(a, a_old)
     lc = lattice_constants(a)
-    file=open("properties_"+id+".txt", "a+")
+    file=open("property_calculations/properties_"+id+".txt", "a+")
     file.write(ss(epot, d)+ss(ekin, d)+ss(etot, d)+ss(temp, 2)+ss(msd, d))
     file.write(ss(lc[0], 3)+ss(lc[1], 3)+ss(lc[2], 3))
 
     file.write("\n")
+
     file.close()
     return
