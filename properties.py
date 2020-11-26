@@ -1,9 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import math
 from ase import Atoms
 from ase import units
 # This file contains functions to calculate material properties
 
 def distance2(pos1, pos2):
+    """Calculates the sqared distance between two atoms in 3D space"""
     return (pos1[0] - pos2[0])**2 + (pos1[1] - pos2[1])**2 + (pos1[2] - pos2[2])**2
 
 def distance(pos1, pos2):
@@ -11,6 +15,16 @@ def distance(pos1, pos2):
 
 
 def meansquaredisp(atoms, old_atoms):
+    """ Calculates the mean squared displacement
+
+    Parameters:
+    atoms (obj):atoms is an atom object from ase.
+    old_atoms (obj):old_atoms is an atom object from the python library.
+
+    Returns:
+    int: The mean squared displacement.
+
+   """
     pos = atoms.get_positions()
     old_pos = old_atoms.get_positions()
     length = len(pos)
@@ -26,6 +40,16 @@ def meansquaredisp(atoms, old_atoms):
     return msd/length
 
 def energies_and_temp(a):
+    """ Calculates the energies and temperatur.
+
+    Parameters:
+    a (obj): a is an atoms object of class defined in ase.
+
+    Returns:
+    tuple: returns a tuple of potential energi, kinetic energy, total energy
+            and time step t.
+
+    """
     epot = a.get_potential_energy() / len(a)
     ekin = a.get_kinetic_energy() / len(a)
     etot = epot + ekin
@@ -42,6 +66,19 @@ def lattice_constants(a):
 # Calculate internal pressure
 
 def initialize_properties_file(a, id, d):
+    """Initializes a file over properties with correct titles and main structure
+        for an material.
+
+    Parameters:
+    a (obj): a is an atoms object of class defined in ase. The material is made
+            into an atoms object.
+    id (int): a special number identifying the material system.
+    d (int): a number for the formatting of file. Give a correct appending
+            for strings.
+
+    Returns:
+    None
+    """
     file=open("property_calculations/properties_"+id+".txt", "w+")
 
     file.write("Material ID: "+id+"\n")
@@ -60,14 +97,26 @@ def initialize_properties_file(a, id, d):
     file.close()
     return
 
-# Help function to calc_properties
 def ss(value, decimals):
+    """Help function to calc_properties."""
     tmp = str(round(value, decimals))
     return tmp.ljust(decimals + 6)
 
 
-# Calculates prioperties and writes them in a file
 def calc_properties(a_old, a, id, d):
+    """Calculates prioperties and writes them in a file.
+
+    Parameters:
+    a_old (obj): a_old is an atoms object from clas defined from ase.
+                it's the old atom that needs to be updated.
+    a (obj): a is an atoms object from clas defined from ase.
+            it's the new updated atom obj for MD molecular dyanimcs.
+    id ():
+    d ():
+
+    Returns: None
+
+    """
     # d = number of decimals
     epot, ekin, etot, temp = energies_and_temp(a)
     msd =  meansquaredisp(a, a_old)
