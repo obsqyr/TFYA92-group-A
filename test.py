@@ -46,9 +46,7 @@ class Testreadmp(unittest.TestCase):
         valid_response = json_data["valid_response"]
         self.assertEqual(True, valid_response)
         # create temporary file to store response results
-        #subprocess.call(["query_mp_project.sh AM -- O > tmp_res_file.json", "AM --"])
-        #subprocess.call([""])
-        """
+        subprocess.call("./query_mp_project.sh Ti -- 00 > tmp_res_file.json", shell=True)
         with open("tmp_res_file.json") as f:
             json_data = json.load(f)
         valid_response = json_data["valid_response"]
@@ -56,7 +54,6 @@ class Testreadmp(unittest.TestCase):
         self.assertEqual(valid_response, True)
         self.assertEqual(num_results, 0)
         os.remove("tmp_res_file.json")
-        """
 
 
 if __name__ == '__main__':
