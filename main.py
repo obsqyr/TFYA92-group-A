@@ -8,6 +8,14 @@ def main():
     # read in the .json file as an command line argument?
     mp_properties = read_mp_properties('test_120_materials.json')
 
+    # try to create folder 'property_calculations'
+    # if it already exists, continue with the program
+    try:
+        os.mkdir('property_calculations')
+    except:
+        pass
+
+    # primary loop for MD 
     try:
         os.mkdir('property_calculations')
         for id, cif in enumerate(mp_properties['cif']):

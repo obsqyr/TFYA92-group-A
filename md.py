@@ -66,7 +66,7 @@ def run_md(atoms, id):
               'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
 
     # Running the dynamics
-    dyn.attach(logger, interval = 10)
+    dyn.attach(logger, interval = 1000)
     logger()
     dyn.run(settings['max_steps'])
 
