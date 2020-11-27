@@ -7,9 +7,8 @@
 #SBATCH --exclusive
 #SBATCH -n 32
 #
-module load Python/3.6.4-nsc2-intel-2018a-eb
 module load impi/.2018.3.222-eb
 
-time mpprun asap-python main.py
+time mpirun python3 main.py
 
 echo "job completed"
