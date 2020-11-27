@@ -50,10 +50,10 @@ def main():
 
     # how do I send in the correct atoms-object to md_run?
     data = comm.recv(source=0, tag=rank)
-    for id, d in enumerate(data):
-        print("ID: ", id)
-        print(atoms)
-        md.run_md(atoms, str(id))
+    for id in data:
+        #print("ID: ", id)
+        #print(atoms)
+        md.run_md(atoms_list[id], str(id))
         
 
     '''
