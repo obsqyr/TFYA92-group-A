@@ -52,4 +52,8 @@ atoms_old = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
 
 #print(properties.meansquaredisp(atoms_old, final_atoms))
 
-print(properties.ss("Test", 3))
+print(properties.ss(3.141529887453, 3))
+
+print(NACL.info['spacegroup'])
+
+print(len(set(NACL.get_chemical_symbols())))

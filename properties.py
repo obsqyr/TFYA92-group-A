@@ -39,7 +39,7 @@ def meansquaredisp(atoms, old_atoms):
     return msd/length
 
 def energies_and_temp(a):
-    """ Calculates the energies and temperatur.
+    """ Calculates the energies and temperature.
 
     Parameters:
     a (obj): a is an atoms object of class defined in ase.
@@ -62,9 +62,20 @@ def lattice_constants(a):
     lc = list(a.get_cell_lengths_and_angles())
     return [lc[0], lc[1], lc[2]]
 
+def volume_pressure(a):
+    N = len(a.get_chemical_symbols())
+    vol = a.get_volume()/N
+    stress = a.get_stress()
+    pressure = (stress[0] + stress[1] + stress[2])/3
+    return vol, pressure
+
+def debye_lindemann(a,msd,temp,nnd):
+    debye = math.sqrt(3 * units._hbar**2 * temp / (units.kb * a.get_masses()[0] * msd))
+    lindemann = math.sqrt(msd)/nnd
+    return debye, lindemann
 # Calculate internal pressure
 
-def initialize_properties_file(a, id, d):
+def initialize_properties_file(a, id, d, ma):
     """Initializes a file over properties with correct titles and main structure
         for an material.
 
@@ -74,6 +85,7 @@ def initialize_properties_file(a, id, d):
     id (int): a special number identifying the material system.
     d (int): a number for the formatting of file. Give a correct appending
             for strings.
+    ma (bool): a boolean indicating if the material is monoatomic
 
     Returns:
     None
@@ -90,9 +102,17 @@ def initialize_properties_file(a, id, d):
         return str.ljust(k+6)
 
     file.write(lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
-    file.write(lj("LC_a",3)+lj("LC_b",3)+lj("LC_c",3)+"\n")
+    file.write(lj("LC_a",3)+lj("LC_b",3)+lj("LC_c",3))
+    file.write(lj("Volume")+lj("Pressure")+"\n")
+    if ma:
+        file.write(lj("DebyeT",2)+lj("Lindemann")+"\n")
+
     file.write(lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
-    file.write(lj("Å",3)+lj("Å",3)+lj("Å",3)+"\n")
+    file.write(lj("Å",3)+lj("Å",3)+lj("Å",3))
+    file.write(lj("Å^3/atom")+lj("Pa")+"\n")
+    # Check if pressure is given in Pascal!!!
+    if ma:
+        file.write(lj("K",2)+lj("1")+"\n")
     file.close()
     return
 
@@ -102,7 +122,7 @@ def ss(value, decimals):
     return tmp.ljust(decimals + 6)
 
 
-def calc_properties(a_old, a, id, d):
+def calc_properties(a_old, a, id, d, ma, nnd=1):
     """Calculates prioperties and writes them in a file.
 
     Parameters:
@@ -112,19 +132,25 @@ def calc_properties(a_old, a, id, d):
             it's the new updated atom obj for MD molecular dyanimcs.
     id ():
     d ():
-
+    ma ():
+    nnd (float): nnd is the nearest neighbour distance for an ideal crystal lattice.
     Returns: None
 
     """
-    # d = number of decimals
+
     epot, ekin, etot, temp = energies_and_temp(a)
     msd =  meansquaredisp(a, a_old)
     lc = lattice_constants(a)
+    vol, pr = volume_pressure(a)
+
     file=open("property_calculations/properties_"+id+".txt", "a+")
     file.write(ss(epot, d)+ss(ekin, d)+ss(etot, d)+ss(temp, 2)+ss(msd, d))
     file.write(ss(lc[0], 3)+ss(lc[1], 3)+ss(lc[2], 3))
+    file.write(ss(vol, 3)+ss(pr, 3))
+    if ma:
+        debye, linde = debye_lindemann(a,msd,temp,nnd)
+        file.write(ss(debye, 2)+ss(linde, d))
 
     file.write("\n")
-
     file.close()
     return

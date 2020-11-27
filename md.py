@@ -48,12 +48,16 @@ def run_md(atoms, id):
     traj = Trajectory('ar.traj', 'w', atoms)
     dyn.attach(traj.write, interval=1000)
 
-    # Identity number given as func. parameter to keep track of properties
-    # Number of decimals for most calculated properties
+
+    # Number of decimals for most calculated properties.
     decimals = settings['decimals']
+    # Boolean indicating if the material is monoatomic.
+    monoatomic = len(set(atoms.get_chemical_symbols())) == 1
+    # Calculate nnd wherever possible
+
     # Calculation and writing of properties
-    properties.initialize_properties_file(atoms, id, decimals)
-    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id, decimals)
+    properties.initialize_properties_file(atoms, id, decimals,monoatomic)
+    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id, decimals, monoatomic)
 
     # unnecessary, used for logging md runs
     # we should write some kind of logger for the MD
