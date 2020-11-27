@@ -1,7 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import json
 
-def read_settings_file():
-    with open("settings.json") as f:
+def read_settings_file(file= "settings.json"):
+    """Function to read the configuration file, settings.jsonself.
+
+    Parameters:
+    file (str): name of file.
+
+    Returns:
+    dict: Data from the json object.
+    """
+    with open(file) as f:
         data = json.load(f)
 
         # 'Default' value for parameter: try to find it in settings
