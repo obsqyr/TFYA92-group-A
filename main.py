@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Main Molecular dynamics simulation loop
 import os
 import md
@@ -5,6 +7,9 @@ import ase.io
 from read_mp_project import read_mp_properties
 
 def main():
+    """The main loop for running the Molecular Dyanamic simulation (MD).
+        MD is run for all materials of interest, each identified with a specific id.
+    """
     # read in the .json file as an command line argument?
     mp_properties = read_mp_properties('test_120_materials.json')
 
@@ -15,7 +20,7 @@ def main():
     except:
         pass
 
-    # primary loop for MD 
+    # primary loop for MD
     try:
         for id, cif in enumerate(mp_properties['cif']):
             f = open("tmp_cif.cif", "w+")
