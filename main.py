@@ -37,10 +37,14 @@ def main():
         f.close()
         atoms = ase.io.read("tmp_cif.cif", None)
         atoms_list.append(atoms)
-        os.remove("tmp_cif.cif")
+        try:
+            os.remove("tmp_cif.cif")
+        except FileNotFoundError:
+            pass
     print("Created atoms list")
         
-    # Run the molecular dynamics
+    # Run the molecular dynamics in parallell (might want to
+    # improve it)
     if rank == 0:
         jobs = np.arange(1, len(atoms_list))
         job_array = np.array_split(jobs, size)
