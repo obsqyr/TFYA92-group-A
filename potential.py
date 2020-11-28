@@ -1,7 +1,8 @@
 from ase.lattice.cubic import FaceCenteredCubic
 from ase.calculators.kim.kim import KIM
+import ase.io
 
-atoms = FaceCenteredCubic(symbol='Ar', latticeconstant=5.25, size=(1,1,1))
+atoms = ase.io.read("nacl.cif",None)
 calc = KIM('LJ_ElliottAkerson_2015_Universal__MO_959249795837_003')
 atoms.calc = calc
 
