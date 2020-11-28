@@ -3,7 +3,34 @@
 import math
 from ase import Atoms
 from ase import units
+import numpy as np
 # This file contains functions to calculate material properties
+def time_average(integrand, total_time):
+    return sum(integrand)/total_time
+
+def specific_heat(temp_store, total_time, N):
+    """Calculates the specific heat for a material.
+    Given by the formula: (E[T²] - E[T]²)/ E[T]² = 3*2^-1*N^-1*(1-3*N*Kb*2^-1*Cv^-1).
+    Where Kb is boltzmansconstant, N is the total number of atoms, T is temperature and Cv the specific heat.
+    E[A(t)] calculates the expectation value of A, which can in this case be seen as a time average for the
+    phase variable A(t).
+
+    Parameters:
+    temp_store (list): The list over all intantaneous temperatures of a material once MD has been run.
+    total_time (int): The total time interval from 0 that the MD has run.
+    N (int): The total number of atoms in the material.
+
+    Returns:
+    int: specific heat is returned (the SI-units J*Kg^-1*K^-1)
+    """
+
+    kb = 1.38064852*float(10^-23)
+    # Set M = (E[T²] - E[T]²)/ E[T]²
+    ET = time_average(temp_store, total_time)
+    ET2 = time_average(np.array(temp_store)**2, total_time)
+    M = (ET2 - ET**2)/ET**2
+    Cv = -9*N*kb/(4*N*M-6)
+    return Cv
 
 def distance2(pos1, pos2):
     """Calculates the sqared distance between two atoms in 3D space"""

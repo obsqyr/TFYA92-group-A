@@ -15,6 +15,7 @@ import copy
 
 def run_md(atoms, id):
     # Read settings
+    interval_t = 1000
     settings = read_settings_file()
 
     # Use KIM for potentials from OpenKIM
@@ -46,7 +47,7 @@ def run_md(atoms, id):
             settings['temperature'] * units.kB, settings['friction'])
 
     traj = Trajectory('ar.traj', 'w', atoms)
-    dyn.attach(traj.write, interval=1000)
+    dyn.attach(traj.write, interval=interval_t)
 
 
     # Number of decimals for most calculated properties.
@@ -59,6 +60,7 @@ def run_md(atoms, id):
     properties.initialize_properties_file(atoms, id, decimals,monoatomic)
     dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id, decimals, monoatomic)
 
+    temp_store = []
     # unnecessary, used for logging md runs
     # we should write some kind of logger for the MD
     def logger(a=atoms):  # store a reference to atoms in the definition.
@@ -68,13 +70,16 @@ def run_md(atoms, id):
         t = ekin / (1.5 * units.kB)
         print('Energy per atom: Epot = %.3feV  Ekin = %.3feV (T=%3.0fK)  '
               'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
+        temp_store.append(t)
 
     # Running the dynamics
-    dyn.attach(logger, interval = 1000)
+    dyn.attach(logger, interval=interval_t)
     logger()
     dyn.run(settings['max_steps'])
+    time_step = temp_store
+    tot_time = interval_t * len(time_step)  
 
-    return atoms
+    return atoms, temp_store, tot_time
 
 if __name__ == "__main__":
     run_md()

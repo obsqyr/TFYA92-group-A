@@ -3,6 +3,7 @@ import os
 import md
 import ase.io
 from read_mp_project import read_mp_properties
+import properties
 
 def main():
     # read in the .json file as an command line argument?
@@ -24,7 +25,11 @@ def main():
             atoms = ase.io.read("tmp_cif.cif", None)
             print("\n \n \nRUNNING MOLECULAR DYNAMICS")
             try:
-                md.run_md(atoms, str(id))
+                md_res = md.run_md(atoms, str(id))
+                N = len(md_res[0])
+                temp_store = md_res[1]
+                total_time = md_res[2]
+                Cv = properties.specific_heat(temp_store, total_time, N)
             except Exception as e:
                 print("\n ERROR IN RUNNING MD \n")
                 print("Exception: ", e)
