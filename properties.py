@@ -5,10 +5,8 @@ from ase import Atoms
 from ase import units
 import numpy as np
 # This file contains functions to calculate material properties
-def time_average(integrand, total_time):
-    return sum(integrand)/total_time
 
-def specific_heat(temp_store, total_time, N):
+def specific_heat(temp_store, steps, N):
     """Calculates the specific heat for a material.
     Given by the formula: (E[T²] - E[T]²)/ E[T]² = 3*2^-1*N^-1*(1-3*N*Kb*2^-1*Cv^-1).
     Where Kb is boltzmansconstant, N is the total number of atoms, T is temperature and Cv the specific heat.
@@ -17,19 +15,18 @@ def specific_heat(temp_store, total_time, N):
 
     Parameters:
     temp_store (list): The list over all intantaneous temperatures of a material once MD has been run.
-    total_time (int): The total time interval from 0 that the MD has run.
+    steps (int): The total number of sampled steps from 0 that the MD has run.
     N (int): The total number of atoms in the material.
 
     Returns:
     int: specific heat is returned (the SI-units J*Kg^-1*K^-1)
     """
 
-    kb = 1.38064852*float(10^-23)
     # Set M = (E[T²] - E[T]²)/ E[T]²
-    ET = time_average(temp_store, total_time)
-    ET2 = time_average(np.array(temp_store)**2, total_time)
+    ET = sum(temp_store)/steps
+    ET2 = sum(np.array(temp_store)**2/steps
     M = (ET2 - ET**2)/ET**2
-    Cv = -9*N*kb/(4*N*M-6)
+    Cv = -9*N*units.kB/(4*N*M-6)
     return Cv
 
 def distance2(pos1, pos2):
@@ -130,16 +127,18 @@ def initialize_properties_file(a, id, d, ma):
 
     file.write(lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
     file.write(lj("LC_a",3)+lj("LC_b",3)+lj("LC_c",3))
-    file.write(lj("Volume")+lj("Pressure")+"\n")
+    file.write(lj("Volume")+lj("Pressure"))
     if ma:
-        file.write(lj("DebyeT",2)+lj("Lindemann")+"\n")
+        file.write(lj("DebyeT",2)+lj("Lindemann"))
 
+    file.write("\n")
     file.write(lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
     file.write(lj("Å",3)+lj("Å",3)+lj("Å",3))
-    file.write(lj("Å^3/atom")+lj("Pa")+"\n")
+    file.write(lj("Å^3/atom")+lj("Pa"))
     # Check if pressure is given in Pascal!!!
     if ma:
-        file.write(lj("K",2)+lj("1")+"\n")
+        file.write(lj("K",2)+lj("1"))
+    file.write("\n")
     file.close()
     return
 
@@ -179,5 +178,67 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
         file.write(ss(debye, 2)+ss(linde, d))
 
     file.write("\n")
+    file.close()
+    return
+
+def finalize_properties_file(a, id, d, ma):
+
+    epot = []
+    ekin = []
+    etot = []
+    temp = []
+    msd = []
+    pr =[]
+    debye = []
+    linde = []
+    file=open("property_calculations/properties_"+id+".txt", "a+")
+    steps = 0
+    for i, line in enumerate(file):
+        if i >= 6:
+            epot.append(line.split(" ")[0])
+            ekin.append(line.split(" ")[1])
+            etot.append(line.split(" ")[2])
+            temp.append(line.split(" ")[3])
+            msd.append(line.split(" ")[4])
+            pr.append(line.split(" ")[5])
+            debye.append(line.split(" ")[6])
+            linde.append(line.split(" ")[7])
+
+            steps += 1
+    epot_t = sum(epot)/steps
+    ekin_t = sum(ekin)/steps
+    etot_t = sum(etot)/steps
+    temp_t = sum(temp)/steps
+    msd_t = sum(msd)/steps
+    pr_t = sum(pr)/steps
+    debye_t = sum(debye)/steps
+    linde_t = sum(linde)/steps
+    Cv = specific_heat(temp, steps, len(a.get_chemical_symbols())
+    file.write("\nTime averages:\n")
+
+    # Help function for formating
+    def lj(str, k = d):
+        return str.ljust(k+6)
+
+    file.write(lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
+    file.write(lj("Pressure"))
+    if ma:
+        file.write(lj("DebyeT",2)+lj("Lindemann"))
+    file.write(lj("Specific heat"))
+    file.write("\n")
+
+    file.write(lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
+    file.write(lj(lj("Pa"))
+    # Check if pressure is given in Pascal!!!
+    if ma:
+        file.write(lj("K",2)+lj("1"))
+    file.write(lj("CONTROL"))
+    file.write("\n")
+
+    file.write(ss(epot, d)+ss(ekin, d)+ss(etot, d)+ss(temp, 2)+ss(msd, d))
+    file.write(ss(pr, 3))
+    if ma:
+        file.write(ss(debye_t, 2)+ss(linde_t, d))
+    file.write(ss(Cv, d))
     file.close()
     return

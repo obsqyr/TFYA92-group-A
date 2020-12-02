@@ -40,6 +40,10 @@ def read_settings_file(file= "settings.json"):
             data['decimals']
         except Exception as e:
             data['decimals'] = 5
+        try:
+            data['interval']
+        except Exception as e:
+            data['interval'] = 100
         return data
 
 if __name__ == "__main__":
