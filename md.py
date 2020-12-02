@@ -1,5 +1,5 @@
+#!/usr/bin/env python3
 """Demonstrates molecular dynamics with constant energy."""
-
 from ase.lattice.cubic import FaceCenteredCubic
 from asap3.md.velocitydistribution import MaxwellBoltzmannDistribution
 #from ase.md.verlet import VelocityVerlet
@@ -14,6 +14,16 @@ import copy
 
 
 def run_md(atoms, id):
+    """The function does Molecular Dyanamic simulation (MD) on a material, given by argument atoms.
+
+    Parameters:
+    atoms (obj): an atoms object defined by class in ase. This is the material which MD
+    will run on.
+    id (int): an identifying number for the material.
+
+    Returns:
+    obj:atoms object defined in ase, is returned.
+    """
     # Read settings
     settings = read_settings_file()
 

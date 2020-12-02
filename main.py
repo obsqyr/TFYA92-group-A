@@ -35,7 +35,7 @@ def main():
     rank = comm.Get_rank()
     size = comm.Get_size()
     
-    # read in the .json file as an command line argument?
+    # read in the .json file as an command line argument? or maybe from settings file?
     mp_properties = read_mp_properties('test_120_materials.json')
 
     # create one list of all atom objects in data-file
