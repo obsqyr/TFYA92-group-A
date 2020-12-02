@@ -1,7 +1,7 @@
 """Demonstrates molecular dynamics with constant energy."""
 
 from ase.lattice.cubic import FaceCenteredCubic
-from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
+from asap3.md.velocitydistribution import MaxwellBoltzmannDistribution
 #from ase.md.verlet import VelocityVerlet
 from ase import units
 from asap3 import Trajectory
@@ -63,7 +63,7 @@ def run_md(atoms, id):
               'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
     
     # Running the dynamics
-    dyn.attach(logger, interval = 10)
+    dyn.attach(logger, interval = 100)
     logger()
     dyn.run(settings['max_steps'])
     
