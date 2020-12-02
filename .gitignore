@@ -5,3 +5,4 @@ __pycache__
 property_calculations
 kim.log
 *.out
+*.txt

@@ -10,27 +10,28 @@ from asap3 import LennardJones
 import ase.io
 from read_settings import read_settings_file
 import properties
+import copy
 
 
 def run_md(atoms, id):
     # Read settings
     settings = read_settings_file()
-    
+
     # Use KIM for potentials from OpenKIM
     use_kim = True
-    
+
     # Use Asap for a huge performance increase if it is installed
     use_asap = True
 
-    # Set up a crystal
-    old_atoms = atoms
-    
+    # Create a copy of the initial atoms object for future reference
+    old_atoms = copy.deepcopy(atoms)
+
     # Describe the interatomic interactions with OpenKIM potential
     if use_kim: # use KIM potential
         atoms.calc = KIM("LJ_ElliottAkerson_2015_Universal__MO_959249795837_003")
     else: # otherwise, default to asap3 LennardJones
         atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
-    
+
     # Set the momenta corresponding to temperature from settings file
     MaxwellBoltzmannDistribution(atoms, settings['temperature'] * units.kB)
 
@@ -48,9 +49,11 @@ def run_md(atoms, id):
     dyn.attach(traj.write, interval=1000)
 
     # Identity number given as func. parameter to keep track of properties
+    # Number of decimals for most calculated properties
+    decimals = settings['decimals']
     # Calculation and writing of properties
-    properties.initialize_properties_file(atoms, id)
-    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id)
+    properties.initialize_properties_file(atoms, id, decimals)
+    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id, decimals)
 
     # unnecessary, used for logging md runs
     # we should write some kind of logger for the MD
@@ -61,13 +64,13 @@ def run_md(atoms, id):
         t = ekin / (1.5 * units.kB)
         print('Energy per atom: Epot = %.3feV  Ekin = %.3feV (T=%3.0fK)  '
               'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
-    
+
     # Running the dynamics
-    dyn.attach(logger, interval = 100)
+    dyn.attach(logger, interval = 1000)
     logger()
     dyn.run(settings['max_steps'])
-    
+
     return atoms
-  
+
 if __name__ == "__main__":
     run_md()

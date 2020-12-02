@@ -44,7 +44,6 @@ def main():
         f = open('tmp'+str(rank)+'.cif', 'w+')
         f.write(cif)
         f.close()
-        f = io.StringIO(cif)
         atoms = ase.io.read('tmp'+str(rank)+'.cif')
         atoms_list.append(atoms)
     print("Created atoms list")

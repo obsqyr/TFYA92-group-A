@@ -16,13 +16,12 @@ def meansquaredisp(atoms, old_atoms):
     length = len(pos)
 
     if length != len(old_pos):
-        raise TypeError("Numbers of atoms doesnt match.")
+        raise TypeError("Number of atoms doesnt match.")
         sys.exit('ERROR')
 
-    msd = 0.0000
-
+    msd = 0.0
     for atom in range(length):
-        msd =+ distance2(pos[atom], old_pos[atom])
+        msd += distance2(pos[atom], old_pos[atom])
 
     return msd/length
 
@@ -34,20 +33,50 @@ def energies_and_temp(a):
 
     return epot, ekin, etot, t
 
-def initialize_properties_file(a, id):
+
+def lattice_constants(a):
+    # NOTE: Not lattice constats yet, just cell lengths.    ?????
+    lc = list(a.get_cell_lengths_and_angles())
+    return [lc[0], lc[1], lc[2]]
+
+# Calculate internal pressure
+
+def initialize_properties_file(a, id, d):
     file=open("property_calculations/properties_"+id+".txt", "w+")
+
     file.write("Material ID: "+id+"\n")
     file.write("Unit cell composition: "+a.get_chemical_formula() + "\n")
     file.write("Material: "+a.get_chemical_formula(mode='hill', empirical=True) + "\n")
-    file.write("Properties:\nepot ekin etot temp msd \n")
+    file.write("Properties:\n")
+
+    # Help function for formating
+    def lj(str, k = d):
+        return str.ljust(k+6)
+
+    file.write(lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
+    file.write(lj("LC_a",3)+lj("LC_b",3)+lj("LC_c",3)+"\n")
+    file.write(lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
+    file.write(lj("Å",3)+lj("Å",3)+lj("Å",3)+"\n")
     file.close()
     return
 
-def calc_properties(a_old, a, id):
-    epot, ekin, etot, temp = energies_and_temp(a)
-    msd = meansquaredisp(a, a_old)
+# Help function to calc_properties
+def ss(value, decimals):
+    tmp = str(round(value, decimals))
+    return tmp.ljust(decimals + 6)
 
+
+# Calculates prioperties and writes them in a file
+def calc_properties(a_old, a, id, d):
+    # d = number of decimals
+    epot, ekin, etot, temp = energies_and_temp(a)
+    msd =  meansquaredisp(a, a_old)
+    lc = lattice_constants(a)
     file=open("property_calculations/properties_"+id+".txt", "a+")
-    file.write(str(epot)+" "+str(ekin)+" "+str(etot)+" "+str(temp)+" "+str(msd)+"\n")
+    file.write(ss(epot, d)+ss(ekin, d)+ss(etot, d)+ss(temp, 2)+ss(msd, d))
+    file.write(ss(lc[0], 3)+ss(lc[1], 3)+ss(lc[2], 3))
+
+    file.write("\n")
+
     file.close()
     return
