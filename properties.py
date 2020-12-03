@@ -182,7 +182,18 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
     return
 
 def finalize_properties_file(a, id, d, ma):
+    """ Calculates and records the properties of a material.
 
+    Parameters:
+    a (obj): Atoms object form ase.
+    id (): a special number identifying the material system.
+    d (int): a number for the formatting of file. Give a correct appending
+            for strings.
+    ma (boolean): ma is a boolean, for True the system is monoatomic.
+
+    Returns: None
+
+    """
     epot = []
     ekin = []
     etot = []
