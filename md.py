@@ -77,7 +77,7 @@ def run_md(atoms, id):
     logger()
     dyn.run(settings['max_steps'])
 
-    properties.finalize_properties_file(atoms, id, decimals)
+    properties.finalize_properties_file(atoms, id, decimals, monoatomic)
     return atoms
 
 if __name__ == "__main__":
