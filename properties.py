@@ -4,6 +4,7 @@ import math
 from ase import Atoms
 from ase import units
 import numpy as np
+import read_settings_file from read_settings
 # This file contains functions to calculate material properties
 
 def specific_heat(temp_store, steps, N):
@@ -97,7 +98,9 @@ def debye_lindemann(a,msd,temp,nnd):
     debye = math.sqrt(3 * units._hbar**2 * temp / (units.kb * a.get_masses()[0] * msd))
     lindemann = math.sqrt(msd)/nnd
     return debye, lindemann
-# Calculate internal pressure
+
+def self_diff(a,msd,time):
+    return msd/(6*time)
 
 def initialize_properties_file(a, id, d, ma):
     """Initializes a file over properties with correct titles and main structure
@@ -125,15 +128,15 @@ def initialize_properties_file(a, id, d, ma):
     def lj(str, k = d):
         return str.ljust(k+6)
 
-    file.write(lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
-    file.write(lj("LC_a",3)+lj("LC_b",3)+lj("LC_c",3))
+    file.write(lj("Time")+lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
+    file.write(lj("Self_diff")+lj("LC_a",3)+lj("LC_b",3)+lj("LC_c",3))
     file.write(lj("Volume")+lj("Pressure"))
     if ma:
         file.write(lj("DebyeT",2)+lj("Lindemann"))
 
     file.write("\n")
-    file.write(lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
-    file.write(lj("Å",3)+lj("Å",3)+lj("Å",3))
+    file.write(lj("fs")lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
+    file.write(lj("Å^2/fs")+lj("Å",3)+lj("Å",3)+lj("Å",3))
     file.write(lj("Å^3/atom")+lj("Pa"))
     # Check if pressure is given in Pascal!!!
     if ma:
@@ -163,15 +166,19 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
     Returns: None
 
     """
+    file=open("property_calculations/properties_"+id+".txt", "a+")
 
     epot, ekin, etot, temp = energies_and_temp(a)
     msd =  meansquaredisp(a, a_old)
+    settings = read_settings_file()
+    time = settings['time_step']*settings['interval']*(len(file.readlines())-6)
+    selfd = self_diff(a, msd, time)
     lc = lattice_constants(a)
     vol, pr = volume_pressure(a)
 
-    file=open("property_calculations/properties_"+id+".txt", "a+")
-    file.write(ss(epot, d)+ss(ekin, d)+ss(etot, d)+ss(temp, 2)+ss(msd, d))
-    file.write(ss(lc[0], 3)+ss(lc[1], 3)+ss(lc[2], 3))
+
+    file.write(ss(time, d)+ss(epot, d)+ss(ekin, d)+ss(etot, d)+ss(temp, 2)+ss(msd, d))
+    file.write(ss(selfd, d)+ss(lc[0], 3)+ss(lc[1], 3)+ss(lc[2], 3))
     file.write(ss(vol, 3)+ss(pr, 3))
     if ma:
         debye, linde = debye_lindemann(a,msd,temp,nnd)
@@ -188,6 +195,7 @@ def finalize_properties_file(a, id, d, ma):
     etot = []
     temp = []
     msd = []
+    selfd = []
     pr =[]
     debye = []
     linde = []
@@ -195,14 +203,15 @@ def finalize_properties_file(a, id, d, ma):
     steps = 0
     for i, line in enumerate(file):
         if i >= 6:
-            epot.append(line.split(" ")[0])
-            ekin.append(line.split(" ")[1])
-            etot.append(line.split(" ")[2])
-            temp.append(line.split(" ")[3])
-            msd.append(line.split(" ")[4])
-            pr.append(line.split(" ")[5])
-            debye.append(line.split(" ")[6])
-            linde.append(line.split(" ")[7])
+            epot.append(line.split(" ")[1])
+            ekin.append(line.split(" ")[2])
+            etot.append(line.split(" ")[3])
+            temp.append(line.split(" ")[4])
+            msd.append(line.split(" ")[5])
+            selfd.append(line.split(" ")[6])
+            pr.append(line.split(" ")[7])
+            debye.append(line.split(" ")[8])
+            linde.append(line.split(" ")[9])
 
             steps += 1
     epot_t = sum(epot)/steps
@@ -210,6 +219,7 @@ def finalize_properties_file(a, id, d, ma):
     etot_t = sum(etot)/steps
     temp_t = sum(temp)/steps
     msd_t = sum(msd)/steps
+    selfd_t = sum(selfd)/steps
     pr_t = sum(pr)/steps
     debye_t = sum(debye)/steps
     linde_t = sum(linde)/steps
@@ -220,23 +230,23 @@ def finalize_properties_file(a, id, d, ma):
     def lj(str, k = d):
         return str.ljust(k+6)
 
-    file.write(lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
-    file.write(lj("Pressure"))
+    file.write(lj(" ")+lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
+    file.write(lj("Self_diff")+lj("Pressure"))
     if ma:
         file.write(lj("DebyeT",2)+lj("Lindemann"))
     file.write(lj("Specific heat"))
     file.write("\n")
 
-    file.write(lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
-    file.write(lj(lj("Pa"))
+    file.write(lj(" ")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
+    file.write(lj("Å^2/fs")+lj("Pa"))
     # Check if pressure is given in Pascal!!!
     if ma:
         file.write(lj("K",2)+lj("1"))
     file.write(lj("CONTROL"))
     file.write("\n")
 
-    file.write(ss(epot, d)+ss(ekin, d)+ss(etot, d)+ss(temp, 2)+ss(msd, d))
-    file.write(ss(pr, 3))
+    file.write(lj(" ")+ss(epot_t, d)+ss(ekin_t, d)+ss(etot_t, d)+ss(temp_t, 2)+ss(msd_t, d))
+    file.write(ss(selfd_t, d)+ss(pr_t, 3))
     if ma:
         file.write(ss(debye_t, 2)+ss(linde_t, d))
     file.write(ss(Cv, d))
