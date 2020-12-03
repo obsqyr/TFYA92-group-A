@@ -24,7 +24,7 @@ def specific_heat(temp_store, steps, N):
 
     # Set M = (E[T²] - E[T]²)/ E[T]²
     ET = sum(temp_store)/steps
-    ET2 = sum(np.array(temp_store)**2/steps
+    ET2 = sum(np.array(temp_store)**2)/steps
     M = (ET2 - ET**2)/ET**2
     Cv = -9*N*units.kB/(4*N*M-6)
     return Cv
@@ -224,7 +224,7 @@ def finalize_properties_file(a, id, d, ma):
     pr_t = sum(pr)/steps
     debye_t = sum(debye)/steps
     linde_t = sum(linde)/steps
-    Cv = specific_heat(temp, steps, len(a.get_chemical_symbols())
+    Cv = specific_heat(temp, steps, len(a.get_chemical_symbols()))
     file.write("\nTime averages:\n")
 
     # Help function for formating
@@ -239,7 +239,7 @@ def finalize_properties_file(a, id, d, ma):
     file.write("\n")
 
     file.write(lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
-    file.write(lj(lj("Pa"))
+    file.write(lj(lj("Pa")))
     # Check if pressure is given in Pascal!!!
     if ma:
         file.write(lj("K",2)+lj("1"))
