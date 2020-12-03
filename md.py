@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Demonstrates molecular dynamics with constant energy."""
 from ase.lattice.cubic import FaceCenteredCubic
-from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
+from asap3.md.velocitydistribution import MaxwellBoltzmannDistribution
 #from ase.md.verlet import VelocityVerlet
 from ase import units
 from asap3 import Trajectory
