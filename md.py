@@ -1,7 +1,7 @@
+#!/usr/bin/env python3
 """Demonstrates molecular dynamics with constant energy."""
-
 from ase.lattice.cubic import FaceCenteredCubic
-from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
+from asap3.md.velocitydistribution import MaxwellBoltzmannDistribution
 #from ase.md.verlet import VelocityVerlet
 from ase import units
 from asap3 import Trajectory
@@ -14,6 +14,16 @@ import copy
 
 
 def run_md(atoms, id):
+    """The function does Molecular Dyanamic simulation (MD) on a material, given by argument atoms.
+
+    Parameters:
+    atoms (obj): an atoms object defined by class in ase. This is the material which MD
+    will run on.
+    id (int): an identifying number for the material.
+
+    Returns:
+    obj:atoms object defined in ase, is returned.
+    """
     # Read settings
     settings = read_settings_file()
 
@@ -45,15 +55,21 @@ def run_md(atoms, id):
         dyn = Langevin(atoms, settings['time_step'] * units.fs,
             settings['temperature'] * units.kB, settings['friction'])
 
-    traj = Trajectory('ar.traj', 'w', atoms)
-    dyn.attach(traj.write, interval=1000)
+    interval = settings['interval']
 
-    # Identity number given as func. parameter to keep track of properties
-    # Number of decimals for most calculated properties
+    traj = Trajectory('ar.traj', 'w', atoms)
+    dyn.attach(traj.write, interval=interval)
+
+
+    # Number of decimals for most calculated properties.
     decimals = settings['decimals']
+    # Boolean indicating if the material is monoatomic.
+    monoatomic = len(set(atoms.get_chemical_symbols())) == 1
+    # Calculate nnd wherever possible
+
     # Calculation and writing of properties
-    properties.initialize_properties_file(atoms, id, decimals)
-    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id, decimals)
+    properties.initialize_properties_file(atoms, id, decimals,monoatomic)
+    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id, decimals, monoatomic)
 
     # unnecessary, used for logging md runs
     # we should write some kind of logger for the MD
@@ -65,11 +81,13 @@ def run_md(atoms, id):
         print('Energy per atom: Epot = %.3feV  Ekin = %.3feV (T=%3.0fK)  '
               'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
 
+
     # Running the dynamics
-    dyn.attach(logger, interval = 1000)
+    dyn.attach(logger, interval=interval)
     logger()
     dyn.run(settings['max_steps'])
 
+    properties.finalize_properties_file(atoms, id, decimals, monoatomic)
     return atoms
 
 if __name__ == "__main__":
