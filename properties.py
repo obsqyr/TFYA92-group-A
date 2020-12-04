@@ -291,7 +291,7 @@ def finalize_properties_file(a, id, d, ma):
     file.write(lj("Self_diff")+lj("Pressure"))
     if ma:
         file.write(lj("DebyeT",2)+lj("Lindemann"))
-    file.write(lj("Specific heat"))
+    file.write(lj("Spec_heat"))
     file.write("\n")
 
     file.write(lj(" ")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
