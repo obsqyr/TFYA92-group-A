@@ -84,23 +84,52 @@ def energies_and_temp(a):
 
 
 def lattice_constants(a):
+    """ Calculates the lattice constant of a materialself.
+
+    Parameters:
+    a (obj): a is an atoms object of class defined in ase.
+
+    Returns:
+    list: returns the lattice_constants, in the 3 dimensions.
+    """
     #Note: Not lattice constats yet, just cell lengths.    ?????
     lc = list(a.get_cell_lengths_and_angles())
     return [lc[0], lc[1], lc[2]]
 
 def volume_pressure(a):
+    """Calculates volume and pressure of a material.
+
+    Parameters:
+    a (obj): a is an atoms object of class defined in ase.
+
+    Returns:
+    tuple:returns a tuple of volume and pressure.
+    """
     N = len(a.get_chemical_symbols())
     vol = a.get_volume()/N
     stress = a.get_stress()
     pressure = (stress[0] + stress[1] + stress[2])/3
     return vol, pressure
 
-def debye_lindemann(a,msd,temp,nnd):
+def debye_lindemann(a, msd, temp, nnd):
+    """Calculates the debye
+    """
     debye = math.sqrt(3 * units._hbar**2 * temp / (units.kB * a.get_masses()[0] * msd))
     lindemann = math.sqrt(msd)/nnd
     return debye, lindemann
 
-def self_diff(a,msd,time):
+def self_diff(a, msd, time):
+    """Calculates the self diffusion coefficient of a material.
+        This measures how
+
+    Paramters:
+    a (obj): a is an atoms object of class defined in ase.
+    msd ():
+    time ():
+
+    Returns:
+    int: self diffusion coefficient.
+    """
     if time == 0:
         sd = "_"
     else:
