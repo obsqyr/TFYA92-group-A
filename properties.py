@@ -7,7 +7,7 @@ import numpy as np
 from read_settings import read_settings_file
 # This file contains functions to calculate material properties
 
-def specific_heat(temp_store, steps, N):
+def specific_heat(temp_store, N):
     """Calculates the specific heat for a material.
     Given by the formula: (E[T²] - E[T]²)/ E[T]² = 3*2^-1*N^-1*(1-3*N*Kb*2^-1*Cv^-1).
     Where Kb is boltzmansconstant, N is the total number of atoms, T is temperature and Cv the specific heat.
@@ -16,13 +16,14 @@ def specific_heat(temp_store, steps, N):
 
     Parameters:
     temp_store (list): The list over all intantaneous temperatures of a material once MD has been run.
-    steps (int): The total number of sampled steps from 0 that the MD has run.
     N (int): The total number of atoms in the material.
 
     Returns:
     int: specific heat is returned (eV/K)
     """
-
+    if len(temp_store) == 0:
+        raise ValueError("temp_store is empty, invalid value.")
+    steps = len(temp_store)
     # Set M = (E[T²] - E[T]²)/ E[T]²
     ET = sum(temp_store)/steps
     ET2 = sum(np.array(temp_store)**2)/steps
@@ -83,7 +84,7 @@ def energies_and_temp(a):
 
 
 def lattice_constants(a):
-    # NOTE: Not lattice constats yet, just cell lengths.    ?????
+    #Note: Not lattice constats yet, just cell lengths.    ?????
     lc = list(a.get_cell_lengths_and_angles())
     return [lc[0], lc[1], lc[2]]
 
@@ -248,7 +249,7 @@ def finalize_properties_file(a, id, d, ma):
     pr_t = sum(pr)/steps
     debye_t = sum(debye)/steps
     linde_t = sum(linde)/steps
-    Cv = specific_heat(temp, steps, len(a.get_chemical_symbols()))
+    Cv = specific_heat(temp, len(a.get_chemical_symbols()))
 
     file=open("property_calculations/properties_"+id+".txt", "a+")
     file.write("\nTime averages:\n")
