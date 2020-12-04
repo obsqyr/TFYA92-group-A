@@ -7,6 +7,7 @@ import os
 import md
 import ase.io
 from read_mp_project import read_mp_properties
+import properties
 import numpy as np
 import mpi4py
 from mpi4py import MPI
@@ -37,6 +38,13 @@ def main():
     
     # read in the .json file as an command line argument? or maybe from settings file?
     mp_properties = read_mp_properties('test_120_materials.json')
+
+    # try to create folder 'property_calculations'
+    # if it already exists, continue with the program
+    try:
+        os.mkdir('property_calculations')
+    except:
+        pass
 
     # create one list of all atom objects in data-file
     atoms_list = []

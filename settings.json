@@ -4,5 +4,6 @@
     "temperature": 300,
     "ensemble": "NVE",
     "friction": 0.001,
-    "decimals": 5
+    "decimals": 5,
+    "interval": 100
 }
