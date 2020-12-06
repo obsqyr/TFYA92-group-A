@@ -1,10 +1,13 @@
 # This is for testing to make a mongodb database
 
-import pymongo
-client = pymongo.MongoClient() # default host and port
+#import pymongo
+import mongomock
+#client = pymongo.MongoClient() # default host and port
 # Examples to specify host and port
 #client = MongoClient('localhost', 27017)
 #client = MongoClient('mongodb://localhost:27017/')
+#connect('mongoenginetest', host='mongomock://localhost')
+client = mongomock.MongoClient()
 
 db = client.test_database
 collection = db.test_collection
