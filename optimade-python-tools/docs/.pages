@@ -1,0 +1,9 @@
+arrange:
+    - index.md
+    - install.md
+    - configuration.md
+    - CONTRIBUTING.md
+    - use_cases
+    - CHANGELOG.md
+    - all_models.md
+    - api_reference

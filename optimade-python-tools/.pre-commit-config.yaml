@@ -1,0 +1,32 @@
+default_language_version:
+  python: python3.8
+
+repos:
+  - repo: https://github.com/ambv/black
+    rev: 20.8b1
+    hooks:
+    - id: black
+      name: Blacken
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.3.0
+    hooks:
+    - id: trailing-whitespace
+      exclude: README.md
+    - id: check-yaml
+    - id: check-json
+    - id: end-of-file-fixer
+
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: '3.8.4'
+    hooks:
+    -   id: flake8
+
+  - repo: local
+    hooks:
+    - id: json-diff
+      name: OpenAPI diff
+      description: Check for differences in openapi.json and index_openapi.json with local versions.
+      entry: invoke check-openapi-diff
+      pass_filenames: false
+      language: system
