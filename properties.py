@@ -112,7 +112,20 @@ def volume_pressure(a):
     return vol, pressure
 
 def debye_lindemann(a, msd, temp, nnd):
-    """Calculates the debye
+    """Calculates the debye temperature and the lindemann criteriaself.
+        The lindemann criteria states that melting point of a material is found
+        when the mean square displacement reaches at least 10% of the nearest neighbour
+        distance. Here, nearest neighbour distance is taken for a perfect crystal in equilibrium.
+
+    Parameters:
+    a (obj): atoms object defined in ase.
+    msd (float): mean square displacement.
+    temp (float): temperature
+    nnd (float): neareast neighbour distance.
+
+    Returns:
+    tuple: returns tuple of two floats, where one is the debye temp and the other
+            the lindemann criteria.
     """
     debye = math.sqrt(3 * units._hbar**2 * temp / (units.kB * a.get_masses()[0] * msd))
     lindemann = math.sqrt(msd)/nnd
@@ -120,15 +133,14 @@ def debye_lindemann(a, msd, temp, nnd):
 
 def self_diff(a, msd, time):
     """Calculates the self diffusion coefficient of a material.
-        This measures how
 
     Paramters:
     a (obj): a is an atoms object of class defined in ase.
-    msd ():
-    time ():
+    msd (float): mean squre displacement.
+    time (float): time step.
 
     Returns:
-    int: self diffusion coefficient.
+    float: self diffusion coefficient.
     """
     if time == 0:
         sd = "_"
