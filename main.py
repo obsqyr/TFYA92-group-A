@@ -11,6 +11,7 @@ import properties
 import numpy as np
 import mpi4py
 from mpi4py import MPI
+from read_settings import read_settings_file
 
 # the program throws deprecation warnings 
 #import warnings
@@ -36,8 +37,9 @@ def main():
     rank = comm.Get_rank()
     size = comm.Get_size()
     
-    # read in the .json file as an command line argument? or maybe from settings file?
-    mp_properties = read_mp_properties('test_120_materials.json')
+    # read materials from settings file
+    settings = read_settings_file()
+    mp_properties = read_mp_properties(settings['materials'])
 
     # try to create folder 'property_calculations'
     # if it already exists, continue with the program

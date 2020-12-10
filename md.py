@@ -88,7 +88,7 @@ def run_md(atoms, id):
     counter = 0
     for i in range(settings['max_steps']*5):
         epot, ekin_pre, etot, t = properties.energies_and_temp(atoms)
-        dyn.run(100)
+        dyn.run(10)
         epot, ekin_post, etot, t = properties.energies_and_temp(atoms)
         if (abs(ekin_pre-ekin_post) / ekin_post) < settings['tolerance']:
             counter += 1
@@ -97,7 +97,8 @@ def run_md(atoms, id):
         print(counter)
         if counter > 10:
             break
-    
+
+    print("finalize")
     # always run this
     properties.finalize_properties_file(atoms, id, decimals, monoatomic, counter)
     return atoms
