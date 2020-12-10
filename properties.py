@@ -143,10 +143,10 @@ def initialize_properties_file(a, id, d, ma):
     Parameters:
     a (obj): a is an atoms object of class defined in ase. The material is made
             into an atoms object.
-    id (int): a special number identifying the material system.
+    id (str): a special number identifying the material system.
     d (int): a number for the formatting of file. Give a correct appending
             for strings.
-    ma (bool): a boolean indicating if the material is monoatomic
+    ma (boolean): a boolean indicating if the material is monoatomic
 
     Returns:
     None
@@ -196,9 +196,9 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
                 it's the old atom that needs to be updated.
     a (obj): a is an atoms object from clas defined from ase.
             it's the new updated atom obj for MD molecular dyanimcs.
-    id ():
-    d ():
-    ma ():
+    id (str):
+    d (int):
+    ma (boolean):
     nnd (float): nnd is the nearest neighbour distance for an ideal crystal lattice.
     Returns: None
 
@@ -232,7 +232,7 @@ def finalize_properties_file(a, id, d, ma):
 
     Parameters:
     a (obj): Atoms object form ase.
-    id (): a special number identifying the material system.
+    id (str): a special number identifying the material system.
     d (int): a number for the formatting of file. Give a correct appending
             for strings.
     ma (boolean): ma is a boolean, for True the system is monoatomic.

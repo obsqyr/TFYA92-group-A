@@ -5,16 +5,52 @@ import os
 def find_equilibrium(fnames):
 
     """
-    Pseudocode
-    LC = 0
-    Ecoh = 0
-    Etot = 0
-    for name in fnames:
-        name.get_Etot():
-        ...
-        ...
+    Parameters:
+    fnames (list): A list of strings of file names
+
+    Returns: None
 
     """
+    LC = 9999
+    Etot = 9999
+    N = ""
+    E_list = []
+    V_list = []
+    for name in fnames:
+        f = open("property_calculations/"+name, "r+")
+        lines = f.read().split("\n")
+        E = lines[-1].split()[2]
+        E_list.append(E)
+        V_list.append(lines[6].split()[10])
+        if E < Etot:
+            Etot = E
+            LC = lines[6].split()[7]
+            N = name
+
+        #Bulk mod = V * d^2E/dV^2, evaluated at equilibrium volume.
+
+        f.close()
+
+
+    return
+
+def sort(arg):
+    setting = read_settings_file()
+    filenames = os.listdir("property_calculations/")
+    steps = settings['LC_steps']
+    LC_list = []
+    BulkM_list = []
+    N_list = []
+
+    for i in len(filenames)/steps:
+        LC, BulkM, N = find_equilibrium(filenames[steps*i:steps*i+steps])
+        LC_list.append(LC)
+        BulkM_list.append(BulkM)
+        N_list.append(N)
+
+        for fname in filenames[steps*i:steps*i+steps]:
+            if fname != N
+                os.remove("property_calculations/"+fname)
     return
 
 def extract():
@@ -27,15 +63,6 @@ def extract():
 
     file.write(lj("Material")+lj("MSD")+lj("Self_diff")+lj("Specific heat")+lj("Lattice constant"))
     file.write(lj("Bulk modulus")+lj("Cohesive energy")+lj("Debye",2)+lj("Lindemann")+"\n")
-
-    if vol_relax:
-        filenames = os.listdir("property_calculations/")
-        LC = []
-        BulkM = []
-        Ecoh = []
-
-        for i in len(filenames)/5:
-            LC, BulkM, Ecoh = find_equilibrium(filenames[i:i+1+2*settings['LC_steps']])
 
 
     for filename in os.listdir("property_calculations/"):
