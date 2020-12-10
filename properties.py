@@ -205,7 +205,7 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
     """
     f=open("property_calculations/properties_"+id+".txt", "r")
 
-    epot, ekin, etot, temp = energies_and_temp(a)
+    epot, ekin, etot, temp = energies_and_temp(a) 
     msd =  meansquaredisp(a, a_old)
     settings = read_settings_file()
     ln = sum(1 for line in f)
@@ -227,7 +227,7 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
     file.close()
     return
 
-def finalize_properties_file(a, id, d, ma):
+def finalize_properties_file(a, id, d, ma, offset):
     """ Calculates and records the properties of a material.
 
     Parameters:
@@ -254,7 +254,7 @@ def finalize_properties_file(a, id, d, ma):
     f=open("property_calculations/properties_"+id+".txt", "r")
     steps = 0
     for i, line in enumerate(f):
-        if i >= 6:
+        if i >= (6 + offset):
             epot.append(float(line.split()[1]))
             ekin.append(float(line.split()[2]))
             etot.append(float(line.split()[3]))

@@ -1,9 +1,10 @@
 {
     "time_step": 10,
-    "max_steps": 1000,
+    "max_steps": 100,
     "temperature": 300,
     "ensemble": "NVE",
     "friction": 0.001,
     "decimals": 5,
-    "interval": 100
+    "interval": 100,
+    "tolerance": 0.05
 }

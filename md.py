@@ -81,13 +81,25 @@ def run_md(atoms, id):
         print('Energy per atom: Epot = %.3feV  Ekin = %.3feV (T=%3.0fK)  '
               'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
 
-
     # Running the dynamics
     dyn.attach(logger, interval=interval)
     logger()
-    dyn.run(settings['max_steps'])
-
-    properties.finalize_properties_file(atoms, id, decimals, monoatomic)
+    #dyn.run(settings['max_steps'])
+    counter = 0
+    for i in range(settings['max_steps']*5):
+        epot, ekin_pre, etot, t = properties.energies_and_temp(atoms)
+        dyn.run(100)
+        epot, ekin_post, etot, t = properties.energies_and_temp(atoms)
+        if (abs(ekin_pre-ekin_post) / ekin_post) < settings['tolerance']:
+            counter += 1
+        else:
+            counter = 0
+        print(counter)
+        if counter > 10:
+            break
+    
+    # always run this
+    properties.finalize_properties_file(atoms, id, decimals, monoatomic, counter)
     return atoms
 
 if __name__ == "__main__":

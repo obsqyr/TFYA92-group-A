@@ -78,7 +78,9 @@ def main():
             md.run_md(atoms_list[id], str(id))
         except Exception as e:
             print("Run broke!:"+str(e))
+        # REMOVE THSI LATER
+        break
     comm.Barrier()
-
+    
 if __name__ == "__main__":
     main()
