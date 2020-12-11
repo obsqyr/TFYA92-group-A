@@ -171,8 +171,7 @@ def initialize_properties_file(a, id, d, ma):
     file.write("\n")
     file.write(lj("fs")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
     file.write(lj("Å^2/fs")+lj("Å",3)+lj("Å",3)+lj("Å",3))
-    file.write(lj("Å^3/atom")+lj("Pa"))
-    # Check if pressure is given in Pascal!!!
+    file.write(lj("Å^3/atom")+lj("eV/Å^3"))
     if ma:
         file.write(lj("K",2)+lj("1"))
     file.write("\n")
@@ -227,7 +226,7 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
     file.close()
     return
 
-def finalize_properties_file(a, id, d, ma, offset):
+def finalize_properties_file(a, id, d, ma):
     """ Calculates and records the properties of a material.
 
     Parameters:
@@ -247,25 +246,24 @@ def finalize_properties_file(a, id, d, ma, offset):
     temp = []
     msd = []
     selfd = []
-    pr =[]
+    pr = []
     debye = []
     linde = []
 
     f=open("property_calculations/properties_"+id+".txt", "r")
-    steps = 0
-    for i, line in enumerate(f):
-        if i >= (6 + offset):
-            epot.append(float(line.split()[1]))
-            ekin.append(float(line.split()[2]))
-            etot.append(float(line.split()[3]))
-            temp.append(float(line.split()[4]))
-            msd.append(float(line.split()[5]))
-            selfd.append(line.split()[6])
-            pr.append(float(line.split()[11]))
-            if ma:
-                debye.append(float(line.split()[12]))
-                linde.append(float(line.split()[13]))
-            steps += 1
+    f_lines = f.readlines()
+    steps = 10
+    for line in f_lines[-steps:]: 
+        epot.append(float(line.split()[1]))
+        ekin.append(float(line.split()[2]))
+        etot.append(float(line.split()[3]))
+        temp.append(float(line.split()[4]))
+        msd.append(float(line.split()[5]))
+        selfd.append(line.split()[6])
+        pr.append(float(line.split()[11]))
+        if ma:
+            debye.append(float(line.split()[12]))
+            linde.append(float(line.split()[13]))
     f.close()
 
     epot_t = sum(epot)/steps
@@ -273,7 +271,6 @@ def finalize_properties_file(a, id, d, ma, offset):
     etot_t = sum(etot)/steps
     temp_t = sum(temp)/steps
     msd_t = sum(msd)/steps
-    #selfd_t = sum(selfd[1:])/steps
     selfd_t = sum(float(i) for i in selfd[1:])/(steps-1)
     pr_t = sum(pr)/steps
     debye_t = sum(debye)/steps
@@ -295,8 +292,7 @@ def finalize_properties_file(a, id, d, ma, offset):
     file.write("\n")
 
     file.write(lj(" ")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
-    file.write(lj("Å^2/fs")+lj("Pa"))
-    # Check if pressure is given in Pascal!!!
+    file.write(lj("Å^2/fs")+lj("eV/Å^3"))
     if ma:
         file.write(lj("K",2)+lj("1"))
     file.write(lj("eV/K"))
