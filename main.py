@@ -58,13 +58,14 @@ def main():
         if settings['vol_relax']:
             cell = np.array(atoms.get_cell())
             P = settings['LC_steps']
-            for i in range(-P,1+P)):
+            for i in range(-P,1+P):
                 atoms_v = copy.deepcopy(atoms)
                 atoms_v.set_cell(cell*(1+i*settings['LC_mod']))
                 atoms_list.append(atoms_v)
         else:
             atoms_list.append(atoms)
     print("Created atoms list")
+    print(len(atoms_list))
     os.remove("tmp"+str(rank)+".cif")
 
     # Run the molecular dynamics in parallell (might want to

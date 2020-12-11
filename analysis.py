@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from read_settings import read_settings_file
 import os
+import numpy as np
+import math
 
 def find_equilibrium(fnames):
 
@@ -11,26 +13,35 @@ def find_equilibrium(fnames):
     Returns: None
 
     """
+    print("Start")
     LC = 9999
     Etot = 9999
     N = ""
     E_list = []
+    LC_list = []
     V_list = []
     for name in fnames:
         f = open("property_calculations/"+name, "r+")
         lines = f.read().split("\n")
-        E = lines[-1].split()[2]
+        E = float(lines[-1].split()[2])
+        l = float(lines[6].split()[7])
         E_list.append(E)
-        V_list.append(lines[6].split()[10])
+        LC_list.append(l)
+        V_list.append(float(lines[6].split()[10]))
+
         if E < Etot:
             Etot = E
-            LC = lines[6].split()[7]
+            LC = l
             N = name
-
-        #Bulk mod = V * d^2E/dV^2, evaluated at equilibrium volume.
+        """
+        Insert portion that uses numpy's polyfit function:
+        Polyfit on E_list and LC_list, find min_energy and min_LC
+        Polyfit on E_list and V_list, find second derivative at min_V = min_LC^3
+        Calc: Bulk mod = V * d^2E/dV^2, evaluated at equilibrium volume.
+        """
 
         f.close()
-
+    print(E_list, LC_list, V_list, Etot, LC, N)
 
     return
 
@@ -49,7 +60,7 @@ def sort(arg):
         N_list.append(N)
 
         for fname in filenames[steps*i:steps*i+steps]:
-            if fname != N
+            if fname != N:
                 os.remove("property_calculations/"+fname)
     return
 
