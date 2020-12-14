@@ -67,7 +67,6 @@ def run_md(atoms, id):
     traj = Trajectory('ar.traj', 'w', atoms)
     dyn.attach(traj.write, interval=interval)
 
-
     # Number of decimals for most calculated properties.
     decimals = settings['decimals']
     # Boolean indicating if the material is monoatomic.
@@ -115,6 +114,7 @@ def run_md(atoms, id):
         dyn.run(settings['max_steps'])
         properties.finalize_properties_file(atoms, id, decimals, monoatomic) 
     else:
+        properties.delete_properties_file(id)
         raise RuntimeError("MD did not find equilibrium")
     return atoms
 

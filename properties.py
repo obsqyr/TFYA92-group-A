@@ -305,3 +305,16 @@ def finalize_properties_file(a, id, d, ma):
     file.write(ss(Cv, d))
     file.close()
     return
+
+def delete_properties_file(id):
+    """ Deletes a property file by its id
+
+    Parameters:
+    id (): a special number identifying the material system.
+    
+    Returns: None
+
+    """
+    os.remove("property_calculations/properties_"+id+".txt")
+    return
+        
