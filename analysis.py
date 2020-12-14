@@ -33,36 +33,44 @@ def find_equilibrium(fnames):
             Etot = E
             LC = l
             N = name
-        """
-        Insert portion that uses numpy's polyfit function:
-        Polyfit on E_list and LC_list, find min_energy and min_LC
-        Polyfit on E_list and V_list, find second derivative at min_V = min_LC^3
-        Calc: Bulk mod = V * d^2E/dV^2, evaluated at equilibrium volume.
-        """
-
         f.close()
-    print(E_list, LC_list, V_list, Etot, LC, N)
 
-    return
+    p = np.polyfit(LC_list, E_list, 2)
+    if p[0] =< 0:
+        print("Dynamically unstable in this range.")
+        print(fnames)
+        break
+    else:
+        LC_interp = -p[1]/(2*p[0])
+        E_interp = np.polyval(p, LC_interp)
+        V_interp = LC_interp**3
+        q = np.polyfit(V_list, E_list,3)
+        B = V_interp*(6*q[0]*V_interp + 2*q[1])
 
-def sort(arg):
+    print("E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp")
+    print(E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp + "\n")
+
+    return LC, B, N, LC_interp
+
+def sort():
     setting = read_settings_file()
     filenames = os.listdir("property_calculations/")
-    steps = settings['LC_steps']
+    steps = 1 + 2*settings['LC_steps']
     LC_list = []
     BulkM_list = []
     N_list = []
+    LCi_list = []
 
     for i in len(filenames)/steps:
-        LC, BulkM, N = find_equilibrium(filenames[steps*i:steps*i+steps])
+        LC, BulkM, N, LCi = find_equilibrium(filenames[steps*i:steps*(i+1)])
         LC_list.append(LC)
         BulkM_list.append(BulkM)
         N_list.append(N)
-
+        LCi_list.append(LCi)
         for fname in filenames[steps*i:steps*i+steps]:
             if fname != N:
                 os.remove("property_calculations/"+fname)
-    return
+    return LC_list, LCi_list, BulkM_list
 
 def extract():
     file = open("property_calculations/collected_data", "w+")

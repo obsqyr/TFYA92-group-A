@@ -7,6 +7,6 @@
     "decimals": 5,
     "interval": 100,
     "vol_relax": true,
-    "LC_mod": 0.03,
-    "LC_steps": 1
+    "LC_mod": 0.01,
+    "LC_steps": 2
 }
