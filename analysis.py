@@ -38,7 +38,7 @@ def extract():
     file.close()
     return
 
-def plot_msd_selfd():
+def plot_properties():
     msd = []
     selfd = []
     spec_h = []
@@ -54,7 +54,7 @@ def plot_msd_selfd():
     for x in lines:
         msd.append(float(x.split()[1]))
         selfd.append(float(x.split()[2]))
-        spec_h.append(float(x.split()[3]))
+        #spec_h.append(float(x.split()[3]))
         #latt_c.append(float(x.split()[4]))
         #bulk_m.append(float(x.split()[5]))
         #coh_en.append(float(x.split()[6]))
@@ -62,13 +62,18 @@ def plot_msd_selfd():
         #linde.append(float(x.split()[8]))
 
     f.close()
-
+    #Plotting mean square displacment vs self diffusion const
+    # in figure 1
+    pyplot.figure(1)
     pyplot.scatter(msd,selfd)
-    pyplot.scatter(msd,spec_h)
+    #Labeling the axes with names from properties.py
+    pyplot.xlabel("Mean square displacement [Å^2]")
+    pyplot.ylabel("Self diffusion [Å^2/fs]")
+
     pyplot.show()
 
     return
 
 if __name__ == "__main__":
     extract()
-    plot_msd_selfd()
+    plot_properties()
