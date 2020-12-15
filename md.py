@@ -31,7 +31,9 @@ def run_md(atoms, id):
 
     # Scale atoms object, cubic
     size = settings['supercell_size']
-    atoms = atoms * size*(1,1,1)
+    atoms = atoms * size * (1,1,1)
+    # atoms = atoms * (size,size,size)
+    #print(atoms.get_chemical_symbols())
     N = len(atoms.get_chemical_symbols())
     
     # Use KIM for potentials from OpenKIM
@@ -99,8 +101,8 @@ def run_md(atoms, id):
         # kör steg som motsvarar säg 5 fs
         dyn.run(settings['search_interval']) # hyperparamter
         epot, ekin_post, etot, t = properties.energies_and_temp(atoms)
-        print(abs(ekin_pre-ekin_post) / math.sqrt(N))
-        print(counter)
+        #print(abs(ekin_pre-ekin_post) / math.sqrt(N))
+        #print(counter)
         if (abs(ekin_pre-ekin_post) / math.sqrt(N)) < settings['tolerance']: 
             counter += 1
         else:

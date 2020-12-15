@@ -5,6 +5,7 @@ from ase import Atoms
 from ase import units
 import numpy as np
 from read_settings import read_settings_file
+import os
 # This file contains functions to calculate material properties
 
 def specific_heat(temp_store, N):
@@ -310,11 +311,28 @@ def delete_properties_file(id):
     """ Deletes a property file by its id
 
     Parameters:
-    id (): a special number identifying the material system.
+    id (): a special number identifying the material system, as an int.
     
     Returns: None
 
     """
-    os.remove("property_calculations/properties_"+id+".txt")
+    os.remove("property_calculations/properties_"+str(id)+".txt")
     return
         
+def clean_property_calculations():
+    """ Idea: delete all propeties files without 'Time averages:' 
+    in them.
+    """
+    print(" -- Cleaning property_calculations directory -- ")
+    counter = 0
+    for filename in os.listdir("property_calculations"):
+        f = open("property_calculations/"+ str(filename), "r")
+        if "Time averages:" not in f.read():
+            counter += 1
+            os.remove("property_calculations/"+str(filename))
+            
+    print(" -- Removed " + str(counter) + " properties files -- ")
+
+if __name__ == "__main__":
+    clean_property_calculations()
+    
