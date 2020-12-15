@@ -86,7 +86,7 @@ def main():
         #print("ID: ", id)
         #print(atoms)
         try:
-            md.run_md(atoms_list[id], str(id))
+            md.run_md(atoms_list[id], str(id).zfill(4))
         except Exception as e:
             print("Run broke!:"+str(e))
     comm.Barrier()

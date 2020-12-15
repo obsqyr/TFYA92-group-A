@@ -19,7 +19,7 @@ def specific_heat(temp_store, N):
     N (int): The total number of atoms in the material.
 
     Returns:
-    int: specific heat is returned (eV/K)
+    float: specific heat is returned (eV/K)
     """
     if len(temp_store) == 0:
         raise ValueError("temp_store is empty, invalid value.")
@@ -47,7 +47,7 @@ def meansquaredisp(atoms, old_atoms):
     old_atoms (obj):old_atoms is an atom object from the python library.
 
     Returns:
-    int: The mean squared displacement.
+    float: The mean squared displacement.
 
    """
     pos = atoms.get_positions()
@@ -72,7 +72,7 @@ def energies_and_temp(a):
 
     Returns:
     tuple: returns a tuple of potential energi, kinetic energy, total energy
-            and time step t.
+            and temperature.
 
     """
     epot = a.get_potential_energy() / len(a)
@@ -128,7 +128,7 @@ def self_diff(a, msd, time):
     time ():
 
     Returns:
-    int: self diffusion coefficient.
+    float: self diffusion coefficient.
     """
     if time == 0:
         sd = "_"
@@ -160,7 +160,7 @@ def initialize_properties_file(a, id, d, ma):
 
     # Help function for formating
     def lj(str, k = d):
-        return str.ljust(k+6)
+        return " "+str.ljust(k+6)
 
     file.write(lj("Time")+lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
     file.write(lj("Self_diff")+lj("LC_a",3)+lj("LC_b",3)+lj("LC_c",3))
@@ -185,7 +185,7 @@ def ss(value, decimals):
         tmp = value
     else:
         tmp = str(round(value, decimals))
-    return tmp.ljust(decimals + 6)
+    return " "+tmp.ljust(decimals + 6)
 
 
 def calc_properties(a_old, a, id, d, ma, nnd=1):
@@ -285,7 +285,7 @@ def finalize_properties_file(a, id, d, ma):
 
     # Help function for formating
     def lj(str, k = d):
-        return str.ljust(k+6)
+        return " "+str.ljust(k+6)
 
     file.write(lj(" ")+lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
     file.write(lj("Self_diff")+lj("Pressure"))
