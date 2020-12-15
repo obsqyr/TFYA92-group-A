@@ -11,9 +11,9 @@ import warnings
 #client = MongoClient('mongodb://localhost:27017/')
 #connect('mongoenginetest', host='mongomock://localhost')
 
-md_runned = os.path.exists("property_calculations")
+md_run = os.path.exists("property_calculations")
 
-if not md_runned:
+if not md_run:
     raise Exception("property_calculations folder doesn't exist.")
 
 client = mongomock.MongoClient()
@@ -51,5 +51,14 @@ for i in range(file_cnt):
                             "Temp [K]": time_av_line[3], "MSD [Å^2]": time_av_line[4],"Self diffusion [Å^2/fs]": time_av_line[5],
                             "Pressure [Pa]": time_av_line[6], "Specific_heat [eV/K]": time_av_line[7]}}
 
-    post_id = db.posts.insert_one(post)
-    print("This is the post_id: ", post_id)
+
+"""
+Psuedokod för hur det ska vara(?)
+
+file = open(optimade-python-tools/optimade/server/data/test_structures.json, "w")
+file.write("ID" Id, "Material" system_name, "Unit cell comp" unit_cell_comp,
+    "groupA_properties" {"Epot" time_av_line[0], "Ekin" time_av_line[1], "Etot" time_av_line[2],
+    "Temp" time_av_line[3], "MSD" time_av_line[4], "Self diffusion" time_av_line[5],
+    "Preassure" time_av_line[6], "Specific heat" time_av_line[7]})
+file.close()
+"""
