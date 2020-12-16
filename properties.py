@@ -273,7 +273,6 @@ def finalize_properties_file(a, id, d, ma):
     etot_t = sum(etot)/steps
     temp_t = sum(temp)/steps
     msd_t = sum(msd)/steps
-    #selfd_t = sum(selfd[1:])/steps
     selfd_t = sum(float(i) for i in selfd[1:])/(steps-1)
     pr_t = sum(pr)/steps
     debye_t = sum(debye)/steps
@@ -289,7 +288,7 @@ def finalize_properties_file(a, id, d, ma):
 
     file.write(lj(" ")+lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
     file.write(lj("Self_diff")+lj("Pressure"))
-    file.write(lj("Specific heat"))
+    file.write(lj("Spec_heat"))
     if ma:
         file.write(lj("DebyeT",2)+lj("Lindemann"))
 

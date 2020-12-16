@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from read_settings import read_settings_file
 import os
+from matplotlib import pyplot
 import numpy as np
 import math
 import glob
@@ -102,6 +103,7 @@ def extract():
     def lj(str, k = d):
         return " "+str.ljust(k+10)
 
+
     file.write(lj("Material")+lj("Cohesive energy")+lj("MSD")+lj("Self_diff")+lj("Specific heat"))
 
     if settings['vol_relax']:
@@ -140,5 +142,42 @@ def extract():
             file.close()
     return
 
+def plot_properties():
+    msd = []
+    selfd = []
+    spec_h = []
+    #latt_c = []
+    #bulk_m = []
+    #coh_en = []
+    #debye = []
+    #linde = []
+
+    f = open("property_calculations/collected_data", "r")
+
+    lines = f.readlines()[1:]
+    for x in lines:
+        msd.append(float(x.split()[1]))
+        selfd.append(float(x.split()[2]))
+        #spec_h.append(float(x.split()[3]))
+        #latt_c.append(float(x.split()[4]))
+        #bulk_m.append(float(x.split()[5]))
+        #coh_en.append(float(x.split()[6]))
+        #debye.append(float(x.split()[7]))
+        #linde.append(float(x.split()[8]))
+
+    f.close()
+    #Plotting mean square displacment vs self diffusion const
+    # in figure 1
+    pyplot.figure(1)
+    pyplot.scatter(msd,selfd)
+    #Labeling the axes with names from properties.py
+    pyplot.xlabel("Mean square displacement [Å^2]")
+    pyplot.ylabel("Self diffusion [Å^2/fs]")
+
+    pyplot.show()
+
+    return
+
 if __name__ == "__main__":
     extract()
+    plot_properties()
