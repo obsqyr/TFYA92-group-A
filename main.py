@@ -57,17 +57,24 @@ def main():
         f.write(cif)
         f.close()
         atoms = ase.io.read('tmp'+str(rank)+'.cif')
-        if settings['vol_relax']:
-            cell = np.array(atoms.get_cell())
-            P = settings['LC_steps']
-            for i in range(-P,1+P):
-                atoms_v = copy.deepcopy(atoms)
-                atoms_v.set_cell(cell*(1+i*settings['LC_mod']))
-                atoms_list.append(atoms_v)
+        if settings['cubic_only']:
+            lengths = atoms.get_cell_lengths_and_angles()[0:3]
+            angles = atoms.get_cell_lengths_and_angles()[3:6]
+            if len(set(lengths)) == 1 and len(set(angles)) == 1 and angles[0] == 90:
+                #print("cubic")
+                #print(atoms.get_cell_lengths_and_angles())
+                if settings['vol_relax']:
+                    cell = np.array(atoms.get_cell())
+                    P = settings['LC_steps']
+                    for i in range(-P,1+P):
+                        atoms_v = copy.deepcopy(atoms)
+                        atoms_v.set_cell(cell*(1+i*settings['LC_mod']))
+                        atoms_list.append(atoms_v)
+                else:
+                    atoms_list.append(atoms)
         else:
             atoms_list.append(atoms)
-    print("Created atoms list")
-    print(len(atoms_list))
+    print("Created atoms list of length " + str(len(atoms_list)))
     os.remove("tmp"+str(rank)+".cif")
 
     # Run the molecular dynamics in parallell (might want to
