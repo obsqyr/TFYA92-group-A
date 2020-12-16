@@ -5,6 +5,7 @@ from ase import Atoms
 from ase import units
 import numpy as np
 from read_settings import read_settings_file
+import os
 # This file contains functions to calculate material properties
 
 def specific_heat(temp_store, N):
@@ -171,8 +172,7 @@ def initialize_properties_file(a, id, d, ma):
     file.write("\n")
     file.write(lj("fs")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
     file.write(lj("Å^2/fs")+lj("Å",3)+lj("Å",3)+lj("Å",3))
-    file.write(lj("Å^3/atom")+lj("Pa"))
-    # Check if pressure is given in Pascal!!!
+    file.write(lj("Å^3/atom")+lj("eV/Å^3"))
     if ma:
         file.write(lj("K",2)+lj("1"))
     file.write("\n")
@@ -205,7 +205,7 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
     """
     f=open("property_calculations/properties_"+id+".txt", "r")
 
-    epot, ekin, etot, temp = energies_and_temp(a)
+    epot, ekin, etot, temp = energies_and_temp(a) 
     msd =  meansquaredisp(a, a_old)
     settings = read_settings_file()
     ln = sum(1 for line in f)
@@ -247,25 +247,24 @@ def finalize_properties_file(a, id, d, ma):
     temp = []
     msd = []
     selfd = []
-    pr =[]
+    pr = []
     debye = []
     linde = []
 
     f=open("property_calculations/properties_"+id+".txt", "r")
-    steps = 0
-    for i, line in enumerate(f):
-        if i >= 6:
-            epot.append(float(line.split()[1]))
-            ekin.append(float(line.split()[2]))
-            etot.append(float(line.split()[3]))
-            temp.append(float(line.split()[4]))
-            msd.append(float(line.split()[5]))
-            selfd.append(line.split()[6])
-            pr.append(float(line.split()[11]))
-            if ma:
-                debye.append(float(line.split()[12]))
-                linde.append(float(line.split()[13]))
-            steps += 1
+    f_lines = f.readlines()
+    steps = 10
+    for line in f_lines[-steps:]: 
+        epot.append(float(line.split()[1]))
+        ekin.append(float(line.split()[2]))
+        etot.append(float(line.split()[3]))
+        temp.append(float(line.split()[4]))
+        msd.append(float(line.split()[5]))
+        selfd.append(line.split()[6])
+        pr.append(float(line.split()[11]))
+        if ma:
+            debye.append(float(line.split()[12]))
+            linde.append(float(line.split()[13]))
     f.close()
 
     epot_t = sum(epot)/steps
@@ -295,9 +294,9 @@ def finalize_properties_file(a, id, d, ma):
     file.write("\n")
 
     file.write(lj(" ")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
-    file.write(lj("Å^2/fs")+lj("Pa"))
+    file.write(lj("Å^2/fs")+lj("eV/Å^3"))
     file.write(lj("eV/K"))
-    # Check if pressure is given in Pascal!!!
+    
     if ma:
         file.write(lj("K",2)+lj("1"))
     file.write("\n")
@@ -310,3 +309,33 @@ def finalize_properties_file(a, id, d, ma):
 
     file.close()
     return
+
+def delete_properties_file(id):
+    """ Deletes a property file by its id
+
+    Parameters:
+    id (): a special number identifying the material system, as an int.
+    
+    Returns: None
+
+    """
+    os.remove("property_calculations/properties_"+str(id)+".txt")
+    return
+        
+def clean_property_calculations():
+    """ Idea: delete all propeties files without 'Time averages:' 
+    in them.
+    """
+    print(" -- Cleaning property_calculations directory -- ")
+    counter = 0
+    for filename in os.listdir("property_calculations"):
+        f = open("property_calculations/"+ str(filename), "r")
+        if "Time averages:" not in f.read():
+            counter += 1
+            os.remove("property_calculations/"+str(filename))
+            
+    print(" -- Removed " + str(counter) + " properties files -- ")
+
+if __name__ == "__main__":
+    clean_property_calculations()
+    

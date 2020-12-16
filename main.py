@@ -13,6 +13,7 @@ import numpy as np
 import mpi4py
 import copy
 from mpi4py import MPI
+from read_settings import read_settings_file
 
 # the program throws deprecation warnings
 #import warnings
@@ -37,10 +38,11 @@ def main():
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     size = comm.Get_size()
-
-    # read in the .json file as an command line argument? or maybe from settings file?
-    mp_properties = read_mp_properties('test_120_materials.json')
+    
+    # read materials from settings file
     settings = read_settings_file()
+    mp_properties = read_mp_properties(settings['materials'])
+
     # try to create folder 'property_calculations'
     # if it already exists, continue with the program
     try:
@@ -90,6 +92,6 @@ def main():
         except Exception as e:
             print("Run broke!:"+str(e))
     comm.Barrier()
-
+    
 if __name__ == "__main__":
     main()
