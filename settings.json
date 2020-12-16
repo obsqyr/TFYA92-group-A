@@ -1,9 +1,14 @@
 {
-    "time_step": 10,
+    "time_step": 2,
     "max_steps": 1000,
     "temperature": 300,
     "ensemble": "NVE",
     "friction": 0.001,
     "decimals": 5,
-    "interval": 100
+    "interval": 100,
+    "tolerance": 0.0005,
+    "materials": "test_120_materials.json",
+    "supercell_size": 8,
+    "search_interval" : 10,
+    "threshold" : 6
 }
