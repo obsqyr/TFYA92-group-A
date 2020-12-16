@@ -19,7 +19,6 @@ def find_eq_lc(fnames):
 
     """
     print("Start")
-    print(fnames)
     LC = 9999
     Etot = 9999
     N = ""
@@ -134,6 +133,9 @@ def extract():
                 LCi = LCi_list[i]
                 BulkM = BulkM_list[i]
                 file.write(pr.ss(LC,d+4)+pr.ss(LCi,d+4)+pr.ss(BulkM,d+4))
+            if len(lines[-1].split()) > 8:
+                debye = lines[-1].split()[8]
+                linde = lines[-1].split()[9]
             file.write("\n")
             file.close()
     return

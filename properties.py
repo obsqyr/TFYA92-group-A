@@ -289,23 +289,25 @@ def finalize_properties_file(a, id, d, ma):
 
     file.write(lj(" ")+lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
     file.write(lj("Self_diff")+lj("Pressure"))
+    file.write(lj("Specific heat"))
     if ma:
         file.write(lj("DebyeT",2)+lj("Lindemann"))
-    file.write(lj("Specific heat"))
+
     file.write("\n")
 
     file.write(lj(" ")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
     file.write(lj("Å^2/fs")+lj("Pa"))
+    file.write(lj("eV/K"))
     # Check if pressure is given in Pascal!!!
     if ma:
         file.write(lj("K",2)+lj("1"))
-    file.write(lj("eV/K"))
     file.write("\n")
 
     file.write(lj(" ")+ss(epot_t, d)+ss(ekin_t, d)+ss(etot_t, d)+ss(temp_t, 2)+ss(msd_t, d))
     file.write(ss(selfd_t, d)+ss(pr_t, d))
+    file.write(ss(Cv, d))
     if ma:
         file.write(ss(debye_t, 2)+ss(linde_t, d))
-    file.write(ss(Cv, d))
+
     file.close()
     return
