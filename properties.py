@@ -20,7 +20,7 @@ def specific_heat(temp_store, N):
     N (int): The total number of atoms in the material.
 
     Returns:
-    int: specific heat is returned (eV/K)
+    float: specific heat is returned (eV/K)
     """
     if len(temp_store) == 0:
         raise ValueError("temp_store is empty, invalid value.")
@@ -48,7 +48,7 @@ def meansquaredisp(atoms, old_atoms):
     old_atoms (obj):old_atoms is an atom object from the python library.
 
     Returns:
-    int: The mean squared displacement.
+    float: The mean squared displacement.
 
    """
     pos = atoms.get_positions()
@@ -73,7 +73,7 @@ def energies_and_temp(a):
 
     Returns:
     tuple: returns a tuple of potential energi, kinetic energy, total energy
-            and time step t.
+            and temperature.
 
     """
     epot = a.get_potential_energy() / len(a)
@@ -129,7 +129,7 @@ def self_diff(a, msd, time):
     time ():
 
     Returns:
-    int: self diffusion coefficient.
+    float: self diffusion coefficient.
     """
     if time == 0:
         sd = "_"
@@ -144,10 +144,10 @@ def initialize_properties_file(a, id, d, ma):
     Parameters:
     a (obj): a is an atoms object of class defined in ase. The material is made
             into an atoms object.
-    id (int): a special number identifying the material system.
+    id (str): a special number identifying the material system.
     d (int): a number for the formatting of file. Give a correct appending
             for strings.
-    ma (bool): a boolean indicating if the material is monoatomic
+    ma (boolean): a boolean indicating if the material is monoatomic
 
     Returns:
     None
@@ -161,7 +161,7 @@ def initialize_properties_file(a, id, d, ma):
 
     # Help function for formating
     def lj(str, k = d):
-        return str.ljust(k+6)
+        return " "+str.ljust(k+6)
 
     file.write(lj("Time")+lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
     file.write(lj("Self_diff")+lj("LC_a",3)+lj("LC_b",3)+lj("LC_c",3))
@@ -185,7 +185,7 @@ def ss(value, decimals):
         tmp = value
     else:
         tmp = str(round(value, decimals))
-    return tmp.ljust(decimals + 6)
+    return " "+tmp.ljust(decimals + 6)
 
 
 def calc_properties(a_old, a, id, d, ma, nnd=1):
@@ -196,9 +196,9 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
                 it's the old atom that needs to be updated.
     a (obj): a is an atoms object from clas defined from ase.
             it's the new updated atom obj for MD molecular dyanimcs.
-    id ():
-    d ():
-    ma ():
+    id (str):
+    d (int):
+    ma (boolean):
     nnd (float): nnd is the nearest neighbour distance for an ideal crystal lattice.
     Returns: None
 
@@ -232,7 +232,7 @@ def finalize_properties_file(a, id, d, ma):
 
     Parameters:
     a (obj): Atoms object form ase.
-    id (): a special number identifying the material system.
+    id (str): a special number identifying the material system.
     d (int): a number for the formatting of file. Give a correct appending
             for strings.
     ma (boolean): ma is a boolean, for True the system is monoatomic.
@@ -283,27 +283,30 @@ def finalize_properties_file(a, id, d, ma):
 
     # Help function for formating
     def lj(str, k = d):
-        return str.ljust(k+6)
+        return " "+str.ljust(k+6)
 
     file.write(lj(" ")+lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
     file.write(lj("Self_diff")+lj("Pressure"))
+    file.write(lj("Spec_heat"))
     if ma:
         file.write(lj("DebyeT",2)+lj("Lindemann"))
-    file.write(lj("Specific heat"))
+
     file.write("\n")
 
     file.write(lj(" ")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
     file.write(lj("Å^2/fs")+lj("eV/Å^3"))
+    file.write(lj("eV/K"))
+    
     if ma:
         file.write(lj("K",2)+lj("1"))
-    file.write(lj("eV/K"))
     file.write("\n")
 
     file.write(lj(" ")+ss(epot_t, d)+ss(ekin_t, d)+ss(etot_t, d)+ss(temp_t, 2)+ss(msd_t, d))
     file.write(ss(selfd_t, d)+ss(pr_t, d))
+    file.write(ss(Cv, d))
     if ma:
         file.write(ss(debye_t, 2)+ss(linde_t, d))
-    file.write(ss(Cv, d))
+
     file.close()
     return
 

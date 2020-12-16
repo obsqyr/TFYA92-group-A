@@ -1,4 +1,4 @@
-#!/usr/bin/env python3 
+#!/usr/bin/env python3
 
 #-W ignore::VisibleDeprecationWarning ignore::FutureWarning
 # FIX THESE WARNINGS EVENTUALLY?
@@ -7,13 +7,15 @@ import os
 import md
 import ase.io
 from read_mp_project import read_mp_properties
+from read_settings import read_settings_file
 import properties
 import numpy as np
 import mpi4py
+import copy
 from mpi4py import MPI
 from read_settings import read_settings_file
 
-# the program throws deprecation warnings 
+# the program throws deprecation warnings
 #import warnings
 #warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -55,10 +57,19 @@ def main():
         f.write(cif)
         f.close()
         atoms = ase.io.read('tmp'+str(rank)+'.cif')
-        atoms_list.append(atoms)
+        if settings['vol_relax']:
+            cell = np.array(atoms.get_cell())
+            P = settings['LC_steps']
+            for i in range(-P,1+P):
+                atoms_v = copy.deepcopy(atoms)
+                atoms_v.set_cell(cell*(1+i*settings['LC_mod']))
+                atoms_list.append(atoms_v)
+        else:
+            atoms_list.append(atoms)
     print("Created atoms list")
+    print(len(atoms_list))
     os.remove("tmp"+str(rank)+".cif")
-   
+
     # Run the molecular dynamics in parallell (might want to
     # improve it)
     if rank == 0:
@@ -77,7 +88,7 @@ def main():
         #print("ID: ", id)
         #print(atoms)
         try:
-            md.run_md(atoms_list[id], str(id))
+            md.run_md(atoms_list[id], str(id).zfill(4))
         except Exception as e:
             print("Run broke!:"+str(e))
     comm.Barrier()

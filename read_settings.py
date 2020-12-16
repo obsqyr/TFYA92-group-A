@@ -45,10 +45,13 @@ def read_settings_file(file= "settings.json"):
         except Exception as e:
             data['interval'] = 100
         try:
+            data['vol_relax']
+        except Exception as e:
+            data['vol_relax'] = False
+        try:
             data['tolerance']
         except Exception as e:
             data['tolerance'] = 0.01
-
         return data
 
 if __name__ == "__main__":
