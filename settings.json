@@ -13,5 +13,6 @@
     "materials": "test_120_materials.json",
     "supercell_size": 8,
     "search_interval" : 10,
-    "threshold" : 6
+    "threshold" : 6,
+    "cubic_only" : true
 }
