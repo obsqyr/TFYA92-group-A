@@ -11,9 +11,9 @@ import warnings
 #client = MongoClient('mongodb://localhost:27017/')
 #connect('mongoenginetest', host='mongomock://localhost')
 
-md_run = os.path.exists("property_calculations")
+md_runned = os.path.exists("property_calculations")
 
-if not md_run:
+if not md_runned:
     raise Exception("property_calculations folder doesn't exist.")
 
 client = mongomock.MongoClient()
@@ -51,6 +51,9 @@ for i in range(file_cnt):
                             "Temp [K]": time_av_line[3], "MSD [Å^2]": time_av_line[4],"Self diffusion [Å^2/fs]": time_av_line[5],
                             "Pressure [Pa]": time_av_line[6], "Specific_heat [eV/K]": time_av_line[7]}}
 
+    post_id = db.posts.insert_one(post)
+    print("This is the post_id: ", post_id)
+    print("THIS IS THE MATERIAL", db.posts.find_one({"Material ID": Id}))
 
 """
 Psuedokod för hur det ska vara(?)
