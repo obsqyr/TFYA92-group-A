@@ -1,4 +1,5 @@
 #!/bin/bash
+export OPTIMADE_CONFIG_FILE="optimade_config.json"
 
 export OPTIMADE_LOG_LEVEL=info
 if [ "$1" == "debug" ]; then
