@@ -23,6 +23,7 @@ collection = db.test_collection
 files = os.listdir("property_calculations") # How many files in dir
 file_cnt = len(files)
 
+res_list  = []
 for i in range(file_cnt):
     file = open("property_calculations/properties_"+str(i)+".txt", "r")
     lines = file.read().splitlines()
@@ -40,28 +41,32 @@ for i in range(file_cnt):
         if re.search(pattern, sentence):
             print("Inside the founding ", lines[i+3])
             time_av_line = lines[i+3]
+            time_av_line = time_av_line.split()
+            #print("THIS IS TIME_AV_LINE ", time_av_line)
             found = True
-    if not found:
+    if found: # only store in database if time average exist.
+        post = {"Material ID": Id,
+                "Material": system_name,
+                "Unit Cell Composition": unit_cell_comp ,
+                "Properties": {"Epot [eV/atom]": time_av_line[0], "Ekin [eV/atom]": time_av_line[1], "Etot [eV/atom]": time_av_line[2],
+                                "Temp [K]": time_av_line[3], "MSD [Å^2]": time_av_line[4],"Self diffusion [Å^2/fs]": time_av_line[5],
+                                "Pressure [Pa]": time_av_line[6], "Specific_heat [eV/K]": time_av_line[7]}}
+
+        post_id = db.posts.insert_one(post)
+        #print("This is the post_id: ", post_id)
+        #print("THIS IS THE MATERIAL", db.posts.find_one({"Material ID": Id}))
+        res_list.append(db.posts.find_one({"Material ID": Id}))
+    else:
         warnings.warn("No time averages over properties found.")
 
-    post = {"Material ID": Id,
-            "Material": system_name,
-            "Unit Cell Composition": unit_cell_comp ,
-            "Properties": {"Epot [eV/atom]": time_av_line[0], "Ekin [eV/atom]": time_av_line[1], "Etot [eV/atom]": time_av_line[2],
-                            "Temp [K]": time_av_line[3], "MSD [Å^2]": time_av_line[4],"Self diffusion [Å^2/fs]": time_av_line[5],
-                            "Pressure [Pa]": time_av_line[6], "Specific_heat [eV/K]": time_av_line[7]}}
 
-    post_id = db.posts.insert_one(post)
-    print("This is the post_id: ", post_id)
-    print("THIS IS THE MATERIAL", db.posts.find_one({"Material ID": Id}))
+#Psuedokod för hur det ska vara(?)
+path = "optimade-python-tools/optimade/server/data/test_structures.json" # Maybe not hard coding this?
+with open(path, "+w") as f:
+    for i in range(1, len(res_list)):
+        f.write("\n" + str(res_list[i]))
 
-"""
-Psuedokod för hur det ska vara(?)
-
-file = open(optimade-python-tools/optimade/server/data/test_structures.json, "w")
-file.write("ID" Id, "Material" system_name, "Unit cell comp" unit_cell_comp,
-    "groupA_properties" {"Epot" time_av_line[0], "Ekin" time_av_line[1], "Etot" time_av_line[2],
-    "Temp" time_av_line[3], "MSD" time_av_line[4], "Self diffusion" time_av_line[5],
-    "Preassure" time_av_line[6], "Specific heat" time_av_line[7]})
-file.close()
-"""
+#file.write("ID" Id, "Material" system_name, "Unit cell comp" unit_cell_comp,
+#    "groupA_properties" {"Epot" time_av_line[0], "Ekin" time_av_line[1], "Etot" time_av_line[2],
+#    "Temp" time_av_line[3], "MSD" time_av_line[4], "Self diffusion" time_av_line[5],
+#    "Preassure" time_av_line[6], "Specific heat" time_av_line[7]})
