@@ -35,7 +35,7 @@ def run_md(atoms, id):
     # atoms = atoms * (size,size,size)
     #print(atoms.get_chemical_symbols())
     N = len(atoms.get_chemical_symbols())
-    
+
     # Use KIM for potentials from OpenKIM
     use_kim = True
 
@@ -66,7 +66,8 @@ def run_md(atoms, id):
 
     interval = settings['interval']
 
-    traj = Trajectory('ar.traj', 'w', atoms)
+    # Creates trajectory files in directory trajectory_files
+    traj = Trajectory("trajectory_files/"+id+".traj", 'w', atoms)
     dyn.attach(traj.write, interval=interval)
 
     # Number of decimals for most calculated properties.
@@ -103,7 +104,7 @@ def run_md(atoms, id):
         epot, ekin_post, etot, t = properties.energies_and_temp(atoms)
         #print(abs(ekin_pre-ekin_post) / math.sqrt(N))
         #print(counter)
-        if (abs(ekin_pre-ekin_post) / math.sqrt(N)) < settings['tolerance']: 
+        if (abs(ekin_pre-ekin_post) / math.sqrt(N)) < settings['tolerance']:
             counter += 1
         else:
             counter = 0
@@ -114,7 +115,7 @@ def run_md(atoms, id):
 
     if equilibrium:
         dyn.run(settings['max_steps'])
-        properties.finalize_properties_file(atoms, id, decimals, monoatomic) 
+        properties.finalize_properties_file(atoms, id, decimals, monoatomic)
     else:
         properties.delete_properties_file(id)
         raise RuntimeError("MD did not find equilibrium")
