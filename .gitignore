@@ -2,7 +2,7 @@
 *~
 *.traj
 __pycache__
-property_calculations
+property_calculations/properties_*
 kim.log
 *.out
 *.txt

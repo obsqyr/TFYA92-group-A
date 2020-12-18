@@ -93,9 +93,10 @@ def lattice_constants(a):
     Returns:
     list: returns the lattice_constants, in the 3 dimensions.
     """
-    #Note: Not lattice constats yet, just cell lengths.    ?????
+
+    s = read_settings_file()['supercell_size']
     lc = list(a.get_cell_lengths_and_angles())
-    return [lc[0], lc[1], lc[2]]
+    return [lc[0]/s, lc[1]/s, lc[2]/s]
 
 def volume_pressure(a):
     """Calculates volume and pressure of a material.

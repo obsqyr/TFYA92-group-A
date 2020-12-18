@@ -146,24 +146,27 @@ def plot_properties():
     msd = []
     selfd = []
     spec_h = []
-    #latt_c = []
-    #bulk_m = []
-    #coh_en = []
-    #debye = []
-    #linde = []
+    latt_c = []
+    inter_latt_c = []
+    bulk_m = []
+    coh_en = []
+    debye = []
+    linde = []
 
-    f = open("property_calculations/collected_data", "r")
+    f = open("property_calculations/collected_data.txt", "r")
 
     lines = f.readlines()[1:]
     for x in lines:
-        msd.append(float(x.split()[1]))
-        selfd.append(float(x.split()[2]))
-        #spec_h.append(float(x.split()[3]))
-        #latt_c.append(float(x.split()[4]))
-        #bulk_m.append(float(x.split()[5]))
-        #coh_en.append(float(x.split()[6]))
-        #debye.append(float(x.split()[7]))
-        #linde.append(float(x.split()[8]))
+        coh_en.append(float(x.split()[1]))
+        msd.append(float(x.split()[2]))
+        selfd.append(float(x.split()[3]))
+        spec_h.append(float(x.split()[4]))
+        latt_c.append(float(x.split()[5]))
+        inter_latt_c.append(float(x.split()[6]))
+        bulk_m.append(float(x.split()[7]))
+        if len(x.split()) > 8:
+            debye.append(float(x.split()[8]))
+            linde.append(float(x.split()[9]))
 
     f.close()
     #Plotting mean square displacment vs self diffusion const
@@ -174,8 +177,22 @@ def plot_properties():
     pyplot.xlabel("Mean square displacement [Å^2]")
     pyplot.ylabel("Self diffusion [Å^2/fs]")
 
-    pyplot.show()
+    pyplot.savefig("figures/MSD-SD.png")
+    
+    pyplot.figure(2)
+    pyplot.scatter(latt_c,bulk_m)
+    pyplot.xlabel("Lattice constant [Å]")
+    pyplot.ylabel("Bulk modulus [eV/Å^3]")
+    pyplot.savefig("figures/LC-BM.png")
 
+    pyplot.figure(3)
+    pyplot.scatter(latt_c, coh_en)
+    pyplot.xlabel("Lattice constant [Å]")
+    pyplot.ylabel("Cohesive energy [eV/atom]")
+    pyplot.savefig("figures/LC-Ecoh.png")
+    
+    pyplot.show()
+                                
     return
 
 if __name__ == "__main__":
