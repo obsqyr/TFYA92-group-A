@@ -8,7 +8,7 @@ from read_settings import read_settings_file
 import os
 # This file contains functions to calculate material properties
 
-def specific_heat(temp_store, N):
+def specific_heat(temp_store, N, atoms):
     """Calculates the specific heat for a material.
     Given by the formula: (E[T²] - E[T]²)/ E[T]² = 3*2^-1*N^-1*(1-3*N*Kb*2^-1*Cv^-1).
     Where Kb is boltzmansconstant, N is the total number of atoms, T is temperature and Cv the specific heat.
@@ -20,20 +20,21 @@ def specific_heat(temp_store, N):
     N (int): The total number of atoms in the material.
 
     Returns:
-    float: specific heat is returned (eV/K)
+    float: specific heat is returned (J/(K*Kg))
     """
     if len(temp_store) == 0:
         raise ValueError("temp_store is empty, invalid value.")
     steps = len(temp_store)
+    z = sum(atoms.get_masses()) * units._amu # total mass: atomic units to kg
     # Set M = (E[T²] - E[T]²)/ E[T]²
     ET = sum(temp_store)/steps
     ET2 = sum(np.array(temp_store)**2)/steps
     M = (ET2 - ET**2)/ET**2
-    Cv = -9*N*units.kB/(4*N*M-6)
+    Cv = -9*N*units.kB/(4*N*M-6)/z*units._e # specific heat J/(K*Kg)
     return Cv
 
 def distance2(pos1, pos2):
-    """Calculates the sqared distance between two atoms in 3D space"""
+    """Calculates the sqared distance between two atomsx in 3D space"""
     return (pos1[0] - pos2[0])**2 + (pos1[1] - pos2[1])**2 + (pos1[2] - pos2[2])**2
 
 def distance(pos1, pos2):
@@ -137,7 +138,7 @@ def self_diff(a, msd, time):
         sd = "_"
     else:
         sd = msd/(6*time)
-    return sd
+    return sd * 10 # units: mm^2 / s
 
 def initialize_properties_file(a, id, d, ma):
     """Initializes a file over properties with correct titles and main structure
@@ -173,7 +174,7 @@ def initialize_properties_file(a, id, d, ma):
 
     file.write("\n")
     file.write(lj("fs")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
-    file.write(lj("Å^2/fs")+lj("Å",3)+lj("Å",3)+lj("Å",3))
+    file.write(lj("mm^2/s")+lj("Å",3)+lj("Å",3)+lj("Å",3))
     file.write(lj("Å^3/atom")+lj("eV/Å^3"))
     if ma:
         file.write(lj("K",2)+lj("1"))
@@ -279,7 +280,7 @@ def finalize_properties_file(a, id, d, ma):
     pr_t = sum(pr)/steps
     debye_t = sum(debye)/steps
     linde_t = sum(linde)/steps
-    Cv = specific_heat(temp, len(a.get_chemical_symbols()))
+    Cv = specific_heat(temp, len(a.get_chemical_symbols()), a)
 
     file=open("property_calculations/properties_"+id+".txt", "a+")
     file.write("\nTime averages:\n")
@@ -297,8 +298,8 @@ def finalize_properties_file(a, id, d, ma):
     file.write("\n")
 
     file.write(lj(" ")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
-    file.write(lj("Å^2/fs")+lj("eV/Å^3"))
-    file.write(lj("eV/K"))
+    file.write(lj("mm^2/s")+lj("eV/Å^3"))
+    file.write(lj("J/(K*Kg)"))
     
     if ma:
         file.write(lj("K",2)+lj("1"))

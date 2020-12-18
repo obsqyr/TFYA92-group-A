@@ -8,7 +8,6 @@ import glob
 import properties as pr
 
 def find_eq_lc(fnames):
-
     """
     Parameters:
     fnames (list): A list of strings of file path/names
@@ -104,7 +103,6 @@ def extract():
     def lj(str, k = d):
         return " "+str.ljust(k+10)
 
-
     file.write(lj("Material")+lj("Cohesive energy")+lj("MSD")+lj("Self_diff")+lj("Specific heat"))
 
     if settings['vol_relax']:
@@ -169,6 +167,13 @@ def plot_properties():
             debye.append(float(x.split()[8]))
             linde.append(float(x.split()[9]))
 
+    bulk_m_filtered = []
+    latt_c_filtered = []
+    for i, value in enumerate(bulk_m):
+        if value != 0 and abs(value) < 1000 and value > 0:
+            bulk_m_filtered.append(value)
+            latt_c_filtered.append(latt_c[i])
+            
     f.close()
     #Plotting mean square displacment vs self diffusion const
     # in figure 1
@@ -181,7 +186,7 @@ def plot_properties():
     pyplot.savefig("figures/MSD-SD.png")
     
     pyplot.figure(2)
-    pyplot.scatter(latt_c,bulk_m)
+    pyplot.scatter(latt_c_filtered,bulk_m_filtered)
     pyplot.xlabel("Lattice constant [Å]")
     pyplot.ylabel("Bulk modulus [GPa]")
     pyplot.savefig("figures/LC-BM.png")
@@ -192,11 +197,11 @@ def plot_properties():
     pyplot.ylabel("Cohesive energy [eV/atom]")
     pyplot.savefig("figures/LC-Ecoh.png")
 
-    #pyplot.figure(3)
-    #pyplot.scatter(latt_c, coh_en)
-    #pyplot.xlabel("Lattice constant [Å]")
-    #pyplot.ylabel("Cohesive energy [eV/atom]")
-    #pyplot.savefig("figures/LC-Ecoh.png")
+    pyplot.figure(4)
+    pyplot.scatter(latt_c, inter_latt_c)
+    pyplot.xlabel("Lattice constant [Å]")
+    pyplot.ylabel("Interpolated lattice constant [Å]")
+    pyplot.savefig("figures/LC-inter_LC.png")
     
     pyplot.show()
                                 
