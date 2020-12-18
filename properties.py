@@ -114,7 +114,8 @@ def volume_pressure(a):
     return vol, pressure
 
 def debye_lindemann(a, msd, temp, nnd):
-    """Calculates the debye
+    """Calculates the debye temperature and the Lindemann
+       criterion.
     """
     debye = math.sqrt(3 * units._hbar**2 * temp / (units.kB * a.get_masses()[0] * msd))
     lindemann = math.sqrt(msd)/nnd
@@ -252,9 +253,10 @@ def finalize_properties_file(a, id, d, ma):
     debye = []
     linde = []
 
+    settings = read_settings_file()
     f=open("property_calculations/properties_"+id+".txt", "r")
     f_lines = f.readlines()
-    steps = 10
+    steps = math.floor(settings['max_steps'] / settings['interval'])
     for line in f_lines[-steps:]: 
         epot.append(float(line.split()[1]))
         ekin.append(float(line.split()[2]))

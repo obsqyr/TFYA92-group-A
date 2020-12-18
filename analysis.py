@@ -7,7 +7,6 @@ import math
 import glob
 import properties as pr
 
-
 def find_eq_lc(fnames):
 
     """
@@ -41,6 +40,8 @@ def find_eq_lc(fnames):
             N = name
         f.close()
 
+    settings = read_settings_file()
+    n = LC_list[0]**3 * settings['supercell_size']**3 / V_list[0]
     p = np.polyfit(LC_list, E_list, 2)
     if p[0] <= 0:
         print("Dynamically unstable in this range.")
@@ -50,11 +51,11 @@ def find_eq_lc(fnames):
     else:
         LC_interp = -p[1]/(2*p[0])
         E_interp = np.polyval(p, LC_interp)
-        V_interp = LC_interp**3
+        V_interp = LC_interp**3 * settings['supercell_size']**3 / n 
         q = np.polyfit(V_list, E_list,3)
-        B = V_interp*(6*q[0]*V_interp + 2*q[1])
-        print("E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp, B")
-        print(E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp, B,"\n")
+        B = V_interp*(6*q[0]*V_interp + 2*q[1])*160.2 # conversion from ev/Å^3 to GigaPascal
+        #print("E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp, B")
+        #print(E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp, B,"\n")
 
     return LC, B, N, LC_interp
 
@@ -182,7 +183,7 @@ def plot_properties():
     pyplot.figure(2)
     pyplot.scatter(latt_c,bulk_m)
     pyplot.xlabel("Lattice constant [Å]")
-    pyplot.ylabel("Bulk modulus [eV/Å^3]")
+    pyplot.ylabel("Bulk modulus [GPa]")
     pyplot.savefig("figures/LC-BM.png")
 
     pyplot.figure(3)
@@ -190,6 +191,12 @@ def plot_properties():
     pyplot.xlabel("Lattice constant [Å]")
     pyplot.ylabel("Cohesive energy [eV/atom]")
     pyplot.savefig("figures/LC-Ecoh.png")
+
+    #pyplot.figure(3)
+    #pyplot.scatter(latt_c, coh_en)
+    #pyplot.xlabel("Lattice constant [Å]")
+    #pyplot.ylabel("Cohesive energy [eV/atom]")
+    #pyplot.savefig("figures/LC-Ecoh.png")
     
     pyplot.show()
                                 
