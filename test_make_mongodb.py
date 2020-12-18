@@ -5,6 +5,7 @@ import mongomock
 import os
 import re
 import warnings
+import json
 #client = pymongo.MongoClient() # default host and port
 # Examples to specify host and port
 #client = MongoClient('localhost', 27017)
@@ -28,9 +29,9 @@ for i in range(file_cnt):
     file = open("property_calculations/properties_"+str(i)+".txt", "r")
     lines = file.read().splitlines()
     Id = lines[0].split(":")[1]
+    Id = int(Id)
     unit_cell_comp = lines[1].split(":")[1]
     system_name = lines[2].split(":")[1]
-    print("This is the current system: ", Id)
     #last_line = lines[-1].split()
     pattern = re.compile(r'Time averages:')
 
@@ -39,7 +40,6 @@ for i in range(file_cnt):
         sentence = lines[i]
         #print("This is the sentence ", lines[i])
         if re.search(pattern, sentence):
-            print("Inside the founding ", lines[i+3])
             time_av_line = lines[i+3]
             time_av_line = time_av_line.split()
             #print("THIS IS TIME_AV_LINE ", time_av_line)
@@ -48,23 +48,40 @@ for i in range(file_cnt):
         post = {"Material ID": Id,
                 "Material": system_name,
                 "Unit Cell Composition": unit_cell_comp ,
-                "Properties": {"Epot [eV/atom]": time_av_line[0], "Ekin [eV/atom]": time_av_line[1], "Etot [eV/atom]": time_av_line[2],
-                                "Temp [K]": time_av_line[3], "MSD [Å^2]": time_av_line[4],"Self diffusion [Å^2/fs]": time_av_line[5],
-                                "Pressure [Pa]": time_av_line[6], "Specific_heat [eV/K]": time_av_line[7]}}
+                "Properties": {"Epot [eV/atom]": float(time_av_line[0]), "Ekin [eV/atom]": float(time_av_line[1]), "Etot [eV/atom]": float(time_av_line[2]),
+                                "Temp [K]": float(time_av_line[3]), "MSD [Å^2]": float(time_av_line[4]),"Self diffusion [Å^2/fs]": float(time_av_line[5]),
+                                "Pressure [Pa]": float(time_av_line[6]), "Specific_heat [eV/K]": float(time_av_line[7])}}
 
-        post_id = db.posts.insert_one(post)
+        print("THIS IS THE POST ", post)
+        #post_id = db.posts.insert_one(post)
+
         #print("This is the post_id: ", post_id)
         #print("THIS IS THE MATERIAL", db.posts.find_one({"Material ID": Id}))
-        res_list.append(db.posts.find_one({"Material ID": Id}))
+        #res_list.append(db.posts.find_one({"Material ID": Id}))
+        res_list.append(post)
+        #print("THIS IS ThE POST : ", post)
     else:
         warnings.warn("No time averages over properties found.")
 
 
 #Psuedokod för hur det ska vara(?)
-path = "optimade-python-tools/optimade/server/data/test_structures.json" # Maybe not hard coding this?
-with open(path, "+w") as f:
-    for i in range(1, len(res_list)):
-        f.write("\n" + str(res_list[i]))
+path = "optimade-python-tools/optimade/server/data/MD_structures.json" # Maybe not hard coding this?
+with open(path, "w") as f:
+    dict = {"koko":3, "BABAB": 333}
+    print("THIS IS THE CONTENT OF RES_LIST ", res_list)
+    print("THE FIRST ELEMENT ", res_list[0])
+    json.dump(res_list, f, indent=3)
+    #print(res_list[i])
+    #for i in range(0, len(res_list)):
+    #    json.dump(res_list[i], f)
+    #for i in range(0, len(res_list)):
+    #    json.dump(res_list[i], f)
+    #f.write("[ \n")
+    #for i in range(1, len(res_list)):
+    #    f.write(str(res_list[i])+", \n")
+        #f.write("\n" + res_list[i] + ", ")
+    #f.write("\n" + "]")
+
 
 #file.write("ID" Id, "Material" system_name, "Unit cell comp" unit_cell_comp,
 #    "groupA_properties" {"Epot" time_av_line[0], "Ekin" time_av_line[1], "Etot" time_av_line[2],
