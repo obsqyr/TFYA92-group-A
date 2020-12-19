@@ -300,6 +300,31 @@ class StructureResourceAttributes(EntryResourceAttributes):
         queryable=SupportLevel.MUST,
     )
 
+    testing: Optional[
+        conlist(Periodicity, min_items=3, max_items=3)
+    ] = OptimadeField(
+        None,
+        description="""List of three integers.
+For each of the three directions indicated by the three lattice vectors (see property `lattice_vectors`), this list indicates if the direction is periodic (value `1`) or non-periodic (value `0`).
+Note: the elements in this list each refer to the direction of the corresponding entry in `lattice_vectors` and *not* the Cartesian x, y, z directions.
+
+- **Type**: list of integers.
+
+- **Requirements/Conventions**:
+    - **Support**: SHOULD be supported by all implementations, i.e., SHOULD NOT be `null`.
+    - **Query**: Support for queries on this property is OPTIONAL.
+    - MUST be a list of length 3.
+    - Each integer element MUST assume only the value 0 or 1.
+
+- **Examples**:
+    - For a molecule: `[0, 0, 0]`
+    - For a wire along the direction specified by the third lattice vector: `[0, 0, 1]`
+    - For a 2D surface/slab, periodic on the plane defined by the first and third lattice vectors: `[1, 0, 1]`
+    - For a bulk 3D system: `[1, 1, 1]`""",
+        support=SupportLevel.SHOULD,
+        queryable=SupportLevel.OPTIONAL,
+    )
+
     elements_ratios: Optional[List[float]] = OptimadeField(
         ...,
         description="""Relative proportions of different elements in the structure.
