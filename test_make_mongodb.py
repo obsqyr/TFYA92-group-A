@@ -68,7 +68,7 @@ def species_sites(pretty_formula):
     res = res_str.split()
     return res
 
-def anynomize_one_symbol(el_num_list):
+def anynomize_one_symbols(el_num_list):
     """ Code a list of elements. To have the anynomous formula.
 
     Paramters:
@@ -78,48 +78,39 @@ def anynomize_one_symbol(el_num_list):
     Returns:
     str: Returns a string of the anynomous formula, with proportion numbers, for the material.
     """
-
     # putting in "#"" to mark the end of string "ABCD..Z#"
-    uppercase = ascii_uppercase + "#"
 
     for i in range(0, len(el_num_list)):
-        first = uppercase[i]
-        if first == "#": # after A,B,C...Z comes Aa, Ba, Ca,.. Za,.. e.t.c
-            print("Now first = #, and i is ", i)
-            print("After anynomize_two_symbols ")
-            #break
-
+        print("Inside anynomize_one_symbol this is i ", i)
+        first = ascii_uppercase[i]
         el_num = el_num_list[i]
         if el_num == str(1): # if 1 then omitted.
                 el_num = ""
-
+                yield first + el_num
         else:
             yield first + el_num
 
-def anynomize_two_symbols():
+def anynomize_two_symbols(el_num_list):
     # putting in "#"" to mark the end of string "ABCD..Z#"
     uppercase = ascii_uppercase + "#"
-
-    print("Inside anynomize_two_symbols ")
     # Making codeing Aa, Ba, Ca,.. Za, Ab, Bb,...Zb etc.
-    for i in range(26, len(el_num_list)): # A-Z is 26 symbols.
-            ii = i
-            for second in ascii_lowercase:
-                for first in uppercase:
-                    print("inside anyno_two this is first, second ", first, second)
-                    if first == "#": # symbol after Zx where x is a-z
-                        break
-                    ii += 1
-                    yield first + second + el_num[ii]
-
-
-#    for first in uppercase: # Give you A-Z each time you iterate over.
-#        if first == "#": # After A,B,C..Z comes Aa, Ba, Ca...
-#            for second in ascii_lowercase:
-#                for first in ascii_uppercase:
-#                    yield first + second + el_num
-#        else:
-#            yield first + el_num
+    ii = -1
+    for second in ascii_lowercase:
+        if ii == len(el_num_list):
+            break
+        for first in uppercase:
+            ii += 1
+            if first == "#": # symbol after Zx where x is a-z
+                ii = ii - 1
+                break
+            elif ii == len(el_num_list):
+                break
+            el_num = el_num_list[ii]
+            if el_num == str(1):
+                el_num = ""
+                yield first + second + el_num
+            else:
+                yield first + second + el_num
 
 
 
@@ -135,17 +126,22 @@ def make_anonymous_form(pretty_formula):
     """
     dict = chemparse.parse_formula(pretty_formula)
     values_list = list(dict.values())
-    sorted_values = sorted(value_list, reverse=True)
+    sorted_values = sorted(value_list, reverse = True)
 
     # Make it anynomous
     res_str = []
-    if len(sorted_values) <= 26: # A-Z is 26 symbols in total
-        for value in anynomize_one_symbol(sorted_values):
+    if len(sorted_values) > 26: # A-Z is 26 symbols in total
+        sorted_vals_1 = sorted_values[0:26]
+        print("This is sorted_vals 1 ", sorted_vals_1)
+        sorted_vals_2 = sorted_values[26:len(sorted_values)]
+        print("This is sorted_vals 1 ", sorted_vals_2)
+        for value in anynomize_one_symbols(sorted_vals_1):
             res_str.append(value)
-
-    else:
         # after A,B,C...Z comes Aa, Ba, Ca,.. Za,.. e.t.c
         for value in anynomize_two_symbols(sorted_values):
+            res_str.append(value)
+    else: # If less or equal to 26 symbols
+        for value in anynomize_one_symbols(sorted_values):
             res_str.append(value)
 
     return res_str
@@ -196,9 +192,15 @@ def make_MDdb():
         if found: # only store in database if time average exist.
             post = {"pretty_formula": system_name,
                     "Unit Cell Composition": unit_cell_comp ,
-                    "Properties": {"Epot [eV/atom]": float(time_av_line[0]), "Ekin [eV/atom]": float(time_av_line[1]), "Etot [eV/atom]": float(time_av_line[2]),
-                                    "Temp [K]": float(time_av_line[3]), "MSD [Å^2]": float(time_av_line[4]),"Self diffusion [Å^2/fs]": float(time_av_line[5]),
-                                    "Pressure [Pa]": float(time_av_line[6]), "Specific_heat [eV/K]": float(time_av_line[7])},
+                    "Properties": {
+                                    "Epot [eV/atom]": float(time_av_line[0]),
+                                    "Ekin [eV/atom]": float(time_av_line[1]),
+                                    "Etot [eV/atom]": float(time_av_line[2]),
+                                    "Temp [K]": float(time_av_line[3]),
+                                    "MSD [Å^2]": float(time_av_line[4]),
+                                    "Self diffusion [Å^2/fs]": float(time_av_line[5]),
+                                    "Pressure [Pa]": float(time_av_line[6]),
+                                    "Specific_heat [eV/K]": float(time_av_line[7])},
                     "last_modified": dt,
                     "nperiodic_dimensions": 3, # work with cubic materials- HARD CODED
                     "dimension_types": [1, 1, 1],
@@ -210,7 +212,6 @@ def make_MDdb():
                      #"nsites": len(cartesian_site_pos),
                      #"cartesian_site_positions": cartesian_site_pos
                      "formula_anonymous": formula_anonymous
-
                     }
             collection.insert_one(post).inserted_id
         else:
