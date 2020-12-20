@@ -68,7 +68,7 @@ def species_sites(pretty_formula):
     res = res_str.split()
     return res
 
-def anynomize(el_num_list):
+def anynomize_one_symbol(el_num_list):
     """ Code a list of elements. To have the anynomous formula.
 
     Paramters:
@@ -82,32 +82,12 @@ def anynomize(el_num_list):
     # putting in "#"" to mark the end of string "ABCD..Z#"
     uppercase = ascii_uppercase + "#"
 
-    def anynomize_two_symbols():
-        print("Inside anynomize_two_symbols ")
-        # Making codeing Aa, Ba, Ca,.. Za, Ab, Bb,...Zb etc.
-        for i in range(26, len(el_num_list)): # A-Z is 26 symbols.
-                ii = i
-                for second in ascii_lowercase:
-                    for first in uppercase:
-                        print("inside anyno_two this is first, second ", first, second)
-                        if first == "#": # symbol after Zx where x is a-z
-                            break
-                        ii += 1
-                        yield first + second + el_num[ii]
-    def function():
-        print("FUNCTION ")
-        yield 1
-        yield 2
-        yield 3
-
     for i in range(0, len(el_num_list)):
         first = uppercase[i]
         if first == "#": # after A,B,C...Z comes Aa, Ba, Ca,.. Za,.. e.t.c
             print("Now first = #, and i is ", i)
-            anynomize_two_symbols()
-            function()
             print("After anynomize_two_symbols ")
-            break
+            #break
 
         el_num = el_num_list[i]
         if el_num == str(1): # if 1 then omitted.
@@ -116,6 +96,21 @@ def anynomize(el_num_list):
         else:
             yield first + el_num
 
+def anynomize_two_symbols():
+    # putting in "#"" to mark the end of string "ABCD..Z#"
+    uppercase = ascii_uppercase + "#"
+
+    print("Inside anynomize_two_symbols ")
+    # Making codeing Aa, Ba, Ca,.. Za, Ab, Bb,...Zb etc.
+    for i in range(26, len(el_num_list)): # A-Z is 26 symbols.
+            ii = i
+            for second in ascii_lowercase:
+                for first in uppercase:
+                    print("inside anyno_two this is first, second ", first, second)
+                    if first == "#": # symbol after Zx where x is a-z
+                        break
+                    ii += 1
+                    yield first + second + el_num[ii]
 
 
 #    for first in uppercase: # Give you A-Z each time you iterate over.
@@ -125,8 +120,6 @@ def anynomize(el_num_list):
 #                    yield first + second + el_num
 #        else:
 #            yield first + el_num
-
-
 
 
 
@@ -146,8 +139,14 @@ def make_anonymous_form(pretty_formula):
 
     # Make it anynomous
     res_str = []
-    for el_num in map(str, sorted_values):
-        res_str.append(anynomize(el_num))
+    if len(sorted_values) <= 26: # A-Z is 26 symbols in total
+        for value in anynomize_one_symbol(sorted_values):
+            res_str.append(value)
+
+    else:
+        # after A,B,C...Z comes Aa, Ba, Ca,.. Za,.. e.t.c
+        for value in anynomize_two_symbols(sorted_values):
+            res_str.append(value)
 
     return res_str
 
