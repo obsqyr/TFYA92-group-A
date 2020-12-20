@@ -51,8 +51,9 @@ def find_eq_lc(fnames):
         LC_interp = -p[1]/(2*p[0])
         E_interp = np.polyval(p, LC_interp)
         V_interp = LC_interp**3 * settings['supercell_size']**3 / n 
-        q = np.polyfit(V_list, E_list,3)
-        B = V_interp*(6*q[0]*V_interp + 2*q[1])*160.2 # conversion from ev/Å^3 to GigaPascal
+        q = np.polyfit(V_list, E_list,2)
+        B = V_interp*(2*q[0])*160.2 # conversion from ev/Å^3 to GigaPa
+        #B = V_interp*(6*q[0]*V_interp + 2*q[1])*160.2 # conversion from ev/Å^3 to GigaPascal
         #print("E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp, B")
         #print(E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp, B,"\n")
 
