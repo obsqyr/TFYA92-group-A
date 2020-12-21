@@ -17386,3 +17386,17 @@
 2020-12-18:16:02:11CET * 0 * information * 0x563e4774dc60_0x563e47777ea0 * KIM_LogImplementation.cpp:106 * Log object destroyed.
 2020-12-18:16:02:11CET * 0 * information * 0x563e4774dc60_Collections * KIM_LogImplementation.cpp:106 * Log object destroyed.
 2020-12-18:16:02:11CET * 0 * information * 0x563e4774dc60 * KIM_LogImplementation.cpp:106 * Log object destroyed.
+2020-12-21:16:02:45CET * 0 * information * 0x55781bffa050 * KIM_LogImplementation.cpp:96 * Log object created.  Default verbosity level is 'information'.
+2020-12-21:16:02:45CET * 1 * information * 0x55781bffa050 * KIM_LogImplementation.cpp:106 * Log object destroyed.
+2020-12-21:16:02:45CET * 0 * information * 0x55781bffa050 * KIM_LogImplementation.cpp:96 * Log object created.  Default verbosity level is 'information'.
+2020-12-21:16:02:45CET * 0 * information * 0x55781c02f260 * KIM_LogImplementation.cpp:96 * Log object created.  Default verbosity level is 'information'.
+2020-12-21:16:02:45CET * 1 * information * 0x55781c02f260 * KIM_LogImplementation.cpp:156 * Log object renamed.  ID changed to '0x55781bffa050_Collections'.
+2020-12-21:16:02:45CET * 2 * information * 0x55781bffa050_Collections * KIM_LogImplementation.cpp:160 * Log object renamed.  ID changed from '0x55781c02f260'.
+2020-12-21:16:02:45CET * 0 * information * 0x55781c0308c0 * KIM_LogImplementation.cpp:96 * Log object created.  Default verbosity level is 'information'.
+2020-12-21:16:02:45CET * 1 * information * 0x55781c0308c0 * KIM_LogImplementation.cpp:156 * Log object renamed.  ID changed to '0x55781bffa050_0x55781c0308c0'.
+2020-12-21:16:02:45CET * 2 * information * 0x55781bffa050_0x55781c0308c0 * KIM_LogImplementation.cpp:160 * Log object renamed.  ID changed from '0x55781c0308c0'.
+2020-12-21:16:02:45CET * 3 * information * 0x55781bffa050_0x55781c0308c0 * LennardJones612Implementation.cpp:631 * Register argument supportStatus
+2020-12-21:16:02:45CET * 4 * information * 0x55781bffa050_0x55781c0308c0 * LennardJones612Implementation.cpp:650 * Register callback supportStatus
+2020-12-21:16:13:38CET * 0 * information * 0x55781bffa050_0x55781c0308c0 * KIM_LogImplementation.cpp:106 * Log object destroyed.
+2020-12-21:16:13:38CET * 0 * information * 0x55781bffa050_Collections * KIM_LogImplementation.cpp:106 * Log object destroyed.
+2020-12-21:16:13:38CET * 0 * information * 0x55781bffa050 * KIM_LogImplementation.cpp:106 * Log object destroyed.
