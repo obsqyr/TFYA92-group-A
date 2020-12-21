@@ -203,6 +203,12 @@ def plot_properties():
     pyplot.xlabel("Lattice constant [Å]")
     pyplot.ylabel("Interpolated lattice constant [Å]")
     pyplot.savefig("figures/LC-inter_LC.png")
+
+    pyplot.figure(5)
+    pyplot.scatter(latt_c, spec_h)
+    pyplot.xlabel("Lattice constant [Å]")
+    pyplot.ylabel("Specific heat [J/(K*KG)]")
+    pyplot.savefig("figures/LC-inter_LC.png")
     
     pyplot.show()
                                 
