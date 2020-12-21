@@ -224,7 +224,10 @@ def make_MDdb():
                      "species_at_sites": species_at_sites,
                      #"nsites": len(cartesian_site_pos),
                      #"cartesian_site_positions": cartesian_site_pos
-                     "formula_anonymous": formula_anonymous
+                     #"species": species,
+                     "formula_anonymous": formula_anonymous,
+                     "structure_features": [],
+                     "task_id": "mpf_0"
                     }
             collection.insert_one(post).inserted_id
         else:
