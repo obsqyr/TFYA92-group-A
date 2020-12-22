@@ -11,6 +11,7 @@ import ase.io
 from read_settings import read_settings_file
 import properties
 import copy
+import math
 
 
 def run_md(atoms, id):
@@ -24,8 +25,16 @@ def run_md(atoms, id):
     Returns:
     obj:atoms object defined in ase, is returned.
     """
+
     # Read settings
     settings = read_settings_file()
+
+    # Scale atoms object, cubic
+    size = settings['supercell_size']
+    atoms = atoms * size * (1,1,1)
+    # atoms = atoms * (size,size,size)
+    #print(atoms.get_chemical_symbols())
+    N = len(atoms.get_chemical_symbols())
 
     # Use KIM for potentials from OpenKIM
     use_kim = True
@@ -57,9 +66,9 @@ def run_md(atoms, id):
 
     interval = settings['interval']
 
-    traj = Trajectory('ar.traj', 'w', atoms)
+    # Creates trajectory files in directory trajectory_files
+    traj = Trajectory("trajectory_files/"+id+".traj", 'w', atoms)
     dyn.attach(traj.write, interval=interval)
-
 
     # Number of decimals for most calculated properties.
     decimals = settings['decimals']
@@ -81,13 +90,35 @@ def run_md(atoms, id):
         print('Energy per atom: Epot = %.3feV  Ekin = %.3feV (T=%3.0fK)  '
               'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
 
-
     # Running the dynamics
     dyn.attach(logger, interval=interval)
-    logger()
-    dyn.run(settings['max_steps'])
+    #logger()
+    #dyn.run(settings['max_steps'])
+    # check for thermal equilibrium
+    counter = 0
+    equilibrium = False
+    for i in range(round(settings['max_steps'] / settings['search_interval'])): # hyperparameter
+        epot, ekin_pre, etot, t = properties.energies_and_temp(atoms)
+        # kör steg som motsvarar säg 5 fs
+        dyn.run(settings['search_interval']) # hyperparamter
+        epot, ekin_post, etot, t = properties.energies_and_temp(atoms)
+        #print(abs(ekin_pre-ekin_post) / math.sqrt(N))
+        #print(counter)
+        if (abs(ekin_pre-ekin_post) / math.sqrt(N)) < settings['tolerance']:
+            counter += 1
+        else:
+            counter = 0
+        if counter > settings['threshold']: # hyperparameter
+            print("reached equilibrium")
+            equilibrium = True
+            break
 
-    properties.finalize_properties_file(atoms, id, decimals, monoatomic)
+    if equilibrium:
+        dyn.run(settings['max_steps'])
+        properties.finalize_properties_file(atoms, id, decimals, monoatomic)
+    else:
+        properties.delete_properties_file(id)
+        raise RuntimeError("MD did not find equilibrium")
     return atoms
 
 if __name__ == "__main__":
