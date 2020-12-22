@@ -193,6 +193,12 @@ def make_MDdb():
         #cartesian_site_pos = get_sites_pos()
         #species = make_species_structure("d")
 
+##################### THIS IS CURRENTLY HARD CODED AND NEEDS TO BE REMOVED
+        hardcoded = [ {"chemical_symbols": [ "Ac"], "concentration": [ 1.0], "name": "Ac"},
+                        {"chemical_symbols": [ "Mg"], "concentration": [ 1.0], "name": "Mg"}]
+        hardcoded2 =[[1.00,1.5,1.4], [1.6,1.6,1.8], [1.556,1.67,1]]
+
+################################################### Remove later
         pattern = re.compile(r'Time averages:')
         found = False
         for i in range(len(lines)):
@@ -204,16 +210,16 @@ def make_MDdb():
                 found = True
         if found: # only store in database if time average exist.
             post = {"pretty_formula": system_name,
-                    "Unit Cell Composition": unit_cell_comp ,
-                    "Properties": {
-                                    "Epot [eV/atom]": float(time_av_line[0]),
-                                    "Ekin [eV/atom]": float(time_av_line[1]),
-                                    "Etot [eV/atom]": float(time_av_line[2]),
-                                    "Temp [K]": float(time_av_line[3]),
-                                    "MSD [Å^2]": float(time_av_line[4]),
-                                    "Self diffusion [Å^2/fs]": float(time_av_line[5]),
-                                    "Pressure [Pa]": float(time_av_line[6]),
-                                    "Specific_heat [eV/K]": float(time_av_line[7])},
+                    #"Unit Cell Composition": unit_cell_comp ,
+                #    "Properties": {
+                #                    "Epot [eV/atom]": float(time_av_line[0]),
+                #                    "Ekin [eV/atom]": float(time_av_line[1]),
+                #                    "Etot [eV/atom]": float(time_av_line[2]),
+                #                    "Temp [K]": float(time_av_line[3]),
+                #                    "MSD [Å^2]": float(time_av_line[4]),
+                #                    "Self diffusion [Å^2/fs]": float(time_av_line[5]),
+                #                    "Pressure [Pa]": float(time_av_line[6]),
+                #                    "Specific_heat [eV/K]": float(time_av_line[7])},
                     "last_modified": dt,
                     "nperiodic_dimensions": 3, # work with cubic materials- HARD CODED
                     "dimension_types": [1, 1, 1],
@@ -226,8 +232,11 @@ def make_MDdb():
                      #"cartesian_site_positions": cartesian_site_pos
                      #"species": species,
                      "formula_anonymous": formula_anonymous,
-                     "structure_features": [],
-                     "task_id": "mpf_0"
+                     "structure_features": [],# REMOVE LATER
+                     "task_id": "hardcoded",# REMOVE LATER
+                     "species": hardcoded,
+                     "nsites": 2, #REMOVE LATER
+                     "cartesian_site_positions": hardcoded2
                     }
             collection.insert_one(post).inserted_id
         else:
@@ -239,9 +248,10 @@ def MDdb_to_json(collection):
     cursor = collection.find()
     with open(path, 'w') as file:
         file.write('[' + '\n')
-        for document in cursor:
+        for i, document in enumerate(cursor):
             file.write(dumps(document, indent = 3))
-            file.write(',')
+            if i != collection.count() - 1: # if last element don't print ,
+                file.write(',')
         file.write('\n' + ']')
     return None
 
