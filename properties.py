@@ -30,7 +30,14 @@ def specific_heat(temp_store, N, atoms):
     ET = sum(temp_store)/steps
     ET2 = sum(np.array(temp_store)**2)/steps
     M = (ET2 - ET**2)/ET**2
-    Cv = -9*N*units.kB/(4*N*M-6)/z*units._e # specific heat J/(K*Kg)
+    #print("M:", M)
+    #print("N:", N)
+    #print("T:", temp_store)
+    #print(sum(np.array(temp_store)**2))
+    #print("ET:", ET)
+    #print("ET2:", ET2)
+    #Cv = -9*N*units.kB/(4*N*M-6)/z*units._e # specific heat J/(K*Kg)
+    Cv = (9*ET**2*N*units.kB) / (ET**2 * (6+4*N) - 4*N*ET2)/z*units._e
     return Cv
 
 def distance2(pos1, pos2):
