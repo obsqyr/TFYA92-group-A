@@ -43,7 +43,7 @@ def calc_element_ratios(pretty_formula):
         res.append(ratio_i)
     return res
 
-def species_sites(pretty_formula):
+def get_species_sites(pretty_formula):
     """Outputs a list over species at sites.
 
     Paramters:
@@ -160,6 +160,76 @@ def make_anonymous_form(pretty_formula):
     res_str = "".join(res_str_list)
     return res_str
 
+def get_sites_pos(file):
+    """ Get the cartesian site positions from property files.
+
+    Paramters:
+    file (obj): file object to read from.
+
+    Returns:
+    list: Returns a list of lists, where each inner list contains positions
+            of each sites. So [[x1, y1, z1],[x2, y2, z2]] is the structure for a
+            system of two sites with positions (x1, y1, z1) and (x2, y2, z2)
+            respectively.
+    """
+
+    lines = file.read().splitlines()
+    species_els = lines[4].split()
+
+    # Make strucutre [[],[],[]] if 3 sites e.g.
+    site_pos_res = []
+    site_num =  len(species_els)
+    for i in range(site_num):
+        site_pos_res.append([])
+    comps_x = line[5].split()
+    comps_y = line[6].split()
+    comps_z = line[7].split()
+    for ii in range(0, site_num):
+        val1 = comps_x[ii]
+        val2 = comps_y[ii]
+        val3 = comps_z[ii]
+        site_pos_res[ii].append(val1)
+        site_pos_res[ii].append(val2)
+        site_pos_res[ii].append(val3)
+
+    return site_pos_res
+
+def get_task_Id(file):
+    """ Returns the task_id for structure. It's an id which uniquely
+        defines the material for material. It's also known as Material Id
+        in the properties files after MD simulation.
+    """
+    lines = file.read().splitlines()
+    Id = lines[0].split(":")[1]
+    Id = int(Id)
+    return Id
+
+def get_species(pretty_formula):
+    """Get the structure required to fill in the field species.
+    
+    Paramters:
+    pretty_formula (str): String for the chemical formula of the system.
+
+    Returns:
+    list: Returns a list of dictionaries. Every dictionary corresponds to a species. Each
+            dictionary contains three elements, with keys "chemical_symbols","concentration"
+             and "name" (read documenation for more info). Note that the values are specifically
+             written for the MD software that is available.
+    """
+    res = []
+
+    # list of unique species
+    species_at_sites = get_species_sites(pretty_formula)
+    unique_species = list(set(species_at_sites))
+    for i in range(0, len(unique_species)):
+        str_val = unique_species[i]
+        res_i = {
+                    "chemical_symbols": [str_val],
+                    "concentration": [],
+                    "name": str_val
+                }
+        res.append(res_i)
+    return res
 
 def make_MDdb():
     """ Makes a mongodb database from results by running MD simulation.
@@ -167,37 +237,32 @@ def make_MDdb():
     Returns: Returns the database, in this case one collection, over the results.
     """
     md_runned = os.path.exists("property_calculations")
-
     if not md_runned:
         raise Exception("property_calculations folder doesn't exist.")
-
     client = mongomock.MongoClient()
     db = client.test_database
     collection = db.posts
-
     files = os.listdir("property_calculations") # How many files in dir
     file_cnt = len(files)
 
     for i in range(file_cnt):
         file = open("property_calculations/properties_"+str(i)+".txt", "r")
-        lines = file.read().splitlines()
-        Id = lines[0].split(":")[1]
-        Id = int(Id)
+        Id = get_task_Id(file)
         unit_cell_comp = lines[1].split(":")[1]
         system_name = lines[2].split(":")[1]
         system_name = system_name.replace(" ", "") # remove white space
+        cartesian_site_pos = get_sites_pos(file)
+        species_at_sites = get_species_sites(system_name)
+        species = get_species(system_name)
         elements = extract_elements(system_name)
         el_ratios = calc_element_ratios(system_name)
-        species_at_sites = species_sites(system_name)
         formula_anonymous = make_anonymous_form(system_name)
-        #cartesian_site_pos = get_sites_pos()
-        #species = make_species_structure("d")
+        dt = datetime.datetime.now()
 
 ##################### THIS IS CURRENTLY HARD CODED AND NEEDS TO BE REMOVED
         hardcoded = [ {"chemical_symbols": [ "Ac"], "concentration": [ 1.0], "name": "Ac"},
                         {"chemical_symbols": [ "Mg"], "concentration": [ 1.0], "name": "Mg"}]
         hardcoded2 =[[1.00,1.5,1.4], [1.6,1.6,1.8], [1.556,1.67,1]]
-
 ################################################### Remove later
         pattern = re.compile(r'Time averages:')
         found = False
@@ -206,9 +271,8 @@ def make_MDdb():
             if re.search(pattern, sentence):
                 time_av_line = lines[i+3]
                 time_av_line = time_av_line.split()
-                dt = datetime.datetime.now()
                 found = True
-        if found: # only store in database if time average exist.
+        if found: # only store in database if time averages of properties exist.
             post = {"pretty_formula": system_name,
                     #"Unit Cell Composition": unit_cell_comp ,
                 #    "Properties": {
@@ -228,15 +292,12 @@ def make_MDdb():
                      "chemsys": "-".join(elements),
                      "nelements": len(elements),
                      "species_at_sites": species_at_sites,
-                     #"nsites": len(cartesian_site_pos),
-                     #"cartesian_site_positions": cartesian_site_pos
-                     #"species": species,
                      "formula_anonymous": formula_anonymous,
-                     "structure_features": [],# REMOVE LATER
-                     "task_id": "hardcoded",# REMOVE LATER
-                     "species": hardcoded,
-                     "nsites": 2, #REMOVE LATER
-                     "cartesian_site_positions": hardcoded2
+                     "structure_features": [], #Specific for MD
+                     "task_id": Id,
+                     "cartesian_site_positions": hardcoded2,
+                     "species": hardcoded
+                     "nsites": len(cartesian_site_pos)
                     }
             collection.insert_one(post).inserted_id
         else:
