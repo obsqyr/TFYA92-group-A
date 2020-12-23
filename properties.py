@@ -37,7 +37,7 @@ def specific_heat(temp_store, N, atoms):
     #print("ET:", ET)
     #print("ET2:", ET2)
     #Cv = -9*N*units.kB/(4*N*M-6)/z*units._e # specific heat J/(K*Kg)
-    Cv = (9*ET**2*N*units.kB) / (ET**2 * (6+4*N) - 4*N*ET2)/z*units._e
+    Cv = ((9*ET**2*N*units.kB) / (ET**2 * (6+4*N) - 4*N*ET2)) * units._e / z
     return Cv
 
 def distance2(pos1, pos2):
@@ -143,7 +143,8 @@ def debye_lindemann(a, msd, temp):
     elif n == 2:
         nnd = 1/2 * math.sqrt(lc[0]**2 + lc[1]**2 + lc[2]**2)
     elif n == 4:
-        lc = lc.remove(max(lc))
+        if np.max(lc) != np.min(lc): # all values in lc are not the same
+            lc = np.delete(lc, np.argwhere(lc==max(lc)))
         nnd = 1/2 * math.sqrt(lc[0]**2 + lc[1]**2)
     else:
         nnd = 9999
