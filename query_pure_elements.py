@@ -15,9 +15,14 @@ for el_str in map(str, els_list):
     with open("tmp.json") as f:
         data = json.load(f)
     os.remove("tmp.json")
-    response_el_str = data["response"]
-    respond_list = respond_list + response_el_str
+    # Error handling if request fails
+    if not data["valid_response"] or data["num_results"] == 0:
+        break
+    else:
+        response_el_str = data["response"]
+        respond_list = respond_list + response_el_str
 
+# Make the json file with all responses
 dict_res = {"response": respond_list}
 with open("pure_elements.json", "w") as f:
     json.dump(dict_res, f, indent=4)
