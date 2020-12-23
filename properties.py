@@ -121,11 +121,32 @@ def volume_pressure(a):
     pressure = (stress[0] + stress[1] + stress[2])/3
     return vol, pressure
 
-def debye_lindemann(a, msd, temp, nnd):
+def debye_lindemann(a, msd, temp):
     """Calculates the debye temperature and the Lindemann
-       criterion.
+       criterion. Original cell is assumed to be sc, bcc or fcc.
+       Lattice constants in a,b and c may be different.
+    Parameters:
+    a (obj): a is an atoms object of class defined in ase.
+    msd (float): mean square displacment
+    temp (float): temperature
+
+    Returns
+    list: list of debye temperature and lindemann criterion.
     """
-    debye = math.sqrt(3 * units._hbar**2 * temp / (units.kB * a.get_masses()[0] * msd))
+    s = read_settings_file()
+    debye = math.sqrt(9 * units._hbar**2 * temp / (units._k * a.get_masses()[0] * units._amu * msd) * units.m**2)
+    z = s['supercell_size']
+    n = len(a) / z**3
+    lc = a.get_cell_lengths_and_angles()[0:3]
+    if n == 1:
+        nnd = min(lc)
+    elif n == 2:
+        nnd = 1/2 * math.sqrt(lc[0]**2 + lc[1]**2 + lc[2]**2)
+    elif n == 4:
+        lc = lc.remove(max(lc))
+        nnd = 1/2 * math.sqrt(lc[0]**2 + lc[1]**2)
+    else:
+        nnd = 9999
     lindemann = math.sqrt(msd)/nnd
     return debye, lindemann
 
@@ -198,7 +219,7 @@ def ss(value, decimals):
     return " "+tmp.ljust(decimals + 6)
 
 
-def calc_properties(a_old, a, id, d, ma, nnd=1):
+def calc_properties(a_old, a, id, d, ma):
     """Calculates prioperties and writes them in a file.
 
     Parameters:
@@ -209,13 +230,12 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
     id (str):
     d (int):
     ma (boolean):
-    nnd (float): nnd is the nearest neighbour distance for an ideal crystal lattice.
     Returns: None
 
     """
     f=open("property_calculations/properties_"+id+".txt", "r")
 
-    epot, ekin, etot, temp = energies_and_temp(a) 
+    epot, ekin, etot, temp = energies_and_temp(a)
     msd =  meansquaredisp(a, a_old)
     settings = read_settings_file()
     ln = sum(1 for line in f)
@@ -230,7 +250,7 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
     file.write(ss(selfd, d)+ss(lc[0], 3)+ss(lc[1], 3)+ss(lc[2], 3))
     file.write(ss(vol, 3)+ss(pr, d))
     if ma:
-        debye, linde = debye_lindemann(a,msd,temp,nnd)
+        debye, linde = debye_lindemann(a,msd,temp)
         file.write(ss(debye, 2)+ss(linde, d))
 
     file.write("\n")
@@ -265,7 +285,7 @@ def finalize_properties_file(a, id, d, ma):
     f=open("property_calculations/properties_"+id+".txt", "r")
     f_lines = f.readlines()
     steps = math.floor(settings['max_steps'] / settings['interval'])
-    for line in f_lines[-steps:]: 
+    for line in f_lines[-steps:]:
         epot.append(float(line.split()[1]))
         ekin.append(float(line.split()[2]))
         etot.append(float(line.split()[3]))
@@ -307,7 +327,7 @@ def finalize_properties_file(a, id, d, ma):
     file.write(lj(" ")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
     file.write(lj("mm^2/s")+lj("eV/Å^3"))
     file.write(lj("J/(K*Kg)"))
-    
+
     if ma:
         file.write(lj("K",2)+lj("1"))
     file.write("\n")
@@ -326,15 +346,15 @@ def delete_properties_file(id):
 
     Parameters:
     id (): a special number identifying the material system, as an int.
-    
+
     Returns: None
 
     """
     os.remove("property_calculations/properties_"+str(id)+".txt")
     return
-        
+
 def clean_property_calculations():
-    """ Idea: delete all propeties files without 'Time averages:' 
+    """ Idea: delete all propeties files without 'Time averages:'
     in them.
     """
     print(" -- Cleaning property_calculations directory -- ")
@@ -344,9 +364,8 @@ def clean_property_calculations():
         if "Time averages:" not in f.read():
             counter += 1
             os.remove("property_calculations/"+str(filename))
-            
+
     print(" -- Removed " + str(counter) + " properties files -- ")
 
 if __name__ == "__main__":
     clean_property_calculations()
-    

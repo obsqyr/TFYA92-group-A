@@ -7,12 +7,12 @@
     "decimals": 5,
     "interval": 100,
     "vol_relax": true,
-    "LC_mod": 0.01,
+    "LC_mod": 0.02,
     "LC_steps": 2,
     "tolerance": 0.0005,
     "materials": "test_120_materials.json",
-    "supercell_size": 8,
+    "supercell_size": 5,
     "search_interval" : 10,
     "threshold" : 6,
-    "cubic_only" : true
+    "cubic_only" : false
 }
