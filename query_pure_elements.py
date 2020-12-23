@@ -21,6 +21,3 @@ for el_str in map(str, els_list):
 dict_res = {"response": respond_list}
 with open("pure_elements.json", "w") as f:
     json.dump(dict_res, f, indent=4)
-
-r = read_mp_properties("pure_elements.json")
-print("This is the keys ", r.keys())
