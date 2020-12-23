@@ -206,7 +206,7 @@ def get_task_Id(file):
 
 def get_species(pretty_formula):
     """Get the structure required to fill in the field species.
-    
+
     Paramters:
     pretty_formula (str): String for the chemical formula of the system.
 
@@ -248,6 +248,7 @@ def make_MDdb():
     for i in range(file_cnt):
         file = open("property_calculations/properties_"+str(i)+".txt", "r")
         Id = get_task_Id(file)
+        lines = file.read().splitlines()
         unit_cell_comp = lines[1].split(":")[1]
         system_name = lines[2].split(":")[1]
         system_name = system_name.replace(" ", "") # remove white space
@@ -273,31 +274,35 @@ def make_MDdb():
                 time_av_line = time_av_line.split()
                 found = True
         if found: # only store in database if time averages of properties exist.
-            post = {"pretty_formula": system_name,
-                    #"Unit Cell Composition": unit_cell_comp ,
-                #    "Properties": {
-                #                    "Epot [eV/atom]": float(time_av_line[0]),
-                #                    "Ekin [eV/atom]": float(time_av_line[1]),
-                #                    "Etot [eV/atom]": float(time_av_line[2]),
-                #                    "Temp [K]": float(time_av_line[3]),
-                #                    "MSD [Å^2]": float(time_av_line[4]),
-                #                    "Self diffusion [Å^2/fs]": float(time_av_line[5]),
-                #                    "Pressure [Pa]": float(time_av_line[6]),
-                #                    "Specific_heat [eV/K]": float(time_av_line[7])},
+            post = {
+                    "pretty_formula": system_name,
+                    "Unit Cell Composition": unit_cell_comp ,
+                    "Epot [eV/atom]": float(time_av_line[0]),
+                    "Ekin [eV/atom]": float(time_av_line[1]),
+                    "Etot [eV/atom]": float(time_av_line[2]),
+                    "Temp [K]": float(time_av_line[3]),
+                    "MSD [Å^2]": float(time_av_line[4]),
+                    "Self diffusion [Å^2/fs]": float(time_av_line[5]),
+                    "Pressure [Pa]": float(time_av_line[6]),
+                    "Specific_heat [eV/K]": float(time_av_line[7]),
+                    "lattice_constant": 1,
+                    "Bulk_modulus": 11,
+                    "Debye": 999,
+                    "Lindemann": 999666,
                     "last_modified": dt,
-                    "nperiodic_dimensions": 3, # work with cubic materials- HARD CODED
+                    "nperiodic_dimensions": 3, # For cubic materials
                     "dimension_types": [1, 1, 1],
-                     "elements": elements,
-                     "elements_ratios": el_ratios ,
-                     "chemsys": "-".join(elements),
-                     "nelements": len(elements),
-                     "species_at_sites": species_at_sites,
-                     "formula_anonymous": formula_anonymous,
-                     "structure_features": [], #Specific for MD
-                     "task_id": Id,
-                     "cartesian_site_positions": hardcoded2,
-                     "species": hardcoded
-                     "nsites": len(cartesian_site_pos)
+                    "elements": elements,
+                    "elements_ratios": el_ratios ,
+                    "chemsys": "-".join(elements),
+                    "nelements": len(elements),
+                    "species_at_sites": species_at_sites,
+                    "formula_anonymous": formula_anonymous,
+                    "structure_features": [], #Specific for MD
+                    "task_id": Id,
+                    "cartesian_site_positions": hardcoded2,
+                    "species": hardcoded,
+                    "nsites": len(cartesian_site_pos)
                     }
             collection.insert_one(post).inserted_id
         else:
