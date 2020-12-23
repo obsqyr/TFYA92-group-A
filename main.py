@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 #-W ignore::VisibleDeprecationWarning ignore::FutureWarning
 # FIX THESE WARNINGS EVENTUALLY?
 # Main Molecular dynamics simulation loop
@@ -8,7 +7,6 @@ import md
 import ase.io
 from read_mp_project import read_mp_properties
 from read_settings import read_settings_file
-import properties
 import numpy as np
 import mpi4py
 import copy

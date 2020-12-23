@@ -6,6 +6,8 @@ from ase import units
 import numpy as np
 from read_settings import read_settings_file
 import os
+import chemparse
+
 # This file contains functions to calculate material properties
 
 def specific_heat(temp_store, N, atoms):
@@ -151,6 +153,26 @@ def self_diff(a, msd, time):
         sd = msd/(6*time)
     return sd * 10 # units: mm^2 / s
 
+def print_sites(a):
+    """ Prints the site positions of initial structure.
+
+    Paramters:
+    a (obj):  a is an atoms object of class defined in ase.
+
+    Returns:
+    None
+    """
+    res_array = a.get_positions()
+
+    for i in range(0, len(res_array)):
+        # 3D components.
+        res_array[i,:][1]
+        res_array[i,:][2]
+        res_array[i,:][3]
+
+
+    return
+
 def initialize_properties_file(a, id, d, ma):
     """Initializes a file over properties with correct titles and main structure
         for an material.
@@ -159,24 +181,43 @@ def initialize_properties_file(a, id, d, ma):
     a (obj): a is an atoms object of class defined in ase. The material is made
             into an atoms object.
     id (str): a special number identifying the material system.
-    d (int): a number for the formatting of file. Give a correct appending
-            for strings.
+    d (int): a number for the formatting of file. Give a correct spacing
+            for printing to file.
     ma (boolean): a boolean indicating if the material is monoatomic
 
     Returns:
     None
     """
-    file=open("property_calculations/properties_"+id+".txt", "w+")
-
-    file.write("Material ID: "+id+"\n")
-    file.write("Unit cell composition: "+a.get_chemical_formula() + "\n")
-    file.write("Material: "+a.get_chemical_formula(mode='hill', empirical=True) + "\n")
-    file.write("Properties:\n")
-
     # Help function for formating
     def lj(str, k = d):
         return " "+str.ljust(k+6)
 
+    file = open("property_calculations/properties_"+id+".txt", "w+")
+
+    file.write("Material ID: "+id+"\n")
+    file.write("Unit cell composition: "+a.get_chemical_formula() + "\n")
+    chem_formula = a.get_chemical_formula(mode='hill', empirical=True)
+    file.write("Material: "+ chem_formula + "\n")
+
+    # Write the elements as title
+    d2 = 16
+    file.write("Site positions:" + "\n")
+    dict = chemparse.parse_formula(chem_formula)
+    elements_list = list(dict.keys())
+    spc = " "*(6+d2)
+    file.write(spc.join(elements_list))
+
+    # Write the site positions
+    res_array = a.get_positions()
+    for i in range(0, 3): # 3 components
+        file.write("\n")
+        for ii in range(0, len(res_array)):
+            val  = str(round(res_array[:,i][ii], d2)) # 16 decimals
+            spc = " "*(6 + d2)
+            file.write(val + spc)
+
+    file.write("\n")
+    file.write("Properties:\n")
     file.write(lj("Time")+lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
     file.write(lj("Self_diff")+lj("LC_a",3)+lj("LC_b",3)+lj("LC_c",3))
     file.write(lj("Volume")+lj("Pressure"))
@@ -254,7 +295,6 @@ def finalize_properties_file(a, id, d, ma):
     Returns: None
 
     """
-
     epot = []
     ekin = []
     etot = []
@@ -321,7 +361,6 @@ def finalize_properties_file(a, id, d, ma):
     file.write(ss(Cv, d))
     if ma:
         file.write(ss(debye_t, 2)+ss(linde_t, d))
-
     file.close()
     return
 
@@ -348,7 +387,6 @@ def clean_property_calculations():
         if "Time averages:" not in f.read():
             counter += 1
             os.remove("property_calculations/"+str(filename))
-
     print(" -- Removed " + str(counter) + " properties files -- ")
 
 if __name__ == "__main__":

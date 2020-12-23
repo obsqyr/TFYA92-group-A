@@ -160,11 +160,11 @@ def make_anonymous_form(pretty_formula):
     res_str = "".join(res_str_list)
     return res_str
 
-def get_sites_pos(file):
+def get_sites_pos(file_str):
     """ Get the cartesian site positions from property files.
 
     Paramters:
-    file (obj): file object to read from.
+    file_str (str): File path to read from.
 
     Returns:
     list: Returns a list of lists, where each inner list contains positions
@@ -172,8 +172,10 @@ def get_sites_pos(file):
             system of two sites with positions (x1, y1, z1) and (x2, y2, z2)
             respectively.
     """
-
+    print("We are in file ", file_str)
+    file = open(file_str, "r")
     lines = file.read().splitlines()
+    file.close()
     species_els = lines[4].split()
 
     # Make strucutre [[],[],[]] if 3 sites e.g.
@@ -181,9 +183,9 @@ def get_sites_pos(file):
     site_num =  len(species_els)
     for i in range(site_num):
         site_pos_res.append([])
-    comps_x = line[5].split()
-    comps_y = line[6].split()
-    comps_z = line[7].split()
+    comps_x = lines[5].split()
+    comps_y = lines[6].split()
+    comps_z = lines[7].split()
     for ii in range(0, site_num):
         val1 = comps_x[ii]
         val2 = comps_y[ii]
@@ -192,6 +194,7 @@ def get_sites_pos(file):
         site_pos_res[ii].append(val2)
         site_pos_res[ii].append(val3)
 
+    print("This is site_pos_res ", site_pos_res)
     return site_pos_res
 
 def get_task_Id(file):
@@ -199,7 +202,9 @@ def get_task_Id(file):
         defines the material for material. It's also known as Material Id
         in the properties files after MD simulation.
     """
+    file = open(file, "r")
     lines = file.read().splitlines()
+    file.close()
     Id = lines[0].split(":")[1]
     Id = int(Id)
     return Id
@@ -246,13 +251,13 @@ def make_MDdb():
     file_cnt = len(files)
 
     for i in range(file_cnt):
+        Id = get_task_Id("property_calculations/properties_"+str(i)+".txt")
         file = open("property_calculations/properties_"+str(i)+".txt", "r")
-        Id = get_task_Id(file)
         lines = file.read().splitlines()
         unit_cell_comp = lines[1].split(":")[1]
         system_name = lines[2].split(":")[1]
         system_name = system_name.replace(" ", "") # remove white space
-        cartesian_site_pos = get_sites_pos(file)
+        cartesian_site_pos = get_sites_pos("property_calculations/properties_"+str(i)+".txt")
         species_at_sites = get_species_sites(system_name)
         species = get_species(system_name)
         elements = extract_elements(system_name)
@@ -285,10 +290,10 @@ def make_MDdb():
                     "Self diffusion [Å^2/fs]": float(time_av_line[5]),
                     "Pressure [Pa]": float(time_av_line[6]),
                     "Specific_heat [eV/K]": float(time_av_line[7]),
-                    "lattice_constant": 1,
-                    "Bulk_modulus": 11,
-                    "Debye": 999,
-                    "Lindemann": 999666,
+                    "lattice_constant": 1, #HARD
+                    "Bulk_modulus": 11, #HARD
+                    "Debye": 999, #HARD
+                    "Lindemann": 999666, # HARD
                     "last_modified": dt,
                     "nperiodic_dimensions": 3, # For cubic materials
                     "dimension_types": [1, 1, 1],
@@ -300,8 +305,8 @@ def make_MDdb():
                     "formula_anonymous": formula_anonymous,
                     "structure_features": [], #Specific for MD
                     "task_id": Id,
-                    "cartesian_site_positions": hardcoded2,
-                    "species": hardcoded,
+                    "cartesian_site_positions": cartesian_site_pos,
+                    "species": species,
                     "nsites": len(cartesian_site_pos)
                     }
             collection.insert_one(post).inserted_id
