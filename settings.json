@@ -1,0 +1,18 @@
+{
+    "time_step": 3,
+    "max_steps": 1000,
+    "temperature": 200,
+    "ensemble": "NVE",
+    "friction": 0.001,
+    "decimals": 5,
+    "interval": 100,
+    "vol_relax": true,
+    "LC_mod": 0.01,
+    "LC_steps": 2,
+    "tolerance": 0.0005,
+    "materials": "test_120_materials.json",
+    "supercell_size": 8,
+    "search_interval" : 10,
+    "threshold" : 6,
+    "cubic_only" : true
+}

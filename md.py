@@ -1,76 +1,57 @@
+#!/usr/bin/env python3
 """Demonstrates molecular dynamics with constant energy."""
-#/home/linle336/anaconda3/lib/python3.8/site-packages/ase/io/formats.py
-
 from ase.lattice.cubic import FaceCenteredCubic
-from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
+from asap3.md.velocitydistribution import MaxwellBoltzmannDistribution
 #from ase.md.verlet import VelocityVerlet
 from ase import units
 from asap3 import Trajectory
 from ase.calculators.kim.kim import KIM
+from asap3 import LennardJones
+import ase.io
 from read_settings import read_settings_file
+import properties
+import copy
+import math
 
 
-def calcenergy(a):
-    epot = a.get_potential_energy() / len(a)
-    ekin = a.get_kinetic_energy() / len(a)
-    t = ekin / (1.5 * units.kB)
+def run_md(atoms, id):
+    """The function does Molecular Dyanamic simulation (MD) on a material, given by argument atoms.
 
-    return epot, ekin, t
+    Parameters:
+    atoms (obj): an atoms object defined by class in ase. This is the material which MD
+    will run on.
+    id (int): an identifying number for the material.
 
+    Returns:
+    obj:atoms object defined in ase, is returned.
+    """
 
-def run_md(atoms):
+    # Read settings
+    settings = read_settings_file()
+
+    # Scale atoms object, cubic
+    size = settings['supercell_size']
+    atoms = atoms * size * (1,1,1)
+    # atoms = atoms * (size,size,size)
+    #print(atoms.get_chemical_symbols())
+    N = len(atoms.get_chemical_symbols())
 
     # Use KIM for potentials from OpenKIM
     use_kim = True
-    # Use settings files
-    settings = read_settings_file()
-
-#--------Provisional?--------
 
     # Use Asap for a huge performance increase if it is installed
     use_asap = True
 
-    if use_asap:
-        from asap3 import LennardJones
-        size = 6
-    else:
-        from ase.calculators.lj import LennardJones
-        size = 3
-#----------------------------
-    # Set up a crystal
-    # Atomic structure should be read from some cif-file
-    # Should this cif-file be an argument of run_md()? I.e. run_md("Atoms.cif")
-    # atoms = ase.io.read("Atoms.cif", None)
+    # Create a copy of the initial atoms object for future reference
+    old_atoms = copy.deepcopy(atoms)
 
-#    print("TESTING WILLIAM...")
-#    atoms = ase.io.read("nacl.cif", None)
-
-#    mp_properties = read_mp_properties('testing_data_materials.json')
-#    txt_str = mp_properties["cif"][0]
-#    f = open("tmp_cif.cif", "w+")
-#    f.write(txt_str)
-#    f.close()
-
-#    atoms = ase.io.read("tmp_cif.cif", None)
-
-    print(atoms.get_chemical_formula())
-#    print("################TTTTIIIS IS A TEST ")
-
-    #atoms = FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
-    #                              symbol="Ar",
-    #                              latticeconstant = 5.256,
-    #                              size=(size, size, size),
-    #                              pbc=True)
-
-
-
-    # Describe the interatomic interactions with Lennard Jones
-    if use_kim: # use KIM potentialß
-        atoms.calc = KIM("LJ_ElliottAkerson_2015_Universal__MO_959249795837_003") #an example potential
+    # Describe the interatomic interactions with OpenKIM potential
+    if use_kim: # use KIM potential
+        atoms.calc = KIM("LJ_ElliottAkerson_2015_Universal__MO_959249795837_003")
     else: # otherwise, default to asap3 LennardJones
         atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
 
-    # Set the momenta corresponding to T=300K
+    # Set the momenta corresponding to temperature from settings file
     MaxwellBoltzmannDistribution(atoms, settings['temperature'] * units.kB)
 
     # Select integrator
@@ -83,21 +64,62 @@ def run_md(atoms):
         dyn = Langevin(atoms, settings['time_step'] * units.fs,
             settings['temperature'] * units.kB, settings['friction'])
 
-    traj = Trajectory('ar.traj', 'w', atoms)
-    dyn.attach(traj.write, interval=100)
+    interval = settings['interval']
 
+    # Creates trajectory files in directory trajectory_files
+    traj = Trajectory("trajectory_files/"+id+".traj", 'w', atoms)
+    dyn.attach(traj.write, interval=interval)
 
-    def printenergy(a=atoms):  # store a reference to atoms in the definition.
+    # Number of decimals for most calculated properties.
+    decimals = settings['decimals']
+    # Boolean indicating if the material is monoatomic.
+    monoatomic = len(set(atoms.get_chemical_symbols())) == 1
+    # Calculate nnd wherever possible
+
+    # Calculation and writing of properties
+    properties.initialize_properties_file(atoms, id, decimals,monoatomic)
+    dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id, decimals, monoatomic)
+
+    # unnecessary, used for logging md runs
+    # we should write some kind of logger for the MD
+    def logger(a=atoms):  # store a reference to atoms in the definition.
         """Function to print the potential, kinetic and total energy."""
-        epot, ekin, t = calcenergy(a)
+        epot = a.get_potential_energy() / len(a)
+        ekin = a.get_kinetic_energy() / len(a)
+        t = ekin / (1.5 * units.kB)
         print('Energy per atom: Epot = %.3feV  Ekin = %.3feV (T=%3.0fK)  '
               'Etot = %.3feV' % (epot, ekin, t, epot + ekin))
 
-    # Now run the dynamics
-    dyn.attach(printenergy, interval=10)
-    printenergy()
-    dyn.run(settings['max_steps'])
+    # Running the dynamics
+    dyn.attach(logger, interval=interval)
+    #logger()
+    #dyn.run(settings['max_steps'])
+    # check for thermal equilibrium
+    counter = 0
+    equilibrium = False
+    for i in range(round(settings['max_steps'] / settings['search_interval'])): # hyperparameter
+        epot, ekin_pre, etot, t = properties.energies_and_temp(atoms)
+        # kör steg som motsvarar säg 5 fs
+        dyn.run(settings['search_interval']) # hyperparamter
+        epot, ekin_post, etot, t = properties.energies_and_temp(atoms)
+        #print(abs(ekin_pre-ekin_post) / math.sqrt(N))
+        #print(counter)
+        if (abs(ekin_pre-ekin_post) / math.sqrt(N)) < settings['tolerance']:
+            counter += 1
+        else:
+            counter = 0
+        if counter > settings['threshold']: # hyperparameter
+            print("reached equilibrium")
+            equilibrium = True
+            break
 
+    if equilibrium:
+        dyn.run(settings['max_steps'])
+        properties.finalize_properties_file(atoms, id, decimals, monoatomic)
+    else:
+        properties.delete_properties_file(id)
+        raise RuntimeError("MD did not find equilibrium")
+    return atoms
 
 if __name__ == "__main__":
     run_md()
