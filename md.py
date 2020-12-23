@@ -74,7 +74,6 @@ def run_md(atoms, id):
     decimals = settings['decimals']
     # Boolean indicating if the material is monoatomic.
     monoatomic = len(set(atoms.get_chemical_symbols())) == 1
-    # Calculate nnd wherever possible
 
     # Calculation and writing of properties
     properties.initialize_properties_file(atoms, id, decimals,monoatomic)
