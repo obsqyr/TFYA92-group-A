@@ -27,8 +27,10 @@
             "Self diffusion [Å^2/fs]",
             "Pressure [Pa]",
             "Specific_heat [eV/K]",
-            "lattice_constant",
-            "Bulk_modulus",
+            "lattice constant",
+            "interpolated lattice constant",
+            "Bulk modulus",
+            "Cohesive energy",
             "Debye",
             "Lindemann"
         ]

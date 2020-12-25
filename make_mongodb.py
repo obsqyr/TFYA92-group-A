@@ -236,6 +236,51 @@ def get_species(pretty_formula):
         res.append(res_i)
     return res
 
+def get_properties_collected_data(Id, file_str = "property_calculations/collected_data.txt"):
+    """ Get the Cohesive energy, Lattice constant, interpolated lattice constant,
+        Bulk modulus, Debye and Lindemann for material with Material Id
+        (or task id in database)
+        Id.
+
+    Paramters:
+    Id: Material Id that identify specific material. Also task Id in database.
+    file_str (str): File path to "collected_data.txt".
+
+    Returns:
+    list: Returns a list of floats for value of Cohesive energy, Lattice constant,
+            interpolated lattice constant, Bulk modulus, Debye and Lindemann.
+            In the same order as specified.
+    """
+    file = open(file_str, "r")
+    lines = file.readlines()[1:]
+    found_id = False
+    for x in lines:
+        current_id = int(x.split()[0])
+        # If material found read values
+        if current_id == Id:
+            found_id = True
+            coh_en = float(x.split()[2])
+            latt_c = float(x.split()[6])
+            inter_latt_c = float(x.split()[7])
+            bulk_m = float(x.split()[8])
+            if len(x.split()) > 9:
+                debye = float(x.split()[9])
+                linde = float(x.split()[10])
+            else:
+                debye = "missing code 2"
+                linde = "missing code 2"
+    file.close()
+
+    # if Id not found leave fields empty
+    if found_id:
+        coh_en = "missing code 1"
+        latt_c = "missing code 1"
+        inter_latt_c = "missing code 1"
+        bulk_m = "missing code 1"
+        debye = "missing code 1"
+        linde = "missing code 1"
+    return [coh_en, latt_c, inter_latt_c, bulk_m, debye, linde]
+
 def make_MDdb():
     """ Makes a mongodb database from results by running MD simulation.
 
@@ -250,7 +295,7 @@ def make_MDdb():
     files = os.listdir("property_calculations") # How many files in dir
     file_cnt = len(files)
 
-    for i in range(file_cnt):
+    for i in range(file_cnt-1): # file collected_data not included
         Id = get_task_Id("property_calculations/properties_"+str(i)+".txt")
         file = open("property_calculations/properties_"+str(i)+".txt", "r")
         lines = file.read().splitlines()
@@ -264,12 +309,10 @@ def make_MDdb():
         el_ratios = calc_element_ratios(system_name)
         formula_anonymous = make_anonymous_form(system_name)
         dt = datetime.datetime.now()
+        prop_collected = get_properties_collected_data(Id)
+        cohesiv, lattice_constant, inter_latt_c, bulkmod, debye, lindemann = prop_collected
 
-##################### THIS IS CURRENTLY HARD CODED AND NEEDS TO BE REMOVED
-        hardcoded = [ {"chemical_symbols": [ "Ac"], "concentration": [ 1.0], "name": "Ac"},
-                        {"chemical_symbols": [ "Mg"], "concentration": [ 1.0], "name": "Mg"}]
-        hardcoded2 =[[1.00,1.5,1.4], [1.6,1.6,1.8], [1.556,1.67,1]]
-################################################### Remove later
+
         pattern = re.compile(r'Time averages:')
         found = False
         for i in range(len(lines)):
@@ -290,10 +333,12 @@ def make_MDdb():
                     "Self diffusion [Å^2/fs]": float(time_av_line[5]),
                     "Pressure [Pa]": float(time_av_line[6]),
                     "Specific_heat [eV/K]": float(time_av_line[7]),
-                    "lattice_constant": 1, #HARD
-                    "Bulk_modulus": 11, #HARD
-                    "Debye": 999, #HARD
-                    "Lindemann": 999666, # HARD
+                    "lattice constant": lattice_constant, #HARD
+                    "interpolated lattice constant": inter_latt_c,
+                    "Bulk modulus": bulkmod, #HARD
+                    "Cohesive energy": cohesive,
+                    "Debye": debye, #HARD
+                    "Lindemann": lindemann, # HARD
                     "last_modified": dt,
                     "nperiodic_dimensions": 3, # For cubic materials
                     "dimension_types": [1, 1, 1],

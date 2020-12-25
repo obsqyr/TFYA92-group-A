@@ -50,7 +50,7 @@ def find_eq_lc(fnames):
     else:
         LC_interp = -p[1]/(2*p[0])
         E_interp = np.polyval(p, LC_interp)
-        V_interp = LC_interp**3 * settings['supercell_size']**3 / n 
+        V_interp = LC_interp**3 * settings['supercell_size']**3 / n
         q = np.polyfit(V_list, E_list,2)
         B = V_interp*(2*q[0])*160.2 # conversion from ev/Å^3 to GigaPa
         #B = V_interp*(6*q[0]*V_interp + 2*q[1])*160.2 # conversion from ev/Å^3 to GigaPascal
@@ -104,7 +104,7 @@ def extract():
     def lj(str, k = d):
         return " "+str.ljust(k+10)
 
-    file.write(lj("Material")+lj("Cohesive energy")+lj("MSD")+lj("Self_diff")+lj("Specific heat"))
+    file.write(lj("Material ID")+lj("Material")+lj("Cohesive energy")+lj("MSD")+lj("Self_diff")+lj("Specific heat"))
 
     if settings['vol_relax']:
         file.write(lj("Lattice constant")+lj("Interpolated LC")+lj("Bulk modulus"))
@@ -122,6 +122,7 @@ def extract():
         lines = f.read().split("\n")
         f.close()
         if lines[-4] == 'Time averages:':
+            matID = lines[0].split(":")[1]
             mat = lines[2].split()[1]
             print(mat)
             Ecoh = lines[-1].split()[0]
@@ -129,7 +130,7 @@ def extract():
             selfd = lines[-1].split()[5]
             Cv = lines[-1].split()[7]
             file = open("property_calculations/collected_data.txt", "a+")
-            file.write(lj(mat)+lj(Ecoh)+lj(msd)+lj(selfd)+lj(Cv))
+            file.write(lj(matID)+lj(mat)+lj(Ecoh)+lj(msd)+lj(selfd)+lj(Cv))
             if settings['vol_relax']:
                 LC = LC_list[i]
                 LCi = LCi_list[i]
@@ -157,16 +158,16 @@ def plot_properties():
 
     lines = f.readlines()[1:]
     for x in lines:
-        coh_en.append(float(x.split()[1]))
-        msd.append(float(x.split()[2]))
-        selfd.append(float(x.split()[3]))
-        spec_h.append(float(x.split()[4]))
-        latt_c.append(float(x.split()[5]))
-        inter_latt_c.append(float(x.split()[6]))
-        bulk_m.append(float(x.split()[7]))
-        if len(x.split()) > 8:
-            debye.append(float(x.split()[8]))
-            linde.append(float(x.split()[9]))
+        coh_en.append(float(x.split()[2]))
+        msd.append(float(x.split()[3]))
+        selfd.append(float(x.split()[4]))
+        spec_h.append(float(x.split()[5]))
+        latt_c.append(float(x.split()[6]))
+        inter_latt_c.append(float(x.split()[7]))
+        bulk_m.append(float(x.split()[8]))
+        if len(x.split()) > 9:
+            debye.append(float(x.split()[9]))
+            linde.append(float(x.split()[10]))
 
     bulk_m_filtered = []
     latt_c_filtered = []
@@ -174,7 +175,7 @@ def plot_properties():
         if value != 0 and abs(value) < 1000 and value > 0:
             bulk_m_filtered.append(value)
             latt_c_filtered.append(latt_c[i])
-            
+
     f.close()
     #Plotting mean square displacment vs self diffusion const
     # in figure 1
@@ -185,7 +186,7 @@ def plot_properties():
     pyplot.ylabel("Self diffusion [Å^2/fs]")
 
     pyplot.savefig("figures/MSD-SD.png")
-    
+
     pyplot.figure(2)
     pyplot.scatter(latt_c_filtered,bulk_m_filtered)
     pyplot.xlabel("Lattice constant [Å]")
@@ -209,9 +210,9 @@ def plot_properties():
     pyplot.xlabel("Lattice constant [Å]")
     pyplot.ylabel("Specific heat [J/(K*KG)]")
     pyplot.savefig("figures/LC-inter_LC.png")
-    
+
     pyplot.show()
-                                
+
     return
 
 if __name__ == "__main__":
