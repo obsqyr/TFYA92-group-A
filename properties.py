@@ -37,7 +37,8 @@ def specific_heat(temp_store, N, atoms):
     #print("ET:", ET)
     #print("ET2:", ET2)
     #Cv = -9*N*units.kB/(4*N*M-6)/z*units._e # specific heat J/(K*Kg)
-    Cv = ((9*ET**2*N*units.kB) / (ET**2 * (6+4*N) - 4*N*ET2)) * units._e / z
+    Cv = ((9*ET**2*N*units._k) / (ET**2 * (6+4*N) - 4*N*ET2)) / z
+    print("Cv:", Cv)
     return Cv
 
 def distance2(pos1, pos2):

@@ -14,7 +14,7 @@ import copy
 import math
 
 
-def run_md(atoms, id):
+def run_md(atoms, id, settings_fn):
     """The function does Molecular Dyanamic simulation (MD) on a material, given by argument atoms.
 
     Parameters:
@@ -27,7 +27,7 @@ def run_md(atoms, id):
     """
 
     # Read settings
-    settings = read_settings_file()
+    settings = read_settings_file(settings_fn)
 
     # Scale atoms object, cubic
     size = settings['supercell_size']

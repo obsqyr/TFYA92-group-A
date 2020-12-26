@@ -4,4 +4,4 @@ from ase.build import bulk
 import md
 
 ar_cube = bulk('Ar', 'fcc', a=5.26, cubic=True)
-md.run_md(ar_cube, 'ar')
+md.run_md(ar_cube, 'ar', 'acc_test_setting.json')

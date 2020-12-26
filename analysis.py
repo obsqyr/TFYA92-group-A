@@ -36,9 +36,9 @@ def find_eq_lc(fnames):
         l_b = float(lines[6].split()[7])
         l_c = float(lines[6].split()[7])
         E_list.append(E)
-        LCa_list.append(la)
-        LCb_list.append(lb)
-        LCc_list.append(lc)
+        LCa_list.append(l_a)
+        LCb_list.append(l_b)
+        LCc_list.append(l_c)
         V_list.append(float(lines[6].split()[10]))
 
         if E < Etot:
@@ -52,8 +52,11 @@ def find_eq_lc(fnames):
     settings = read_settings_file()
     n = LCa_list[0] * LCb_list[0] * LCc_list[0] * settings['supercell_size']**3 / V_list[0]
     oLCa = LCa_list[settings['LC_steps']] # Original lattice constant a.
-    s_list = LCa_list / oLCa
+    s_list = [x / oLCa for x in LCa_list]
     p = np.polyfit(s_list, E_list, 2)
+    LCia = 0
+    LCib = 0 
+    LCic = 0
     if p[0] <= 0:
         print("Dynamically unstable in this range.")
         print(fnames)
@@ -183,7 +186,7 @@ def plot_properties():
 
     f = open("property_calculations/collected_data.txt", "r")
 
-    lines = f.readlines()[1:]
+    lines = f.readlines()[2:]
     for x in lines:
         coh_en.append(float(x.split()[1]))
         msd.append(float(x.split()[2]))
@@ -243,5 +246,6 @@ def plot_properties():
     return
 
 if __name__ == "__main__":
+    pr.clean_property_calculations()
     extract()
     plot_properties()
