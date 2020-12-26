@@ -18,7 +18,7 @@ def find_eq_lc(fnames):
 
     """
     print("Start")
-    LC = 9999
+    LC = 9999 
     Etot = 9999
     N = ""
     E_list = []
@@ -28,10 +28,10 @@ def find_eq_lc(fnames):
         f = open(name, "r+")
         lines = f.read().split("\n")
         E = float(lines[-1].split()[2])
-        l = float(lines[6].split()[7])
+        l = float(lines[-6].split()[7])
         E_list.append(E)
         LC_list.append(l)
-        V_list.append(float(lines[6].split()[10]))
+        V_list.append(float(lines[-6].split()[10]))
 
         if E < Etot:
             Etot = E
