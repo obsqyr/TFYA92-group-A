@@ -170,16 +170,17 @@ def print_sites(a):
         res_array[i,:][2]
         res_array[i,:][3]
 
-
     return
 
-def initialize_properties_file(a, id, d, ma):
+def initialize_properties_file(a, ai, id, d, ma):
     """Initializes a file over properties with correct titles and main structure
         for an material.
 
     Parameters:
     a (obj): a is an atoms object of class defined in ase. The material is made
             into an atoms object.
+    ai (obj): initial atoms object an object of class sdefined in ase. The unitcell
+                atoms object that md runs for.
     id (str): a special number identifying the material system.
     d (int): a number for the formatting of file. Give a correct spacing
             for printing to file.
@@ -190,14 +191,13 @@ def initialize_properties_file(a, id, d, ma):
     """
     # Help function for formating
     def lj(str, k = d):
-        return " "+str.ljust(k+6)
+        return " "+str.ljust(k + 6)
+    file = open("property_calculations/properties_" + id + ".txt", "w+")
 
-    file = open("property_calculations/properties_"+id+".txt", "w+")
-
-    file.write("Material ID: "+id+"\n")
-    file.write("Unit cell composition: "+a.get_chemical_formula() + "\n")
+    file.write("Material ID: " + id + "\n")
+    file.write("Unit cell composition: " + a.get_chemical_formula() + "\n")
     chem_formula = a.get_chemical_formula(mode='hill', empirical=True)
-    file.write("Material: "+ chem_formula + "\n")
+    file.write("Material:  "+ chem_formula + "\n")
 
     # Write the elements as title
     d2 = 16
@@ -208,13 +208,15 @@ def initialize_properties_file(a, id, d, ma):
     file.write(spc.join(elements_list))
 
     # Write the site positions
-    res_array = a.get_positions()
+    res_array = ai.get_positions()
+    print("BAMBAMBAM------This is res_array-----", res_array)
     for i in range(0, 3): # 3 components
         file.write("\n")
         for ii in range(0, len(res_array)):
             val  = str(round(res_array[:,i][ii], d2)) # 16 decimals
+            print("BAMBAMBAM----- this is val-------", val)
             spc = " "*(6 + d2)
-            file.write(val + spc)
+            file.write(val+spc)
 
     file.write("\n")
     file.write("Properties:\n")
@@ -223,7 +225,6 @@ def initialize_properties_file(a, id, d, ma):
     file.write(lj("Volume")+lj("Pressure"))
     if ma:
         file.write(lj("DebyeT",2)+lj("Lindemann"))
-
     file.write("\n")
     file.write(lj("fs")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
     file.write(lj("mm^2/s")+lj("Å",3)+lj("Å",3)+lj("Å",3))
