@@ -4,7 +4,8 @@ from pathlib import Path
 
 
 data_paths = {
-    "structures": "copy_test_original_structures.json",
+    #"structures": "copy_test_original_structures.json",
+    "structures": "MD_structures.json",
     "references": "test_references.json",
     "links": "test_links.json",
     "providers": "providers.json",

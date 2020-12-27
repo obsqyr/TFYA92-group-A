@@ -176,7 +176,8 @@ def get_sites_pos(file_str):
     file = open(file_str, "r")
     lines = file.read().splitlines()
     file.close()
-    species_els = lines[4].split()
+    #species_els = lines[4].split()
+    species_els = lines[5].split()
 
     # Make strucutre [[],[],[]] if 3 sites e.g.
     site_pos_res = []
@@ -190,9 +191,9 @@ def get_sites_pos(file_str):
         val1 = comps_x[ii]
         val2 = comps_y[ii]
         val3 = comps_z[ii]
-        site_pos_res[ii].append(val1)
-        site_pos_res[ii].append(val2)
-        site_pos_res[ii].append(val3)
+        site_pos_res[ii].append(float(val1))
+        site_pos_res[ii].append(float(val2))
+        site_pos_res[ii].append(float(val3))
 
     print("This is site_pos_res ", site_pos_res)
     return site_pos_res
@@ -230,7 +231,7 @@ def get_species(pretty_formula):
         str_val = unique_species[i]
         res_i = {
                     "chemical_symbols": [str_val],
-                    "concentration": [],
+                    "concentration": [1.0],
                     "name": str_val
                 }
         res.append(res_i)
@@ -272,13 +273,14 @@ def get_properties_collected_data(Id, file_str = "property_calculations/collecte
     file.close()
 
     # if Id not found leave fields empty
-    if found_id:
+    if not found_id:
         coh_en = "missing code 1"
         latt_c = "missing code 1"
         inter_latt_c = "missing code 1"
         bulk_m = "missing code 1"
         debye = "missing code 1"
         linde = "missing code 1"
+
     return [coh_en, latt_c, inter_latt_c, bulk_m, debye, linde]
 
 def make_MDdb():
@@ -292,17 +294,18 @@ def make_MDdb():
     client = mongomock.MongoClient()
     db = client.test_database
     collection = db.posts
-    files = os.listdir("property_calculations") # How many files in dir
-    file_cnt = len(files)
+    files = os.listdir("property_calculations")
+    files.remove("collected_data.txt") #file collected_data not included
 
-    for i in range(file_cnt-1): # file collected_data not included
-        Id = get_task_Id("property_calculations/properties_"+str(i)+".txt")
-        file = open("property_calculations/properties_"+str(i)+".txt", "r")
+    for file in map(str, files):
+        path = "property_calculations/" + file
+        Id = get_task_Id(path)
+        file = open(path, "r")
         lines = file.read().splitlines()
         unit_cell_comp = lines[1].split(":")[1]
         system_name = lines[2].split(":")[1]
         system_name = system_name.replace(" ", "") # remove white space
-        cartesian_site_pos = get_sites_pos("property_calculations/properties_"+str(i)+".txt")
+        cartesian_site_pos = get_sites_pos(path)
         species_at_sites = get_species_sites(system_name)
         species = get_species(system_name)
         elements = extract_elements(system_name)
@@ -310,7 +313,7 @@ def make_MDdb():
         formula_anonymous = make_anonymous_form(system_name)
         dt = datetime.datetime.now()
         prop_collected = get_properties_collected_data(Id)
-        cohesiv, lattice_constant, inter_latt_c, bulkmod, debye, lindemann = prop_collected
+        cohesive, lattice_constant, inter_latt_c, bulkmod, debye, lindemann = prop_collected
 
 
         pattern = re.compile(r'Time averages:')
@@ -329,16 +332,16 @@ def make_MDdb():
                     "Ekin [eV/atom]": float(time_av_line[1]),
                     "Etot [eV/atom]": float(time_av_line[2]),
                     "Temp [K]": float(time_av_line[3]),
-                    "MSD [Å^2]": float(time_av_line[4]),
-                    "Self diffusion [Å^2/fs]": float(time_av_line[5]),
+                    "MSD [angstrom^2]": float(time_av_line[4]),
+                    "Self diffusion [angstrom^2/fs]": float(time_av_line[5]),
                     "Pressure [Pa]": float(time_av_line[6]),
                     "Specific_heat [eV/K]": float(time_av_line[7]),
-                    "lattice constant": lattice_constant, #HARD
+                    "lattice constant": lattice_constant,
                     "interpolated lattice constant": inter_latt_c,
-                    "Bulk modulus": bulkmod, #HARD
+                    "Bulk modulus": bulkmod,
                     "Cohesive energy": cohesive,
-                    "Debye": debye, #HARD
-                    "Lindemann": lindemann, # HARD
+                    "Debye": debye,
+                    "Lindemann": lindemann,
                     "last_modified": dt,
                     "nperiodic_dimensions": 3, # For cubic materials
                     "dimension_types": [1, 1, 1],
@@ -363,9 +366,9 @@ def MDdb_to_json(collection):
     path = "optimade-python-tools/optimade/server/data/MD_structures.json"
     cursor = collection.find()
     with open(path, 'w') as file:
-        file.write('[' + '\n')
+        file.write('[' + '\n' + "   ")
         for i, document in enumerate(cursor):
-            file.write(dumps(document, indent = 3))
+            file.write(dumps(document, indent = 6))
             if i != collection.count() - 1: # if last element don't print ,
                 file.write(',')
         file.write('\n' + ']')
