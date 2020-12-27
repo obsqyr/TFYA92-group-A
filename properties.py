@@ -153,24 +153,6 @@ def self_diff(a, msd, time):
         sd = msd/(6*time)
     return sd * 10 # units: mm^2 / s
 
-def print_sites(a):
-    """ Prints the site positions of initial structure.
-
-    Paramters:
-    a (obj):  a is an atoms object of class defined in ase.
-
-    Returns:
-    None
-    """
-    res_array = a.get_positions()
-
-    for i in range(0, len(res_array)):
-        # 3D components.
-        res_array[i,:][1]
-        res_array[i,:][2]
-        res_array[i,:][3]
-
-    return
 
 def initialize_properties_file(a, ai, id, d, ma):
     """Initializes a file over properties with correct titles and main structure
@@ -209,12 +191,10 @@ def initialize_properties_file(a, ai, id, d, ma):
 
     # Write the site positions
     res_array = ai.get_positions()
-    print("BAMBAMBAM------This is res_array-----", res_array)
     for i in range(0, 3): # 3 components
         file.write("\n")
         for ii in range(0, len(res_array)):
             val  = str(round(res_array[:,i][ii], d2)) # 16 decimals
-            print("BAMBAMBAM----- this is val-------", val)
             spc = " "*(6 + d2)
             file.write(val+spc)
 

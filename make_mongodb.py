@@ -315,6 +315,8 @@ def make_MDdb():
         prop_collected = get_properties_collected_data(Id)
         cohesive, lattice_constant, inter_latt_c, bulkmod, debye, lindemann = prop_collected
 
+        if len(species_at_sites) != len(cartesian_site_pos):
+            raise Exception("nsites not the same as number of species_at_sites. For material ID", Id)
 
         pattern = re.compile(r'Time averages:')
         found = False
