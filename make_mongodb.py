@@ -43,28 +43,6 @@ def calc_element_ratios(pretty_formula):
         res.append(ratio_i)
     return res
 
-def get_species_sites(pretty_formula):
-    """Outputs a list over species at sites.
-
-    Paramters:
-    pretty_formula (str): A string over the pretty formula, empirical formula, over material.
-
-    Returns:
-    list: Returns a list of strings. Where each strings are an element symbol for each sites given
-            by cartesian_site_positions.
-    """
-    dict = chemparse.parse_formula(pretty_formula)
-    key_list = list(dict.keys())
-    res_str = " "
-
-    for key_str in map(str, key_list):
-        cnt_element = dict[key_str]
-        duplicate_str = key_str + " "
-        extended_str = duplicate_str * int(cnt_element)
-        res_str = res_str + extended_str
-
-    res = res_str.split()
-    return res
 
 def anynomize_one_symbols(el_num_list):
     """ Code a list of elements. Make the anynomous coding A,B,C,...Z followed by corresponding chemical
@@ -225,8 +203,8 @@ def get_species(pretty_formula):
     res = []
 
     # list of unique species
-    species_at_sites = get_species_sites(pretty_formula)
-    unique_species = list(set(species_at_sites))
+    dict = chemparse.parse_formula(pretty_formula)
+    unique_species = list(dict.keys())
     for i in range(0, len(unique_species)):
         str_val = unique_species[i]
         res_i = {
@@ -306,7 +284,7 @@ def make_MDdb():
         system_name = lines[2].split(":")[1]
         system_name = system_name.replace(" ", "") # remove white space
         cartesian_site_pos = get_sites_pos(path)
-        species_at_sites = get_species_sites(system_name)
+        species_at_sites = lines[4].split()
         species = get_species(system_name)
         elements = extract_elements(system_name)
         el_ratios = calc_element_ratios(system_name)

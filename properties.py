@@ -182,21 +182,24 @@ def initialize_properties_file(a, ai, id, d, ma):
     file.write("Material:  "+ chem_formula + "\n")
 
     # Write the elements as title
-    d2 = 16
-    file.write("Site positions:" + "\n")
-    dict = chemparse.parse_formula(chem_formula)
-    elements_list = list(dict.keys())
-    spc = " "*(6+d2)
-    file.write(spc.join(elements_list))
+    file.write("Site positions of initial unitcell:" + "\n")
+    dict = chemparse.parse_formula(ai.get_chemical_formula())
+    els = list(dict.keys())
+    prop_num = list(dict.values())
+    tmp_ls = [(a + " ") * int(b) for a,b in zip(els, prop_num)] # Get ["Al", "Mg Mg Mg"] for "AlMg3" e.g.
+    els_str = "".join(tmp_ls)
+    els_ls = els_str.split()  # give you ["Al", "Mg", "Mg", "Mg"] e.g.
+    for a in els_ls:
+        file.write(lj(a))
 
     # Write the site positions
     res_array = ai.get_positions()
     for i in range(0, 3): # 3 components
         file.write("\n")
         for ii in range(0, len(res_array)):
-            val  = str(round(res_array[:,i][ii], d2)) # 16 decimals
-            spc = " "*(6 + d2)
-            file.write(val+spc)
+            format_str = "." + str(d) + "f"
+            val  = format(res_array[:,i][ii], format_str) # d decimals
+            file.write(lj(val))
 
     file.write("\n")
     file.write("Properties:\n")
