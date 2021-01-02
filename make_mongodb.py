@@ -9,6 +9,8 @@ import datetime
 from bson.json_util import dumps
 import chemparse
 from string import ascii_uppercase, ascii_lowercase
+from read_settings import read_settings_file
+
 
 def extract_elements(pretty_formula):
     """Returns a list of strings over elements pretty_formula consists of.
@@ -226,6 +228,7 @@ def get_properties_collected_data(Id, file_str = "property_calculations/collecte
     file_str (str): File path to "collected_data.txt".
 
     Returns:
+    False: Boolean False returned when id of the material is not found in collected_data.txt
     list: Returns a list of floats for value of Cohesive energy, Lattice constant,
             interpolated lattice constant, Bulk modulus, Debye and Lindemann.
             In the same order as specified.
@@ -233,31 +236,33 @@ def get_properties_collected_data(Id, file_str = "property_calculations/collecte
     file = open(file_str, "r")
     lines = file.readlines()[1:]
     found_id = False
+    settings = read_settings_file()
     for x in lines:
         current_id = int(x.split()[0])
         # If material found read values
         if current_id == Id:
             found_id = True
             coh_en = float(x.split()[2])
-            latt_c = float(x.split()[6])
-            inter_latt_c = float(x.split()[7])
-            bulk_m = float(x.split()[8])
+            if settings['vol_relax']:
+                latt_c = float(x.split()[6])
+                inter_latt_c = float(x.split()[7])
+                bulk_m = float(x.split()[8])
+            elif not settings['vol_relax']:
+                latt_c = " "
+                inter_latt_c = " "
+                bulk_m = " "
             if len(x.split()) > 9:
                 debye = float(x.split()[9])
                 linde = float(x.split()[10])
             else:
-                debye = "missing code 2"
-                linde = "missing code 2"
+                debye = " "
+                linde = " "
     file.close()
-
-    # if Id not found leave fields empty
+    print("This is found_id ", found_id)
+    # If Id not present in collected_data.txt
     if not found_id:
-        coh_en = "missing code 1"
-        latt_c = "missing code 1"
-        inter_latt_c = "missing code 1"
-        bulk_m = "missing code 1"
-        debye = "missing code 1"
-        linde = "missing code 1"
+        not_extra_volrelax = False
+        return  not_extra_volrelax
 
     return [coh_en, latt_c, inter_latt_c, bulk_m, debye, linde]
 
@@ -276,6 +281,7 @@ def make_MDdb():
     files.remove("collected_data.txt") #file collected_data not included
 
     for file in map(str, files):
+        print("This is file ", file)
         path = "property_calculations/" + file
         Id = get_task_Id(path)
         file = open(path, "r")
@@ -291,55 +297,64 @@ def make_MDdb():
         formula_anonymous = make_anonymous_form(system_name)
         dt = datetime.datetime.now()
         prop_collected = get_properties_collected_data(Id)
-        cohesive, lattice_constant, inter_latt_c, bulkmod, debye, lindemann = prop_collected
+        # Is False when id not found
+        if not prop_collected:
+            print("prop_collected is FALSe")
+            pass
 
-        if len(species_at_sites) != len(cartesian_site_pos):
-            raise Exception("nsites not the same as number of species_at_sites. For material ID", Id)
-
-        pattern = re.compile(r'Time averages:')
-        found = False
-        for i in range(len(lines)):
-            sentence = lines[i]
-            if re.search(pattern, sentence):
-                time_av_line = lines[i+3]
-                time_av_line = time_av_line.split()
-                found = True
-        if found: # only store in database if time averages of properties exist.
-            post = {
-                    "pretty_formula": system_name,
-                    "Unit Cell Composition": unit_cell_comp ,
-                    "Epot [eV/atom]": float(time_av_line[0]),
-                    "Ekin [eV/atom]": float(time_av_line[1]),
-                    "Etot [eV/atom]": float(time_av_line[2]),
-                    "Temp [K]": float(time_av_line[3]),
-                    "MSD [angstrom^2]": float(time_av_line[4]),
-                    "Self diffusion [angstrom^2/fs]": float(time_av_line[5]),
-                    "Pressure [Pa]": float(time_av_line[6]),
-                    "Specific_heat [eV/K]": float(time_av_line[7]),
-                    "lattice constant": lattice_constant,
-                    "interpolated lattice constant": inter_latt_c,
-                    "Bulk modulus": bulkmod,
-                    "Cohesive energy": cohesive,
-                    "Debye": debye,
-                    "Lindemann": lindemann,
-                    "last_modified": dt,
-                    "nperiodic_dimensions": 3, # For cubic materials
-                    "dimension_types": [1, 1, 1],
-                    "elements": elements,
-                    "elements_ratios": el_ratios ,
-                    "chemsys": "-".join(elements),
-                    "nelements": len(elements),
-                    "species_at_sites": species_at_sites,
-                    "formula_anonymous": formula_anonymous,
-                    "structure_features": [], #Specific for MD
-                    "task_id": Id,
-                    "cartesian_site_positions": cartesian_site_pos,
-                    "species": species,
-                    "nsites": len(cartesian_site_pos)
-                    }
-            collection.insert_one(post).inserted_id
         else:
-            warnings.warn("No time averages over properties found.")
+            print("IF prop_collected FALSE This shouldn not print!!")
+            cohesive, lattice_constant, inter_latt_c, bulkmod, debye, lindemann = prop_collected
+
+            if len(species_at_sites) != len(cartesian_site_pos):
+                raise Exception("nsites not the same as number of species_at_sites. For material ID", Id)
+
+            pattern = re.compile(r'Time averages:')
+            found = False
+            for i in range(len(lines)):
+                sentence = lines[i]
+                if re.search(pattern, sentence):
+                    time_av_line = lines[i+3]
+                    time_av_line = time_av_line.split()
+                    found = True
+             # only store in database if time averages of properties exist.
+             # and in case of volume relaxed, only store the relevant system.
+            if found:
+                post = {
+                        "pretty_formula": system_name,
+                        "Unit Cell Composition": unit_cell_comp ,
+                        "Epot [eV/atom]": float(time_av_line[0]),
+                        "Ekin [eV/atom]": float(time_av_line[1]),
+                        "Etot [eV/atom]": float(time_av_line[2]),
+                        "Temp [K]": float(time_av_line[3]),
+                        "MSD [angstrom^2]": float(time_av_line[4]),
+                        "Self diffusion [angstrom^2/fs]": float(time_av_line[5]),
+                        "Pressure [Pa]": float(time_av_line[6]),
+                        "Specific_heat [eV/K]": float(time_av_line[7]),
+                        "lattice constant": lattice_constant,
+                        "interpolated lattice constant": inter_latt_c,
+                        "Bulk modulus": bulkmod,
+                        "Cohesive energy": cohesive,
+                        "Debye": debye,
+                        "Lindemann": lindemann,
+                        "last_modified": dt,
+                        "nperiodic_dimensions": 3, #bulk 3D system
+                        "dimension_types": [1, 1, 1],
+                        "elements": elements,
+                        "elements_ratios": el_ratios ,
+                        "chemsys": "-".join(elements),
+                        "nelements": len(elements),
+                        "species_at_sites": species_at_sites,
+                        "formula_anonymous": formula_anonymous,
+                        "structure_features": [], #Specific for MD
+                        "task_id": Id,
+                        "cartesian_site_positions": cartesian_site_pos,
+                        "species": species,
+                        "nsites": len(cartesian_site_pos)
+                        }
+                collection.insert_one(post).inserted_id
+            else:
+                warnings.warn("No time averages over properties found.")
     return collection
 
 def MDdb_to_json(collection):
