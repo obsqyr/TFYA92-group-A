@@ -179,7 +179,7 @@ def initialize_properties_file(a, ai, id, d, ma):
     Parameters:
     a (obj): a is an atoms object of class defined in ase. The material is made
             into an atoms object.
-    ai (obj): initial atoms object an object of class sdefined in ase. The unitcell
+    ai (obj): initial atoms object an object of class sdefined in ase. The unit cell
                 atoms object that md runs for.
     id (str): a special number identifying the material system.
     d (int): a number for the formatting of file. Give a correct spacing
@@ -200,7 +200,7 @@ def initialize_properties_file(a, ai, id, d, ma):
     file.write("Material:  "+ chem_formula + "\n")
 
     # Write the elements as title
-    file.write("Site positions of initial unitcell:" + "\n")
+    file.write("Site positions of initial unit cell:" + "\n")
     dict = chemparse.parse_formula(ai.get_chemical_formula())
     els = list(dict.keys())
     prop_num = list(dict.values())

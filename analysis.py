@@ -15,7 +15,6 @@ def find_eq_lc(fnames):
     Returns:
     tuple: returns a tuple of lattice constant, bulk modulus,
     filename and interpolated lattice constant.
-
     """
     print("Start")
     LCa = 9999
@@ -32,14 +31,15 @@ def find_eq_lc(fnames):
         f = open(name, "r+")
         lines = f.read().split("\n")
         E = float(lines[-1].split()[2])
-        l_a = float(lines[6].split()[7])
-        l_b = float(lines[6].split()[7])
-        l_c = float(lines[6].split()[7])
+        # The strucutre of header is always the same.
+        l_a = float(lines[11].split()[7])
+        l_b = float(lines[11].split()[8])
+        l_c = float(lines[11].split()[9])
         E_list.append(E)
         LCa_list.append(l_a)
         LCb_list.append(l_b)
         LCc_list.append(l_c)
-        V_list.append(float(lines[6].split()[10]))
+        V_list.append(float(lines[11].split()[10]))
 
         if E < Etot:
             Etot = E
@@ -95,6 +95,8 @@ def sort_properties_files():
 
     for i in range(0,round(len(filenames)/steps)):
         LCa, LCb, LCc, BulkM, N, LCia, LCib, LCic = find_eq_lc(filenames[steps*i:steps*(i+1)])
+        print("Thi is LCa and Lcb..", LCa,LCb, LCc)
+        print("Thi is LCia and Lcib..", LCia,LCib, LCic)
         LC_list.append([LCa, LCb, LCc])
         BulkM_list.append(BulkM)
         N_list.append(N)
@@ -249,4 +251,4 @@ def plot_properties():
 if __name__ == "__main__":
     pr.clean_property_calculations()
     extract()
-    plot_properties()
+    #plot_properties()

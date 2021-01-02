@@ -14,5 +14,5 @@
     "supercell_size": 5,
     "search_interval" : 10,
     "threshold" : 6,
-    "cubic_only" : true
+    "cubic_only" : false
 }
