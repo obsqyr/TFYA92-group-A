@@ -32,7 +32,15 @@ def specific_heat(temp_store, N, atoms):
     ET = sum(temp_store)/steps
     ET2 = sum(np.array(temp_store)**2)/steps
     M = (ET2 - ET**2)/ET**2
-    Cv = -9*N*units.kB/(4*N*M-6)/z*units._e # specific heat J/(K*Kg)
+    #print("M:", M)
+    #print("N:", N)
+    #print("T:", temp_store)
+    #print(sum(np.array(temp_store)**2))
+    #print("ET:", ET)
+    #print("ET2:", ET2)
+    #Cv = -9*N*units.kB/(4*N*M-6)/z*units._e # specific heat J/(K*Kg)
+    Cv = ((9*ET**2*N*units._k) / (ET**2 * (6+4*N) - 4*N*ET2)) / z
+    print("Cv:", Cv)
     return Cv
 
 def distance2(pos1, pos2):
@@ -116,23 +124,33 @@ def volume_pressure(a):
     pressure = (stress[0] + stress[1] + stress[2])/3
     return vol, pressure
 
-def debye_lindemann(a, msd, temp, nnd):
-    """Calculates the debye temperature and the lindemann criteriaself.
-        The lindemann criteria states that melting point of a material is found
-        when the mean square displacement reaches at least 10% of the nearest neighbour
-        distance. Here, nearest neighbour distance is taken for a perfect crystal in equilibrium.
-
+def debye_lindemann(a, msd, temp):
+    """Calculates the debye temperature and the Lindemann
+       criterion. Original cell is assumed to be sc, bcc or fcc.
+       Lattice constants in a,b and c may be different.
     Parameters:
-    a (obj): atoms object defined in ase.
-    msd (float): mean square displacement.
+    a (obj): a is an atoms object of class defined in ase.
+    msd (float): mean square displacment
     temp (float): temperature
-    nnd (float): neareast neighbour distance.
 
-    Returns:
-    tuple: returns tuple of two floats, where one is the debye temp and the other
-            the lindemann criteria.
+    Returns
+    list: list of debye temperature and lindemann criterion.
     """
-    debye = math.sqrt(3 * units._hbar**2 * temp / (units.kB * a.get_masses()[0] * msd))
+    s = read_settings_file()
+    debye = math.sqrt(9 * units._hbar**2 * temp / (units._k * a.get_masses()[0] * units._amu * msd) * units.m**2)
+    z = s['supercell_size']
+    n = len(a) / z**3
+    lc = a.get_cell_lengths_and_angles()[0:3]
+    if n == 1:
+        nnd = min(lc)
+    elif n == 2:
+        nnd = 1/2 * math.sqrt(lc[0]**2 + lc[1]**2 + lc[2]**2)
+    elif n == 4:
+        if np.max(lc) != np.min(lc): # all values in lc are not the same
+            lc = np.delete(lc, np.argwhere(lc==max(lc)))
+        nnd = 1/2 * math.sqrt(lc[0]**2 + lc[1]**2)
+    else:
+        nnd = 9999
     lindemann = math.sqrt(msd)/nnd
     return debye, lindemann
 
@@ -227,7 +245,7 @@ def ss(value, decimals):
     return " "+tmp.ljust(decimals + 6)
 
 
-def calc_properties(a_old, a, id, d, ma, nnd=1):
+def calc_properties(a_old, a, id, d, ma):
     """Calculates prioperties and writes them in a file.
 
     Parameters:
@@ -238,7 +256,6 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
     id (str):
     d (int):
     ma (boolean):
-    nnd (float): nnd is the nearest neighbour distance for an ideal crystal lattice.
     Returns: None
 
     """
@@ -259,7 +276,7 @@ def calc_properties(a_old, a, id, d, ma, nnd=1):
     file.write(ss(selfd, d)+ss(lc[0], 3)+ss(lc[1], 3)+ss(lc[2], 3))
     file.write(ss(vol, 3)+ss(pr, d))
     if ma:
-        debye, linde = debye_lindemann(a,msd,temp,nnd)
+        debye, linde = debye_lindemann(a,msd,temp)
         file.write(ss(debye, 2)+ss(linde, d))
 
     file.write("\n")
@@ -371,6 +388,7 @@ def clean_property_calculations():
         if "Time averages:" not in f.read():
             counter += 1
             os.remove("property_calculations/"+str(filename))
+
     print(" -- Removed " + str(counter) + " properties files -- ")
 
 if __name__ == "__main__":

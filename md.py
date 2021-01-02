@@ -14,7 +14,7 @@ import copy
 import math
 
 
-def run_md(atoms, id):
+def run_md(atoms, id, settings_fn):
     """The function does Molecular Dyanamic simulation (MD) on a material, given by argument atoms.
 
     Parameters:
@@ -73,7 +73,6 @@ def run_md(atoms, id):
     decimals = settings['decimals']
     # Boolean indicating if the material is monoatomic.
     monoatomic = len(set(atoms.get_chemical_symbols())) == 1
-    # Calculate nnd wherever possible
 
     # Calculation and writing of properties
     properties.initialize_properties_file(atoms, initial_unitcell_atoms, id, decimals, monoatomic)

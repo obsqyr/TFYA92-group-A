@@ -3,6 +3,5 @@ from ase.visualize import view
 from ase.build import bulk
 import md
 
-cu_cube = bulk('Cu', 'fcc', a=3.6, cubic=True)
-cu_super = cu_cube*(5,5,5)
-md.run_md(cu_super, str(0))
+ar_cube = bulk('Ar', 'fcc', a=5.26, cubic=True)
+md.run_md(ar_cube, 'ar', 'acc_test_setting.json')
