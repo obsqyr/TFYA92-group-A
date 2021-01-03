@@ -175,19 +175,23 @@ def get_sites_pos(file_str):
         site_pos_res[ii].append(float(val2))
         site_pos_res[ii].append(float(val3))
 
-    print("This is site_pos_res ", site_pos_res)
     return site_pos_res
 
 def get_task_Id(file):
     """ Returns the task_id for structure. It's an id which uniquely
         defines the material for material. It's also known as Material Id
         in the properties files after MD simulation.
+
+        Parameters:
+        file (str): file is a string over the path to a file.
+
+        Returns:
+        str: returns id number as a string.
     """
     file = open(file, "r")
     lines = file.read().splitlines()
     file.close()
     Id = lines[0].split(":")[1]
-    Id = int(Id)
     return Id
 
 def get_species(pretty_formula):
@@ -228,41 +232,47 @@ def get_properties_collected_data(Id, file_str = "property_calculations/collecte
     file_str (str): File path to "collected_data.txt".
 
     Returns:
-    False: Boolean False returned when id of the material is not found in collected_data.txt
+    Boolean: Boolean False returned when id of the material is not found in collected_data.txt
     list: Returns a list of floats for value of Cohesive energy, Lattice constant,
             interpolated lattice constant, Bulk modulus, Debye and Lindemann.
             In the same order as specified.
     """
-    file = open(file_str, "r")
-    lines = file.readlines()[1:]
-    found_id = False
     settings = read_settings_file()
-    for x in lines:
-        current_id = int(x.split()[0])
-        # If material found read values
-        if current_id == Id:
-            found_id = True
-            coh_en = float(x.split()[2])
-            if settings['vol_relax']:
-                latt_c = float(x.split()[6])
-                inter_latt_c = float(x.split()[7])
-                bulk_m = float(x.split()[8])
-            elif not settings['vol_relax']:
-                latt_c = " "
-                inter_latt_c = " "
-                bulk_m = " "
-            if len(x.split()) > 9:
-                debye = float(x.split()[9])
-                linde = float(x.split()[10])
-            else:
+    file = open(file_str, "r")
+    content_str = file.read()
+    file.close()
+
+    # /n folloed by Id
+    Id = Id.split()[0]
+    search_id_str = "\n  " + Id + " "
+    print("****** THIS IS search_id_str *******", search_id_str)
+    if search_id_str in content_str:
+        print("************INSIIIDEEE******")
+        header = content_str.splitlines()[0]
+        # index of when line starts
+        line_start = content_str.find(search_id_str)
+        # index of when line ends
+        line_end = content_str.find("\n", line_start + 1)
+        line_str = content_str[line_start + 1: line_end]
+        col = line_str.split()
+        coh_en = float(col[2])
+        latt_c = [float(col[i]) for i in range(6, 9)]
+        if "Bulk modulus" in header:
+            inter_latt_c = [float(col[i]) for i in range(9, 12)]
+            bulk_m = float(col[12])
+            if len(col) <= 13:
                 debye = " "
                 linde = " "
-    file.close()
-    print("This is found_id ", found_id)
-    # If Id not present in collected_data.txt
-    if not found_id:
+            else:
+                debye = col[13]
+                linde = col[14]
+        elif not "Bulk modulus" in header and settings['vol_relax']:
+            raise Exception("Bulk Modulus missing.")
+    # material id not found
+    else:
         not_extra_volrelax = False
-        return  not_extra_volrelax
+        print("********prop collect is FALSE************")
+        return not_extra_volrelax
 
     return [coh_en, latt_c, inter_latt_c, bulk_m, debye, linde]
 
@@ -299,12 +309,12 @@ def make_MDdb():
         prop_collected = get_properties_collected_data(Id)
         # Is False when id not found
         if not prop_collected:
-            print("prop_collected is FALSe")
             pass
 
         else:
-            print("IF prop_collected FALSE This shouldn not print!!")
             cohesive, lattice_constant, inter_latt_c, bulkmod, debye, lindemann = prop_collected
+            lc_a, lc_b, lc_c = lattice_constant
+            lc_i_a, lc_i_b, lc_i_c = inter_latt_c
 
             if len(species_at_sites) != len(cartesian_site_pos):
                 raise Exception("nsites not the same as number of species_at_sites. For material ID", Id)
@@ -331,8 +341,12 @@ def make_MDdb():
                         "Self diffusion [angstrom^2/fs]": float(time_av_line[5]),
                         "Pressure [Pa]": float(time_av_line[6]),
                         "Specific_heat [eV/K]": float(time_av_line[7]),
-                        "lattice constant": lattice_constant,
-                        "interpolated lattice constant": inter_latt_c,
+                        "lattice constant a": lc_a,
+                        "lattice constant b": lc_b,
+                        "lattice constant c": lc_c,
+                        "interpolated lattice constant a": lc_i_a,
+                        "interpolated lattice constant b": lc_i_b,
+                        "interpolated lattice constant c": lc_i_c,
                         "Bulk modulus": bulkmod,
                         "Cohesive energy": cohesive,
                         "Debye": debye,
