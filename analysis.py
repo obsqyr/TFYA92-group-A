@@ -6,6 +6,7 @@ import numpy as np
 import math
 import glob
 import properties as pr
+import warnings
 
 def find_eq_lc(fnames):
     """
@@ -16,7 +17,6 @@ def find_eq_lc(fnames):
     tuple: returns a tuple of lattice constant, bulk modulus,
     filename and interpolated lattice constant.
     """
-    print("Start")
     LCa = 9999
     LCb = 9999
     LCc = 9999
@@ -58,8 +58,7 @@ def find_eq_lc(fnames):
     LCib = 0
     LCic = 0
     if p[0] <= 0:
-        print("Dynamically unstable in this range.")
-        print(fnames)
+        warnings.warn("Dynamically unstable in this range. " + str(fnames))
         B = 0
         LCi = 0
     else:
@@ -70,9 +69,6 @@ def find_eq_lc(fnames):
         V_interp = LCia * LCib * LCic * settings['supercell_size']**3 / n
         q = np.polyfit(V_list, E_list,2)
         B = V_interp*(2*q[0])*160.2 # conversion from ev/Å^3 to GigaPa
-        #B = V_interp*(6*q[0]*V_interp + 2*q[1])*160.2 # conversion from ev/Å^3 to GigaPascal
-        #print("E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp, B")
-        #print(E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp, B,"\n")
 
     return LCa, LCb, LCc, B, N, LCia, LCib, LCic
 
@@ -95,8 +91,6 @@ def sort_properties_files():
 
     for i in range(0,round(len(filenames)/steps)):
         LCa, LCb, LCc, BulkM, N, LCia, LCib, LCic = find_eq_lc(filenames[steps*i:steps*(i+1)])
-        print("Thi is LCa and Lcb..", LCa,LCb, LCc)
-        print("Thi is LCia and Lcib..", LCia,LCib, LCic)
         LC_list.append([LCa, LCb, LCc])
         BulkM_list.append(BulkM)
         N_list.append(N)
@@ -251,4 +245,4 @@ def plot_properties():
 if __name__ == "__main__":
     pr.clean_property_calculations()
     extract()
-    #plot_properties()
+    plot_properties()

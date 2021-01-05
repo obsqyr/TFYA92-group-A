@@ -1,27 +1,544 @@
 [
    {
-      "pretty_formula": "Ag3Li",
-      "Unit Cell Composition": " Ag375Li125",
-      "Epot [eV/atom]": -11.84001,
-      "Ekin [eV/atom]": 0.22029,
-      "Etot [eV/atom]": -11.61972,
-      "Temp [K]": 1704.22,
-      "MSD [angstrom^2]": 0.03297,
+      "pretty_formula": "Ag2La",
+      "Unit Cell Composition": " Ag500La250",
+      "Epot [eV/atom]": -15.24577,
+      "Ekin [eV/atom]": 0.31092,
+      "Etot [eV/atom]": -14.93485,
+      "Temp [K]": 2405.37,
+      "MSD [angstrom^2]": 0.02837,
       "Self diffusion [angstrom^2/fs]": 2e-05,
-      "Pressure [Pa]": 0.04621,
-      "Specific_heat [eV/K]": -85.11807,
-      "lattice constant a": 3.937,
-      "lattice constant b": 3.937,
-      "lattice constant c": 3.937,
+      "Pressure [Pa]": -0.75981,
+      "Specific_heat [eV/K]": -32.86993,
+      "lattice constant a": 5.946,
+      "lattice constant b": 5.946,
+      "lattice constant c": 5.946,
       "interpolated lattice constant a": 0.0,
       "interpolated lattice constant b": 0.0,
       "interpolated lattice constant c": 0.0,
       "Bulk modulus": 0.0,
-      "Cohesive energy": -11.84001,
+      "Cohesive energy": -15.24577,
       "Debye": " ",
       "Lindemann": " ",
       "last_modified": {
-            "$date": 1609645242305
+            "$date": 1609853640384
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "La"
+      ],
+      "elements_ratios": [
+            0.6666666666666666,
+            0.3333333333333333
+      ],
+      "chemsys": "Ag-La",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "La",
+            "La"
+      ],
+      "formula_anonymous": "A2B",
+      "structure_features": [],
+      "task_id": " 0061",
+      "cartesian_site_positions": [
+            [
+                  -0.05603,
+                  -0.37375,
+                  3.07014
+            ],
+            [
+                  4.14556,
+                  2.19763,
+                  1.02338
+            ],
+            [
+                  1.09494,
+                  2.73709,
+                  2.24008
+            ],
+            [
+                  2.99459,
+                  -0.91321,
+                  1.85344
+            ],
+            [
+                  1.13767,
+                  0.79954,
+                  0.19332
+            ],
+            [
+                  2.95187,
+                  1.02434,
+                  3.9002
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "La"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "La"
+            }
+      ],
+      "nsites": 6,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c3788b"
+      }
+},{
+      "pretty_formula": "AgEu",
+      "Unit Cell Composition": " Ag500Eu500",
+      "Epot [eV/atom]": -5.91789,
+      "Ekin [eV/atom]": 0.06697,
+      "Etot [eV/atom]": -5.85092,
+      "Temp [K]": 518.07,
+      "MSD [angstrom^2]": 0.01405,
+      "Self diffusion [angstrom^2/fs]": 1e-05,
+      "Pressure [Pa]": -0.10769,
+      "Specific_heat [eV/K]": -15.90271,
+      "lattice constant a": 4.681,
+      "lattice constant b": 6.115,
+      "lattice constant c": 7.838,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -5.91789,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640403
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "Eu"
+      ],
+      "elements_ratios": [
+            0.5,
+            0.5
+      ],
+      "chemsys": "Ag-Eu",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Eu",
+            "Eu",
+            "Eu",
+            "Eu"
+      ],
+      "formula_anonymous": "AB",
+      "structure_features": [],
+      "task_id": " 0021",
+      "cartesian_site_positions": [
+            [
+                  3.58256,
+                  5.41114,
+                  6.56941
+            ],
+            [
+                  1.19419,
+                  2.29132,
+                  5.4271
+            ],
+            [
+                  3.58256,
+                  3.94833,
+                  2.57057
+            ],
+            [
+                  1.19419,
+                  0.82851,
+                  1.42826
+            ],
+            [
+                  1.19419,
+                  3.90368,
+                  0.3324
+            ],
+            [
+                  3.58256,
+                  0.78386,
+                  3.66644
+            ],
+            [
+                  3.58256,
+                  2.33597,
+                  7.66527
+            ],
+            [
+                  1.19419,
+                  5.45579,
+                  4.33123
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "Eu"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Eu"
+            }
+      ],
+      "nsites": 8,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c3788c"
+      }
+},{
+      "pretty_formula": "Ag3Cr",
+      "Unit Cell Composition": " Ag375Cr125",
+      "Epot [eV/atom]": -13.28849,
+      "Ekin [eV/atom]": 0.15082,
+      "Etot [eV/atom]": -13.13767,
+      "Temp [K]": 1166.83,
+      "MSD [angstrom^2]": 0.01568,
+      "Self diffusion [angstrom^2/fs]": 1e-05,
+      "Pressure [Pa]": 0.04593,
+      "Specific_heat [eV/K]": -22.11636,
+      "lattice constant a": 4.871,
+      "lattice constant b": 4.871,
+      "lattice constant c": 4.871,
+      "interpolated lattice constant a": 4.546106981,
+      "interpolated lattice constant b": 4.546106981,
+      "interpolated lattice constant c": 4.546106981,
+      "Bulk modulus": 6756.985274032,
+      "Cohesive energy": -13.28849,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640428
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "Cr"
+      ],
+      "elements_ratios": [
+            0.75,
+            0.25
+      ],
+      "chemsys": "Ag-Cr",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Cr"
+      ],
+      "formula_anonymous": "A3B",
+      "structure_features": [],
+      "task_id": " 0045",
+      "cartesian_site_positions": [
+            [
+                  0.0,
+                  0.0,
+                  0.0
+            ],
+            [
+                  2.53682,
+                  0.0,
+                  1.45996
+            ],
+            [
+                  0.85638,
+                  2.3879,
+                  1.45996
+            ],
+            [
+                  3.3932,
+                  2.3879,
+                  0.0
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "Cr"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Cr"
+            }
+      ],
+      "nsites": 4,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c3788d"
+      }
+},{
+      "pretty_formula": "Ag3In",
+      "Unit Cell Composition": " Ag375In125",
+      "Epot [eV/atom]": -10.93922,
+      "Ekin [eV/atom]": 0.35487,
+      "Etot [eV/atom]": -10.58435,
+      "Temp [K]": 2745.43,
+      "MSD [angstrom^2]": 1.05452,
+      "Self diffusion [angstrom^2/fs]": 0.00081,
+      "Pressure [Pa]": 0.31256,
+      "Specific_heat [eV/K]": -1166.45032,
+      "lattice constant a": 2.904,
+      "lattice constant b": 2.904,
+      "lattice constant c": 9.466,
+      "interpolated lattice constant a": -1.653757507,
+      "interpolated lattice constant b": -1.653757507,
+      "interpolated lattice constant c": -5.390657218,
+      "Bulk modulus": 17.564443533,
+      "Cohesive energy": -10.93922,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640436
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "In"
+      ],
+      "elements_ratios": [
+            0.75,
+            0.25
+      ],
+      "chemsys": "Ag-In",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "In"
+      ],
+      "formula_anonymous": "A3B",
+      "structure_features": [],
+      "task_id": " 0030",
+      "cartesian_site_positions": [
+            [
+                  0.0,
+                  0.0,
+                  0.0
+            ],
+            [
+                  0.79626,
+                  1.33205,
+                  7.32467
+            ],
+            [
+                  0.0,
+                  0.0,
+                  4.92998
+            ],
+            [
+                  0.79626,
+                  1.33205,
+                  2.53528
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "In"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "In"
+            }
+      ],
+      "nsites": 4,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c3788e"
+      }
+},{
+      "pretty_formula": "Ag4Lu",
+      "Unit Cell Composition": " Ag500Lu125",
+      "Epot [eV/atom]": -11.58134,
+      "Ekin [eV/atom]": 0.36272,
+      "Etot [eV/atom]": -11.21862,
+      "Temp [K]": 2806.12,
+      "MSD [angstrom^2]": 0.48379,
+      "Self diffusion [angstrom^2/fs]": 0.00032,
+      "Pressure [Pa]": 0.11254,
+      "Specific_heat [eV/K]": 193.30137,
+      "lattice constant a": 5.452,
+      "lattice constant b": 5.452,
+      "lattice constant c": 5.452,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -11.58134,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640448
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "Lu"
+      ],
+      "elements_ratios": [
+            0.8,
+            0.2
+      ],
+      "chemsys": "Ag-Lu",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Lu"
+      ],
+      "formula_anonymous": "A4B",
+      "structure_features": [],
+      "task_id": " 0079",
+      "cartesian_site_positions": [
+            [
+                  0.0,
+                  0.0,
+                  0.0
+            ],
+            [
+                  1.73007,
+                  1.51587,
+                  1.92892
+            ],
+            [
+                  -0.94776,
+                  2.67169,
+                  0.9877
+            ],
+            [
+                  1.771,
+                  -0.76441,
+                  3.82515
+            ],
+            [
+                  -0.90684,
+                  0.39142,
+                  2.88393
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "Lu"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Lu"
+            }
+      ],
+      "nsites": 5,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c3788f"
+      }
+},{
+      "pretty_formula": "Ag3Li",
+      "Unit Cell Composition": " Ag375Li125",
+      "Epot [eV/atom]": -11.30245,
+      "Ekin [eV/atom]": 0.01307,
+      "Etot [eV/atom]": -11.28938,
+      "Temp [K]": 101.1,
+      "MSD [angstrom^2]": 0.01225,
+      "Self diffusion [angstrom^2/fs]": 1e-05,
+      "Pressure [Pa]": 0.52277,
+      "Specific_heat [eV/K]": 11094.15399,
+      "lattice constant a": 4.102,
+      "lattice constant b": 4.102,
+      "lattice constant c": 4.102,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -11.30245,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640488
       },
       "nperiodic_dimensions": 3,
       "dimension_types": [
@@ -47,7 +564,7 @@
       ],
       "formula_anonymous": "A3B",
       "structure_features": [],
-      "task_id": " 0010",
+      "task_id": " 0012",
       "cartesian_site_positions": [
             [
                   0.0,
@@ -92,31 +609,727 @@
       ],
       "nsites": 4,
       "_id": {
-            "$oid": "5ff12eaa8ce1dad4b2c64149"
+            "$oid": "5ff45cb88c38b2acb9c37890"
+      }
+},{
+      "pretty_formula": "Ag4Li9",
+      "Unit Cell Composition": " Ag1000Li2250",
+      "Epot [eV/atom]": -8.10152,
+      "Ekin [eV/atom]": 0.42808,
+      "Etot [eV/atom]": -7.67344,
+      "Temp [K]": 3311.76,
+      "MSD [angstrom^2]": 5.792,
+      "Self diffusion [angstrom^2/fs]": 0.00461,
+      "Pressure [Pa]": 0.15664,
+      "Specific_heat [eV/K]": -1.67981,
+      "lattice constant a": 9.66,
+      "lattice constant b": 8.393,
+      "lattice constant c": 8.335,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -8.10152,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640496
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "Li"
+      ],
+      "elements_ratios": [
+            0.3076923076923077,
+            0.6923076923076923
+      ],
+      "chemsys": "Ag-Li",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li",
+            "Li"
+      ],
+      "formula_anonymous": "A9B4",
+      "structure_features": [],
+      "task_id": " 0067",
+      "cartesian_site_positions": [
+            [
+                  10.73339,
+                  6.76269,
+                  5.26489
+            ],
+            [
+                  8.58663,
+                  5.25984,
+                  6.76661
+            ],
+            [
+                  13.29975,
+                  1.5653,
+                  6.76956
+            ],
+            [
+                  6.02027,
+                  6.76839,
+                  1.57035
+            ],
+            [
+                  7.87535,
+                  1.96049,
+                  4.46068
+            ],
+            [
+                  5.05528,
+                  0.01814,
+                  2.51806
+            ],
+            [
+                  12.7254,
+                  4.85175,
+                  4.51071
+            ],
+            [
+                  11.44467,
+                  4.45922,
+                  1.96382
+            ],
+            [
+                  4.60474,
+                  2.51805,
+                  0.02002
+            ],
+            [
+                  16.25462,
+                  4.50709,
+                  4.85511
+            ],
+            [
+                  11.42788,
+                  2.37921,
+                  4.9082
+            ],
+            [
+                  9.32902,
+                  4.32671,
+                  0.02771
+            ],
+            [
+                  6.62261,
+                  2.43207,
+                  1.92093
+            ],
+            [
+                  7.89214,
+                  4.90642,
+                  2.38288
+            ],
+            [
+                  9.991,
+                  0.02448,
+                  4.32673
+            ],
+            [
+                  12.69741,
+                  1.91912,
+                  2.4335
+            ],
+            [
+                  8.04492,
+                  0.00297,
+                  2.26428
+            ],
+            [
+                  11.2751,
+                  2.26428,
+                  0.00466
+            ],
+            [
+                  6.5208,
+                  4.49298,
+                  0.00877
+            ],
+            [
+                  12.79922,
+                  0.00542,
+                  4.49299
+            ],
+            [
+                  8.17717,
+                  0.06079,
+                  6.80077
+            ],
+            [
+                  4.88078,
+                  2.41691,
+                  4.4464
+            ],
+            [
+                  9.66001,
+                  4.37067,
+                  4.37393
+            ],
+            [
+                  11.14286,
+                  6.80072,
+                  0.06587
+            ],
+            [
+                  14.43923,
+                  4.44459,
+                  2.42023
+            ],
+            [
+                  9.66001,
+                  2.35351,
+                  2.35526
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "Li"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Li"
+            }
+      ],
+      "nsites": 26,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c37891"
+      }
+},{
+      "pretty_formula": "Ag4Lu",
+      "Unit Cell Composition": " Ag500Lu125",
+      "Epot [eV/atom]": -11.7806,
+      "Ekin [eV/atom]": 0.30884,
+      "Etot [eV/atom]": -11.47176,
+      "Temp [K]": 2389.28,
+      "MSD [angstrom^2]": 0.62062,
+      "Self diffusion [angstrom^2/fs]": 0.00039,
+      "Pressure [Pa]": -0.09828,
+      "Specific_heat [eV/K]": 202.78348,
+      "lattice constant a": 5.347,
+      "lattice constant b": 5.347,
+      "lattice constant c": 5.347,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -11.7806,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640511
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "Lu"
+      ],
+      "elements_ratios": [
+            0.8,
+            0.2
+      ],
+      "chemsys": "Ag-Lu",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Lu"
+      ],
+      "formula_anonymous": "A4B",
+      "structure_features": [],
+      "task_id": " 0078",
+      "cartesian_site_positions": [
+            [
+                  0.0,
+                  0.0,
+                  0.0
+            ],
+            [
+                  1.73007,
+                  1.51587,
+                  1.92892
+            ],
+            [
+                  -0.94776,
+                  2.67169,
+                  0.9877
+            ],
+            [
+                  1.771,
+                  -0.76441,
+                  3.82515
+            ],
+            [
+                  -0.90684,
+                  0.39142,
+                  2.88393
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "Lu"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Lu"
+            }
+      ],
+      "nsites": 5,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c37892"
+      }
+},{
+      "pretty_formula": "AcAg",
+      "Unit Cell Composition": " Ac125Ag125",
+      "Epot [eV/atom]": -15.75974,
+      "Ekin [eV/atom]": 0.04429,
+      "Etot [eV/atom]": -15.71545,
+      "Temp [K]": 342.67,
+      "MSD [angstrom^2]": 0.0035,
+      "Self diffusion [angstrom^2/fs]": 0.0,
+      "Pressure [Pa]": -0.09357,
+      "Specific_heat [eV/K]": -3.31017,
+      "lattice constant a": 4.054,
+      "lattice constant b": 4.054,
+      "lattice constant c": 4.054,
+      "interpolated lattice constant a": 3.962711802,
+      "interpolated lattice constant b": 3.962711802,
+      "interpolated lattice constant c": 3.962711802,
+      "Bulk modulus": 3075.126134178,
+      "Cohesive energy": -15.75974,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640516
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ac",
+            "Ag"
+      ],
+      "elements_ratios": [
+            0.5,
+            0.5
+      ],
+      "chemsys": "Ac-Ag",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ac",
+            "Ag"
+      ],
+      "formula_anonymous": "AB",
+      "structure_features": [],
+      "task_id": " 0003",
+      "cartesian_site_positions": [
+            [
+                  0.0,
+                  0.0,
+                  0.0
+            ],
+            [
+                  1.98708,
+                  1.98708,
+                  1.98708
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ac"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ac"
+            },
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            }
+      ],
+      "nsites": 2,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c37893"
+      }
+},{
+      "pretty_formula": "Ag3In",
+      "Unit Cell Composition": " Ag375In125",
+      "Epot [eV/atom]": -10.10273,
+      "Ekin [eV/atom]": 0.23158,
+      "Etot [eV/atom]": -9.87115,
+      "Temp [K]": 1791.6,
+      "MSD [angstrom^2]": 1.3828,
+      "Self diffusion [angstrom^2/fs]": 0.0011,
+      "Pressure [Pa]": 0.38318,
+      "Specific_heat [eV/K]": -1.30795,
+      "lattice constant a": 3.025,
+      "lattice constant b": 3.025,
+      "lattice constant c": 9.86,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -10.10273,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640554
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "In"
+      ],
+      "elements_ratios": [
+            0.75,
+            0.25
+      ],
+      "chemsys": "Ag-In",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "In"
+      ],
+      "formula_anonymous": "A3B",
+      "structure_features": [],
+      "task_id": " 0032",
+      "cartesian_site_positions": [
+            [
+                  0.0,
+                  0.0,
+                  0.0
+            ],
+            [
+                  0.79626,
+                  1.33205,
+                  7.32467
+            ],
+            [
+                  0.0,
+                  0.0,
+                  4.92998
+            ],
+            [
+                  0.79626,
+                  1.33205,
+                  2.53528
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "In"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "In"
+            }
+      ],
+      "nsites": 4,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c37894"
+      }
+},{
+      "pretty_formula": "Ag3Cr",
+      "Unit Cell Composition": " Ag375Cr125",
+      "Epot [eV/atom]": -12.65842,
+      "Ekin [eV/atom]": 0.01256,
+      "Etot [eV/atom]": -12.64587,
+      "Temp [K]": 97.13,
+      "MSD [angstrom^2]": 0.02375,
+      "Self diffusion [angstrom^2/fs]": 2e-05,
+      "Pressure [Pa]": 0.55467,
+      "Specific_heat [eV/K]": 345.97378,
+      "lattice constant a": 5.074,
+      "lattice constant b": 5.074,
+      "lattice constant c": 5.074,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -12.65842,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640565
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "Cr"
+      ],
+      "elements_ratios": [
+            0.75,
+            0.25
+      ],
+      "chemsys": "Ag-Cr",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Cr"
+      ],
+      "formula_anonymous": "A3B",
+      "structure_features": [],
+      "task_id": " 0047",
+      "cartesian_site_positions": [
+            [
+                  0.0,
+                  0.0,
+                  0.0
+            ],
+            [
+                  2.53682,
+                  0.0,
+                  1.45996
+            ],
+            [
+                  0.85638,
+                  2.3879,
+                  1.45996
+            ],
+            [
+                  3.3932,
+                  2.3879,
+                  0.0
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "Cr"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Cr"
+            }
+      ],
+      "nsites": 4,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c37895"
+      }
+},{
+      "pretty_formula": "Ag3Ge",
+      "Unit Cell Composition": " Ag375Ge125",
+      "Epot [eV/atom]": -13.10601,
+      "Ekin [eV/atom]": 0.40879,
+      "Etot [eV/atom]": -12.69722,
+      "Temp [K]": 3162.56,
+      "MSD [angstrom^2]": 0.42324,
+      "Self diffusion [angstrom^2/fs]": 0.00031,
+      "Pressure [Pa]": 0.48281,
+      "Specific_heat [eV/K]": 181.34775,
+      "lattice constant a": 2.929,
+      "lattice constant b": 2.929,
+      "lattice constant c": 9.298,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -13.10601,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640580
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "Ge"
+      ],
+      "elements_ratios": [
+            0.75,
+            0.25
+      ],
+      "chemsys": "Ag-Ge",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ge"
+      ],
+      "formula_anonymous": "A3B",
+      "structure_features": [],
+      "task_id": " 0056",
+      "cartesian_site_positions": [
+            [
+                  -0.0,
+                  1.72568,
+                  0.0
+            ],
+            [
+                  1.49448,
+                  0.86284,
+                  7.1045
+            ],
+            [
+                  1.49448,
+                  0.86284,
+                  2.38304
+            ],
+            [
+                  -0.0,
+                  1.72568,
+                  4.74377
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "Ge"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ge"
+            }
+      ],
+      "nsites": 4,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c37896"
       }
 },{
       "pretty_formula": "Ag3Li",
       "Unit Cell Composition": " Ag375Li125",
-      "Epot [eV/atom]": -11.74326,
-      "Ekin [eV/atom]": 0.04716,
-      "Etot [eV/atom]": -11.69611,
-      "Temp [K]": 364.81,
-      "MSD [angstrom^2]": 0.01044,
+      "Epot [eV/atom]": -11.74204,
+      "Ekin [eV/atom]": 0.04675,
+      "Etot [eV/atom]": -11.6953,
+      "Temp [K]": 361.63,
+      "MSD [angstrom^2]": 0.01969,
       "Self diffusion [angstrom^2/fs]": 1e-05,
-      "Pressure [Pa]": 0.37194,
-      "Specific_heat [eV/K]": -27.90751,
+      "Pressure [Pa]": 0.37155,
+      "Specific_heat [eV/K]": -22.48594,
       "lattice constant a": 4.02,
       "lattice constant b": 4.02,
       "lattice constant c": 4.02,
-      "interpolated lattice constant a": 3.756605771,
-      "interpolated lattice constant b": 3.756605771,
-      "interpolated lattice constant c": 3.756605771,
-      "Bulk modulus": 396.861122024,
-      "Cohesive energy": -11.74326,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -11.74204,
       "Debye": " ",
       "Lindemann": " ",
       "last_modified": {
-            "$date": 1609645242318
+            "$date": 1609853640604
       },
       "nperiodic_dimensions": 3,
       "dimension_types": [
@@ -187,31 +1400,31 @@
       ],
       "nsites": 4,
       "_id": {
-            "$oid": "5ff12eaa8ce1dad4b2c6414a"
+            "$oid": "5ff45cb88c38b2acb9c37897"
       }
 },{
-      "pretty_formula": "AcAg",
-      "Unit Cell Composition": " Ac125Ag125",
-      "Epot [eV/atom]": -15.75737,
-      "Ekin [eV/atom]": 0.04643,
-      "Etot [eV/atom]": -15.71094,
-      "Temp [K]": 359.17,
-      "MSD [angstrom^2]": 0.01614,
-      "Self diffusion [angstrom^2/fs]": 1e-05,
-      "Pressure [Pa]": -0.09392,
-      "Specific_heat [eV/K]": -4.29307,
-      "lattice constant a": 4.054,
-      "lattice constant b": 4.054,
-      "lattice constant c": 4.054,
-      "interpolated lattice constant a": 4.07378782,
-      "interpolated lattice constant b": 4.07378782,
-      "interpolated lattice constant c": 4.07378782,
-      "Bulk modulus": -4973.492583256,
-      "Cohesive energy": -15.75737,
+      "pretty_formula": "AgFe",
+      "Unit Cell Composition": " Ag125Fe125",
+      "Epot [eV/atom]": -10.92913,
+      "Ekin [eV/atom]": 0.15709,
+      "Etot [eV/atom]": -10.77205,
+      "Temp [K]": 1215.27,
+      "MSD [angstrom^2]": 0.0697,
+      "Self diffusion [angstrom^2/fs]": 4e-05,
+      "Pressure [Pa]": -0.13011,
+      "Specific_heat [eV/K]": 189.20919,
+      "lattice constant a": 4.807,
+      "lattice constant b": 4.807,
+      "lattice constant c": 4.807,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -10.92913,
       "Debye": " ",
       "Lindemann": " ",
       "last_modified": {
-            "$date": 1609645242325
+            "$date": 1609853640620
       },
       "nperiodic_dimensions": 3,
       "dimension_types": [
@@ -220,44 +1433,35 @@
             1
       ],
       "elements": [
-            "Ac",
-            "Ag"
+            "Ag",
+            "Fe"
       ],
       "elements_ratios": [
             0.5,
             0.5
       ],
-      "chemsys": "Ac-Ag",
+      "chemsys": "Ag-Fe",
       "nelements": 2,
       "species_at_sites": [
-            "Ac",
-            "Ag"
+            "Ag",
+            "Fe"
       ],
       "formula_anonymous": "AB",
       "structure_features": [],
-      "task_id": " 0003",
+      "task_id": " 0041",
       "cartesian_site_positions": [
+            [
+                  6.58492,
+                  1.92606,
+                  1.17549
+            ],
             [
                   0.0,
                   0.0,
                   0.0
-            ],
-            [
-                  1.98708,
-                  1.98708,
-                  1.98708
             ]
       ],
       "species": [
-            {
-                  "chemical_symbols": [
-                        "Ac"
-                  ],
-                  "concentration": [
-                        1.0
-                  ],
-                  "name": "Ac"
-            },
             {
                   "chemical_symbols": [
                         "Ag"
@@ -266,11 +1470,389 @@
                         1.0
                   ],
                   "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "Fe"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Fe"
             }
       ],
       "nsites": 2,
       "_id": {
-            "$oid": "5ff12eaa8ce1dad4b2c6414b"
+            "$oid": "5ff45cb88c38b2acb9c37898"
+      }
+},{
+      "pretty_formula": "Ag2La",
+      "Unit Cell Composition": " Ag500La250",
+      "Epot [eV/atom]": -15.96086,
+      "Ekin [eV/atom]": 0.15115,
+      "Etot [eV/atom]": -15.80971,
+      "Temp [K]": 1169.37,
+      "MSD [angstrom^2]": 0.0389,
+      "Self diffusion [angstrom^2/fs]": 3e-05,
+      "Pressure [Pa]": -0.23508,
+      "Specific_heat [eV/K]": -3.9287,
+      "lattice constant a": 6.067,
+      "lattice constant b": 6.067,
+      "lattice constant c": 6.067,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -15.96086,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640662
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "La"
+      ],
+      "elements_ratios": [
+            0.6666666666666666,
+            0.3333333333333333
+      ],
+      "chemsys": "Ag-La",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "La",
+            "La"
+      ],
+      "formula_anonymous": "A2B",
+      "structure_features": [],
+      "task_id": " 0062",
+      "cartesian_site_positions": [
+            [
+                  -0.05603,
+                  -0.37375,
+                  3.07014
+            ],
+            [
+                  4.14556,
+                  2.19763,
+                  1.02338
+            ],
+            [
+                  1.09494,
+                  2.73709,
+                  2.24008
+            ],
+            [
+                  2.99459,
+                  -0.91321,
+                  1.85344
+            ],
+            [
+                  1.13767,
+                  0.79954,
+                  0.19332
+            ],
+            [
+                  2.95187,
+                  1.02434,
+                  3.9002
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "La"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "La"
+            }
+      ],
+      "nsites": 6,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c37899"
+      }
+},{
+      "pretty_formula": "AgEu",
+      "Unit Cell Composition": " Ag500Eu500",
+      "Epot [eV/atom]": -6.02035,
+      "Ekin [eV/atom]": 0.03688,
+      "Etot [eV/atom]": -5.98348,
+      "Temp [K]": 285.28,
+      "MSD [angstrom^2]": 0.02321,
+      "Self diffusion [angstrom^2/fs]": 2e-05,
+      "Pressure [Pa]": 0.01308,
+      "Specific_heat [eV/K]": -3.4676,
+      "lattice constant a": 4.777,
+      "lattice constant b": 6.24,
+      "lattice constant c": 7.998,
+      "interpolated lattice constant a": 4.539160577,
+      "interpolated lattice constant b": 5.929320075,
+      "interpolated lattice constant c": 7.599791981,
+      "Bulk modulus": 1285.312644018,
+      "Cohesive energy": -6.02035,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640673
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "Eu"
+      ],
+      "elements_ratios": [
+            0.5,
+            0.5
+      ],
+      "chemsys": "Ag-Eu",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Eu",
+            "Eu",
+            "Eu",
+            "Eu"
+      ],
+      "formula_anonymous": "AB",
+      "structure_features": [],
+      "task_id": " 0022",
+      "cartesian_site_positions": [
+            [
+                  3.58256,
+                  5.41114,
+                  6.56941
+            ],
+            [
+                  1.19419,
+                  2.29132,
+                  5.4271
+            ],
+            [
+                  3.58256,
+                  3.94833,
+                  2.57057
+            ],
+            [
+                  1.19419,
+                  0.82851,
+                  1.42826
+            ],
+            [
+                  1.19419,
+                  3.90368,
+                  0.3324
+            ],
+            [
+                  3.58256,
+                  0.78386,
+                  3.66644
+            ],
+            [
+                  3.58256,
+                  2.33597,
+                  7.66527
+            ],
+            [
+                  1.19419,
+                  5.45579,
+                  4.33123
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "Eu"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Eu"
+            }
+      ],
+      "nsites": 8,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c3789a"
+      }
+},{
+      "pretty_formula": "Ag5La",
+      "Unit Cell Composition": " Ag1250La250",
+      "Epot [eV/atom]": -13.41743,
+      "Ekin [eV/atom]": 0.32292,
+      "Etot [eV/atom]": -13.09452,
+      "Temp [K]": 2498.2,
+      "MSD [angstrom^2]": 0.88846,
+      "Self diffusion [angstrom^2/fs]": 0.00071,
+      "Pressure [Pa]": 0.06513,
+      "Specific_heat [eV/K]": -1.96529,
+      "lattice constant a": 5.778,
+      "lattice constant b": 5.778,
+      "lattice constant c": 9.47,
+      "interpolated lattice constant a": 0.0,
+      "interpolated lattice constant b": 0.0,
+      "interpolated lattice constant c": 0.0,
+      "Bulk modulus": 0.0,
+      "Cohesive energy": -13.41743,
+      "Debye": " ",
+      "Lindemann": " ",
+      "last_modified": {
+            "$date": 1609853640685
+      },
+      "nperiodic_dimensions": 3,
+      "dimension_types": [
+            1,
+            1,
+            1
+      ],
+      "elements": [
+            "Ag",
+            "La"
+      ],
+      "elements_ratios": [
+            0.8333333333333334,
+            0.16666666666666666
+      ],
+      "chemsys": "Ag-La",
+      "nelements": 2,
+      "species_at_sites": [
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "Ag",
+            "La",
+            "La"
+      ],
+      "formula_anonymous": "A5B",
+      "structure_features": [],
+      "task_id": " 0088",
+      "cartesian_site_positions": [
+            [
+                  2.83252,
+                  1.63535,
+                  8.45127
+            ],
+            [
+                  -0.0,
+                  3.27071,
+                  0.83289
+            ],
+            [
+                  0.0,
+                  0.0,
+                  4.64208
+            ],
+            [
+                  0.0,
+                  0.0,
+                  0.0
+            ],
+            [
+                  4.21899,
+                  0.83488,
+                  2.42862
+            ],
+            [
+                  2.83252,
+                  3.23632,
+                  2.42862
+            ],
+            [
+                  1.44605,
+                  0.83488,
+                  2.42862
+            ],
+            [
+                  -1.38647,
+                  4.07119,
+                  6.85555
+            ],
+            [
+                  -0.0,
+                  1.66975,
+                  6.85555
+            ],
+            [
+                  1.38647,
+                  4.07119,
+                  6.85555
+            ],
+            [
+                  -0.0,
+                  3.27071,
+                  4.16526
+            ],
+            [
+                  2.83252,
+                  1.63535,
+                  5.1189
+            ]
+      ],
+      "species": [
+            {
+                  "chemical_symbols": [
+                        "Ag"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "Ag"
+            },
+            {
+                  "chemical_symbols": [
+                        "La"
+                  ],
+                  "concentration": [
+                        1.0
+                  ],
+                  "name": "La"
+            }
+      ],
+      "nsites": 12,
+      "_id": {
+            "$oid": "5ff45cb88c38b2acb9c3789b"
       }
 }
 ]
