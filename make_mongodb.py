@@ -4,7 +4,6 @@ import mongomock
 import os
 import re
 import warnings
-import json
 import datetime
 from bson.json_util import dumps
 import chemparse
@@ -152,7 +151,6 @@ def get_sites_pos(file_str):
             system of two sites with positions (x1, y1, z1) and (x2, y2, z2)
             respectively.
     """
-    print("We are in file ", file_str)
     file = open(file_str, "r")
     lines = file.read().splitlines()
     file.close()
@@ -245,9 +243,7 @@ def get_properties_collected_data(Id, file_str = "property_calculations/collecte
     # /n folloed by Id
     Id = Id.split()[0]
     search_id_str = "\n  " + Id + " "
-    print("****** THIS IS search_id_str *******", search_id_str)
     if search_id_str in content_str:
-        print("************INSIIIDEEE******")
         header = content_str.splitlines()[0]
         # index of when line starts
         line_start = content_str.find(search_id_str)
@@ -271,7 +267,6 @@ def get_properties_collected_data(Id, file_str = "property_calculations/collecte
     # material id not found
     else:
         not_extra_volrelax = False
-        print("********prop collect is FALSE************")
         return not_extra_volrelax
 
     return [coh_en, latt_c, inter_latt_c, bulk_m, debye, linde]
@@ -291,7 +286,6 @@ def make_MDdb():
     files.remove("collected_data.txt") #file collected_data not included
 
     for file in map(str, files):
-        print("This is file ", file)
         path = "property_calculations/" + file
         Id = get_task_Id(path)
         file = open(path, "r")
@@ -332,25 +326,25 @@ def make_MDdb():
             if found:
                 post = {
                         "pretty_formula": system_name,
-                        "Unit Cell Composition": unit_cell_comp ,
-                        "Epot [eV/atom]": float(time_av_line[0]),
-                        "Ekin [eV/atom]": float(time_av_line[1]),
-                        "Etot [eV/atom]": float(time_av_line[2]),
-                        "Temp [K]": float(time_av_line[3]),
+                        "unit_cell_composition": unit_cell_comp ,
+                        "epot [eV/atom]": float(time_av_line[0]),
+                        "ekin [eV/atom]": float(time_av_line[1]),
+                        "etot [eV/atom]": float(time_av_line[2]),
+                        "temp [K]": float(time_av_line[3]),
                         "MSD [angstrom^2]": float(time_av_line[4]),
-                        "Self diffusion [angstrom^2/fs]": float(time_av_line[5]),
-                        "Pressure [Pa]": float(time_av_line[6]),
-                        "Specific_heat [eV/K]": float(time_av_line[7]),
-                        "lattice constant a": lc_a,
-                        "lattice constant b": lc_b,
-                        "lattice constant c": lc_c,
-                        "interpolated lattice constant a": lc_i_a,
-                        "interpolated lattice constant b": lc_i_b,
-                        "interpolated lattice constant c": lc_i_c,
-                        "Bulk modulus": bulkmod,
-                        "Cohesive energy": cohesive,
-                        "Debye": debye,
-                        "Lindemann": lindemann,
+                        "self_diffusion [angstrom^2/fs]": float(time_av_line[5]),
+                        "pressure [Pa]": float(time_av_line[6]),
+                        "specific_heat [eV/K]": float(time_av_line[7]),
+                        "lattice_constant_a": lc_a,
+                        "lattice_constant_b": lc_b,
+                        "lattice_constant_c": lc_c,
+                        "interpolated_lattice_constant_a": lc_i_a,
+                        "interpolated_lattice_constant_b": lc_i_b,
+                        "interpolated_lattice_constant_c": lc_i_c,
+                        "bulk_modulus": bulkmod,
+                        "cohesive_energy": cohesive,
+                        "debye": debye,
+                        "lindemann": lindemann,
                         "last_modified": dt,
                         "nperiodic_dimensions": 3, #bulk 3D system
                         "dimension_types": [1, 1, 1],

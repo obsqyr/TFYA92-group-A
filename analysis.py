@@ -141,14 +141,12 @@ def extract():
         LC_list, LCi_list, BulkM_list, N_list = sort_properties_files()
 
     for i, filename in enumerate(sorted(N_list)):
-        print(filename)
         f = open(filename, "r")
         lines = f.read().split("\n")
         f.close()
         if lines[-4] == 'Time averages:':
             matID = lines[0].split(":")[1]
             mat = lines[2].split()[1]
-            print(mat)
             Ecoh = lines[-1].split()[0]
             msd = lines[-1].split()[4]
             selfd = lines[-1].split()[5]
