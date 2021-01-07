@@ -14,7 +14,7 @@ import copy
 import math
 
 
-def run_md(atoms, id):
+def run_md(atoms, id, settings_fn):
     """The function does Molecular Dyanamic simulation (MD) on a material, given by argument atoms.
 
     Parameters:
@@ -25,10 +25,9 @@ def run_md(atoms, id):
     Returns:
     obj:atoms object defined in ase, is returned.
     """
-
     # Read settings
     settings = read_settings_file()
-
+    initial_unitcell_atoms = copy.deepcopy(atoms)
     # Scale atoms object, cubic
     size = settings['supercell_size']
     atoms = atoms * size * (1,1,1)
@@ -74,10 +73,9 @@ def run_md(atoms, id):
     decimals = settings['decimals']
     # Boolean indicating if the material is monoatomic.
     monoatomic = len(set(atoms.get_chemical_symbols())) == 1
-    # Calculate nnd wherever possible
 
     # Calculation and writing of properties
-    properties.initialize_properties_file(atoms, id, decimals,monoatomic)
+    properties.initialize_properties_file(atoms, initial_unitcell_atoms, id, decimals, monoatomic)
     dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id, decimals, monoatomic)
 
     # unnecessary, used for logging md runs
