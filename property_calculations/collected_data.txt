@@ -1,3 +1,3 @@
  Material        Cohesive energy MSD             Self_diff       Specific heat   Lattice const a Lattice const b Lattice const c Interp LC a     Interp LC b     Interp LC c     Bulk modulus    Debye        Lindemann      
                  eV/atom         Å^2             mm^2/s          J/(K*Kg)        Å               Å               Å               Å               Å               Å               Pa              K            1              
- Ar              -0.01293        5.44376         0.01464         314.28692       5.05            5.05            5.05            0               0               0               0               42.12           0.11796        
+ Cu              -16.95524       0.00424         1e-05           199.68461       3.6             3.6             3.6             2.817309655     2.817309655     2.817309655     12.729541888    646.23          0.00469        

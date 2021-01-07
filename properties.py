@@ -122,7 +122,7 @@ def volume_pressure(a):
     N = len(a.get_chemical_symbols())
     vol = a.get_volume()/N
     stress = a.get_stress()
-    pressure = (stress[0] + stress[1] + stress[2])/3 * units._e * units.m * 10^(-9) # eV/Å^3 to GPa
+    pressure = (stress[0] + stress[1] + stress[2])/3 * units._e * units.m**3  # eV/Å^3 to Pa
     return vol, pressure
 
 def debye_lindemann(a, msd, temp):
@@ -208,7 +208,7 @@ def initialize_properties_file(a, id, d, ma):
     file.write("\n")
     file.write(lj("fs")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
     file.write(lj("mm^2/s")+lj("Å",3)+lj("Å",3)+lj("Å",3))
-    file.write(lj("Å^3/atom")+lj("GPa"))
+    file.write(lj("Å^3/atom")+lj("Pa"))
     if ma:
         file.write(lj("K",2)+lj("1"))
     file.write("\n")
@@ -330,7 +330,7 @@ def finalize_properties_file(a, id, d, ma):
     file.write("\n")
 
     file.write(lj(" ")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
-    file.write(lj("mm^2/s")+lj("GPa"))
+    file.write(lj("mm^2/s")+lj("Pa"))
     file.write(lj("J/(K*Kg)"))
 
     if ma:
