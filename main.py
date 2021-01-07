@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-
 #-W ignore::VisibleDeprecationWarning ignore::FutureWarning
 # FIX THESE WARNINGS EVENTUALLY?
 # Main Molecular dynamics simulation loop
+print("--- We go INSIDE MAIN.PY ----")
 import os
 import md
 import ase.io
 from read_mp_project import read_mp_properties
 from read_settings import read_settings_file
-import properties
 import numpy as np
 import mpi4py
 import copy
+print("Here we do the import")
 from mpi4py import MPI
+print("finished import of mpi4py")
 from read_settings import read_settings_file
 
 # the program throws deprecation warnings
@@ -35,7 +36,9 @@ def main():
     supercomputer_init()
 
     # set up variables for parallelization
+    print("The start of comm = ... ")
     comm = MPI.COMM_WORLD
+    print("The end of comm = ... ")
     rank = comm.Get_rank()
     size = comm.Get_size()
 
@@ -68,8 +71,6 @@ def main():
             lengths = atoms.get_cell_lengths_and_angles()[0:3]
             angles = atoms.get_cell_lengths_and_angles()[3:6]
             if len(set(lengths)) == 1 and len(set(angles)) == 1 and angles[0] == 90:
-                #print("cubic")
-                #print(atoms.get_cell_lengths_and_angles())
                 if settings['vol_relax']:
                     cell = np.array(atoms.get_cell())
                     P = settings['LC_steps']
@@ -80,7 +81,15 @@ def main():
                 else:
                     atoms_list.append(atoms)
         else:
-            atoms_list.append(atoms)
+            if settings['vol_relax']:
+                cell = np.array(atoms.get_cell())
+                P = settings['LC_steps']
+                for i in range(-P,1+P):
+                    atoms_v = copy.deepcopy(atoms)
+                    atoms_v.set_cell(cell*(1+i*settings['LC_mod']))
+                    atoms_list.append(atoms_v)
+            else:
+                atoms_list.append(atoms)
     print("Created atoms list of length " + str(len(atoms_list)))
     os.remove("tmp"+str(rank)+".cif")
 
@@ -92,6 +101,7 @@ def main():
         #print("we have", size, " processes.")
         for i in range(0, size):
             comm.isend(len(job_array[i]), dest=i, tag=i)
+            print("This is before MPI.INT...")
             comm.Isend([job_array[i],MPI.INT], dest=i, tag=i)
 
     # how do I send in the correct atoms-object to md_run?
@@ -102,7 +112,7 @@ def main():
         #print("ID: ", id)
         #print(atoms)
         try:
-            md.run_md(atoms_list[id], str(id).zfill(4))
+            md.run_md(atoms_list[id], str(id).zfill(4), 'settings.json')
         except Exception as e:
             print("Run broke!:"+str(e))
     comm.Barrier()
