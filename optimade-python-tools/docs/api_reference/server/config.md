@@ -1,3 +1,0 @@
-# config
-
-::: optimade.server.config

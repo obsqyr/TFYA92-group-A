@@ -366,7 +366,13 @@ def make_MDdb():
     return collection
 
 def MDdb_to_json(collection):
-    path = "optimade-python-tools/optimade/server/data/MD_structures.json"
+    # ----------------------IMPORTANT INFORMATION ------------------------------------
+    # Note that to make data aviailable file MD_structures.json needs to have path
+    # "optimade-python-tools/optimade/server/data/MD_structures.json" in
+    # repository https://github.com/attlevafritt/tfya92-groupa-optimade-python-tools.git
+    if not os.path.exists('MD_result_data'):
+        os.mkdir('MD_result_data')
+    path = "data/MD_structures.json"
     cursor = collection.find()
     with open(path, 'w') as file:
         file.write('[' + '\n' + "   ")
