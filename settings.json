@@ -1,5 +1,5 @@
 {
-    "time_step": 2,
+    "time_step": 1,
     "max_steps": 1000,
     "temperature": 200,
     "ensemble": "NVE",
@@ -9,8 +9,8 @@
     "vol_relax": true,
     "LC_mod": 0.02,
     "LC_steps": 2,
-    "tolerance": 0.0008,
-    "materials": "test_120_materials.json",
+    "tolerance": 0.005,
+    "materials": "pure_elements.json",
     "supercell_size": 5,
     "search_interval" : 10,
     "threshold" : 6,

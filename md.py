@@ -37,7 +37,7 @@ def run_md(atoms, id, settings_fn):
     N = len(atoms.get_chemical_symbols())
 
     # Use KIM for potentials from OpenKIM
-    use_kim = True
+    use_kim = settings['use_kim']
 
     # Use Asap for a huge performance increase if it is installed
     use_asap = True

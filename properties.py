@@ -30,16 +30,19 @@ def specific_heat(temp_store, N, atoms):
     ET = sum(temp_store)/steps
     ET2 = sum(np.array(temp_store)**2)/steps
     M = (ET2 - ET**2)/ET**2
+    settings = read_settings_file()
+    N = N / settings['supercell_size']**3
     #print("M:", M)
     #print("N:", N)
     #print("T:", temp_store)
     #print(sum(np.array(temp_store)**2))
     #print("ET:", ET)
     #print("ET2:", ET2)
-    #Cv = -9*N*units.kB/(4*N*M-6)/z*units._e # specific heat J/(K*Kg)
-    Cv = ((9*ET**2*N*units._k) / (ET**2 * (6+4*N) - 4*N*ET2)) / z
-    print("Cv:", Cv)
-    return Cv
+    Cv1 = -9*N*units.kB/(4*N*M-6)/z*units._e * settings['supercell_size']**3 # specific heat J/(K*Kg)
+    Cv2 = ((9*ET**2*N*units._k) / (ET**2 * (6+4*N) - 4*N*ET2)) / z * settings['supercell_size']**3
+    print("Cv1:", Cv1)
+    print("Cv2:", Cv2)
+    return Cv2
 
 def distance2(pos1, pos2):
     """Calculates the sqared distance between two atomsx in 3D space"""
