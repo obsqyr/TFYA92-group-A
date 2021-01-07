@@ -2,7 +2,6 @@
 #-W ignore::VisibleDeprecationWarning ignore::FutureWarning
 # FIX THESE WARNINGS EVENTUALLY?
 # Main Molecular dynamics simulation loop
-print("--- We go INSIDE MAIN.PY ----")
 import os
 import md
 import ase.io
@@ -11,9 +10,7 @@ from read_settings import read_settings_file
 import numpy as np
 import mpi4py
 import copy
-print("Here we do the import")
 from mpi4py import MPI
-print("finished import of mpi4py")
 from read_settings import read_settings_file
 
 # the program throws deprecation warnings
@@ -36,9 +33,7 @@ def main():
     supercomputer_init()
 
     # set up variables for parallelization
-    print("The start of comm = ... ")
     comm = MPI.COMM_WORLD
-    print("The end of comm = ... ")
     rank = comm.Get_rank()
     size = comm.Get_size()
 
