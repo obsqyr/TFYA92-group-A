@@ -10,7 +10,7 @@
     "LC_mod": 0.02,
     "LC_steps": 2,
     "tolerance": 0.005,
-    "materials": "test_120_materials.json",
+    "materials": "pure_elements.json",
     "supercell_size": 5,
     "search_interval" : 10,
     "threshold" : 6,
