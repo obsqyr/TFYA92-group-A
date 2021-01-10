@@ -6,6 +6,8 @@ from ase import units
 import numpy as np
 from read_settings import read_settings_file
 import os
+import chemparse
+
 # This file contains functions to calculate material properties
 
 def specific_heat(temp_store, N, atoms):
@@ -38,10 +40,10 @@ def specific_heat(temp_store, N, atoms):
     #print(sum(np.array(temp_store)**2))
     #print("ET:", ET)
     #print("ET2:", ET2)
-    Cv1 = -9*N*units.kB/(4*N*M-6)/z*units._e * settings['supercell_size']**3 # specific heat J/(K*Kg)
+    #Cv1 = -9*N*units.kB/(4*N*M-6)/z*units._e * settings['supercell_size']**3 # specific heat J/(K*Kg)
     Cv2 = ((9*ET**2*N*units._k) / (ET**2 * (6+4*N) - 4*N*ET2)) / z * settings['supercell_size']**3
-    print("Cv1:", Cv1)
-    print("Cv2:", Cv2)
+    #print("Cv1:", Cv1)
+    #print("Cv2:", Cv2)
     return Cv2
 
 def distance2(pos1, pos2):
@@ -157,12 +159,11 @@ def debye_lindemann(a, msd, temp):
 
 def self_diff(a, msd, time):
     """Calculates the self diffusion coefficient of a material.
-        This measures how
 
     Paramters:
     a (obj): a is an atoms object of class defined in ase.
-    msd ():
-    time ():
+    msd (float): mean squre displacement.
+    time (float): time step.
 
     Returns:
     float: self diffusion coefficient.
@@ -173,38 +174,61 @@ def self_diff(a, msd, time):
         sd = msd/(6*time)
     return sd * 10 # units: mm^2 / s
 
-def initialize_properties_file(a, id, d, ma):
+
+def initialize_properties_file(a, ai, id, d, ma):
     """Initializes a file over properties with correct titles and main structure
         for an material.
 
     Parameters:
     a (obj): a is an atoms object of class defined in ase. The material is made
             into an atoms object.
+    ai (obj): initial atoms object an object of class sdefined in ase. The unit cell
+                atoms object that md runs for.
     id (str): a special number identifying the material system.
-    d (int): a number for the formatting of file. Give a correct appending
-            for strings.
+    d (int): a number for the formatting of file. Give a correct spacing
+            for printing to file.
     ma (boolean): a boolean indicating if the material is monoatomic
 
     Returns:
     None
     """
-    file=open("property_calculations/properties_"+id+".txt", "w+")
-
-    file.write("Material ID: "+id+"\n")
-    file.write("Unit cell composition: "+a.get_chemical_formula() + "\n")
-    file.write("Material: "+a.get_chemical_formula(mode='hill', empirical=True) + "\n")
-    file.write("Properties:\n")
-
     # Help function for formating
     def lj(str, k = d):
-        return " "+str.ljust(k+6)
+        return " "+str.ljust(k + 6)
+    file = open("property_calculations/properties_" + id + ".txt", "w+")
 
+    file.write("Material ID: " + id + "\n")
+    file.write("Unit cell composition: " + a.get_chemical_formula() + "\n")
+    chem_formula = a.get_chemical_formula(mode='hill', empirical=True)
+    file.write("Material:  "+ chem_formula + "\n")
+
+    # Write the elements as title
+    file.write("Site positions of initial unit cell:" + "\n")
+    dict = chemparse.parse_formula(ai.get_chemical_formula())
+    els = list(dict.keys())
+    prop_num = list(dict.values())
+    tmp_ls = [(a + " ") * int(b) for a,b in zip(els, prop_num)] # Get ["Al", "Mg Mg Mg"] for "AlMg3" e.g.
+    els_str = "".join(tmp_ls)
+    els_ls = els_str.split()  # give you ["Al", "Mg", "Mg", "Mg"] e.g.
+    for a in els_ls:
+        file.write(lj(a))
+
+    # Write the site positions
+    res_array = ai.get_positions()
+    for i in range(0, 3): # 3 components
+        file.write("\n")
+        for ii in range(0, len(res_array)):
+            format_str = "." + str(d) + "f"
+            val  = format(res_array[:,i][ii], format_str) # d decimals
+            file.write(lj(val))
+
+    file.write("\n")
+    file.write("Properties:\n")
     file.write(lj("Time")+lj("Epot")+lj("Ekin")+lj("Etot")+lj("Temp",2)+lj("MSD"))
     file.write(lj("Self_diff")+lj("LC_a",3)+lj("LC_b",3)+lj("LC_c",3))
     file.write(lj("Volume")+lj("Pressure"))
     if ma:
         file.write(lj("DebyeT",2)+lj("Lindemann"))
-
     file.write("\n")
     file.write(lj("fs")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
     file.write(lj("mm^2/s")+lj("Å",3)+lj("Å",3)+lj("Å",3))
@@ -275,7 +299,6 @@ def finalize_properties_file(a, id, d, ma):
     Returns: None
 
     """
-
     epot = []
     ekin = []
     etot = []
@@ -342,7 +365,6 @@ def finalize_properties_file(a, id, d, ma):
     file.write(ss(Cv, d))
     if ma:
         file.write(ss(debye_t, 2)+ss(linde_t, d))
-
     file.close()
     return
 

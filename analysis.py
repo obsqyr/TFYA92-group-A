@@ -6,6 +6,7 @@ import numpy as np
 import math
 import glob
 import properties as pr
+import warnings
 
 def find_eq_lc(fnames):
     """
@@ -15,9 +16,7 @@ def find_eq_lc(fnames):
     Returns:
     tuple: returns a tuple of lattice constant, bulk modulus,
     filename and interpolated lattice constant.
-
     """
-    print("Start")
     LCa = 9999
     LCb = 9999
     LCc = 9999
@@ -32,14 +31,15 @@ def find_eq_lc(fnames):
         f = open(name, "r+")
         lines = f.read().split("\n")
         E = float(lines[-1].split()[2])
-        l_a = float(lines[6].split()[7])
-        l_b = float(lines[6].split()[7])
-        l_c = float(lines[6].split()[7])
+        # The strucutre of header is always the same.
+        l_a = float(lines[11].split()[7])
+        l_b = float(lines[11].split()[8])
+        l_c = float(lines[11].split()[9])
         E_list.append(E)
         LCa_list.append(l_a)
         LCb_list.append(l_b)
         LCc_list.append(l_c)
-        V_list.append(float(lines[6].split()[10]))
+        V_list.append(float(lines[11].split()[10]))
 
         if E < Etot:
             Etot = E
@@ -55,11 +55,10 @@ def find_eq_lc(fnames):
     s_list = [x / oLCa for x in LCa_list]
     p = np.polyfit(s_list, E_list, 2)
     LCia = 0
-    LCib = 0 
+    LCib = 0
     LCic = 0
     if p[0] <= 0:
-        print("Dynamically unstable in this range.")
-        print(fnames)
+        warnings.warn("Dynamically unstable in this range. " + str(fnames))
         B = 0
         LCi = 0
     else:
@@ -70,9 +69,6 @@ def find_eq_lc(fnames):
         V_interp = LCia * LCib * LCic * settings['supercell_size']**3 / n
         q = np.polyfit(V_list, E_list,2)
         B = V_interp*(2*q[0])*160.2 # conversion from ev/Å^3 to GigaPa
-        #B = V_interp*(6*q[0]*V_interp + 2*q[1])*160.2 # conversion from ev/Å^3 to GigaPascal
-        #print("E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp, B")
-        #print(E_list, LC_list, V_list, Etot, LC, N, LC_interp, E_interp, V_interp, B,"\n")
 
     return LCa, LCb, LCc, B, N, LCia, LCib, LCic
 
@@ -121,7 +117,7 @@ def extract():
     def lj(str, k = d):
         return " "+str.ljust(k+10)
 
-    file.write(lj("Material")+lj("Cohesive energy")+lj("MSD")+lj("Self_diff")+lj("Specific heat"))
+    file.write(lj("Material ID")+lj("Material")+lj("Cohesive energy")+lj("MSD")+lj("Self_diff")+lj("Specific heat"))
 
     if settings['vol_relax']:
         file.write(lj("Lattice const a")+lj("Lattice const b")+lj("Lattice const c"))
@@ -145,19 +141,18 @@ def extract():
         LC_list, LCi_list, BulkM_list, N_list = sort_properties_files()
 
     for i, filename in enumerate(sorted(N_list)):
-        print(filename)
         f = open(filename, "r")
         lines = f.read().split("\n")
         f.close()
         if lines[-4] == 'Time averages:':
+            matID = lines[0].split(":")[1]
             mat = lines[2].split()[1]
-            print(mat)
             Ecoh = lines[-1].split()[0]
             msd = lines[-1].split()[4]
             selfd = lines[-1].split()[5]
             Cv = lines[-1].split()[7]
             file = open("property_calculations/collected_data.txt", "a+")
-            file.write(lj(mat)+lj(Ecoh)+lj(msd)+lj(selfd)+lj(Cv))
+            file.write(lj(matID)+lj(mat)+lj(Ecoh)+lj(msd)+lj(selfd)+lj(Cv))
             if settings['vol_relax']:
                 LC = LC_list[i]
                 LCi = LCi_list[i]
@@ -188,16 +183,16 @@ def plot_properties():
 
     lines = f.readlines()[2:]
     for x in lines:
-        coh_en.append(float(x.split()[1]))
-        msd.append(float(x.split()[2]))
-        selfd.append(float(x.split()[3]))
-        spec_h.append(float(x.split()[4]))
-        latt_c.append(float(x.split()[5]))
-        inter_latt_c.append(float(x.split()[6]))
-        bulk_m.append(float(x.split()[7]))
-        if len(x.split()) > 8:
-            debye.append(float(x.split()[8]))
-            linde.append(float(x.split()[9]))
+        coh_en.append(float(x.split()[2]))
+        msd.append(float(x.split()[3]))
+        selfd.append(float(x.split()[4]))
+        spec_h.append(float(x.split()[5]))
+        latt_c.append(float(x.split()[6]))
+        inter_latt_c.append(float(x.split()[7]))
+        bulk_m.append(float(x.split()[8]))
+        if len(x.split()) > 9:
+            debye.append(float(x.split()[9]))
+            linde.append(float(x.split()[10]))
 
     bulk_m_filtered = []
     latt_c_filtered = []
