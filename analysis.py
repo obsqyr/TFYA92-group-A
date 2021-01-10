@@ -53,6 +53,7 @@ def find_eq_lc(fnames):
     n = LCa_list[0] * LCb_list[0] * LCc_list[0] * settings['supercell_size']**3 / V_list[0]
     oLCa = LCa_list[settings['LC_steps']] # Original lattice constant a.
     s_list = [x / oLCa for x in LCa_list]
+    oV = V_list[settings['LC_steps']]
     p = np.polyfit(s_list, E_list, 2)
     LCia = 0
     LCib = 0
@@ -62,12 +63,13 @@ def find_eq_lc(fnames):
         B = 0
         LCi = 0
     else:
-        LCia = -p[1]/(2*p[0])*LCa
-        LCib = -p[1]/(2*p[0])*LCb
-        LCic = -p[1]/(2*p[0])*LCc
-        E_interp = np.polyval(p, -p[1]/(2*p[0]))
-        V_interp = LCia * LCib * LCic * settings['supercell_size']**3 / n
-        q = np.polyfit(V_list, E_list,2)
+        i_scaling = -p[1]/(2*p[0]) # interpolated lattice scaling factor
+        LCia = i_scaling*LCa
+        LCib = i_scaling*LCb
+        LCic = i_scaling*LCc
+        E_interp = np.polyval(p, i_scaling)
+        V_interp = oV * i_scaling**3
+        q = np.polyfit(V_list, E_list, 2)
         B = V_interp*(2*q[0])*160.2 # conversion from ev/Å^3 to GigaPa
 
     return LCa, LCb, LCc, B, N, LCia, LCib, LCic

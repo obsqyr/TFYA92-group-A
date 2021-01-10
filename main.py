@@ -64,8 +64,6 @@ def main():
         atoms = ase.io.read('tmp'+str(rank)+'.cif')
         lengths = atoms.get_cell_lengths_and_angles()[0:3]
         angles = atoms.get_cell_lengths_and_angles()[3:6]
-        if len(set(angles)) != 1 or angles[0] != 90:
-            continue
         if settings['cubic_only']:
             if len(set(lengths)) == 1 and len(set(angles)) == 1 and angles[0] == 90:
                 if settings['vol_relax']:
