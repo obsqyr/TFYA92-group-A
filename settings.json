@@ -1,5 +1,5 @@
 {
-    "time_step": 2,
+    "time_step": 1,
     "max_steps": 1000,
     "temperature": 200,
     "ensemble": "NVE",
