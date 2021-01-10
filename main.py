@@ -62,9 +62,11 @@ def main():
         f.write(cif)
         f.close()
         atoms = ase.io.read('tmp'+str(rank)+'.cif')
+        lengths = atoms.get_cell_lengths_and_angles()[0:3]
+        angles = atoms.get_cell_lengths_and_angles()[3:6]
+        if len(set(angles)) != 1 or angles[0] != 90:
+            continue
         if settings['cubic_only']:
-            lengths = atoms.get_cell_lengths_and_angles()[0:3]
-            angles = atoms.get_cell_lengths_and_angles()[3:6]
             if len(set(lengths)) == 1 and len(set(angles)) == 1 and angles[0] == 90:
                 if settings['vol_relax']:
                     cell = np.array(atoms.get_cell())
@@ -110,6 +112,7 @@ def main():
             md.run_md(atoms_list[id], str(id).zfill(4), 'settings.json')
         except Exception as e:
             print("Run broke!:"+str(e))
+            print("Happened for ID:" + str(id).zfill(4))
     comm.Barrier()
 
 if __name__ == "__main__":
