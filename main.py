@@ -96,7 +96,6 @@ def main():
         #print("we have", size, " processes.")
         for i in range(0, size):
             comm.isend(len(job_array[i]), dest=i, tag=i)
-            print("This is before MPI.INT...")
             comm.Isend([job_array[i],MPI.INT], dest=i, tag=i)
 
     # how do I send in the correct atoms-object to md_run?

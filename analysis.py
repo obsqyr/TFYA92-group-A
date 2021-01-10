@@ -129,7 +129,7 @@ def extract():
     file.write(lj("Debye",2)+lj("Lindemann"))
     file.write("\n")
 
-    file.write(lj(" ")+lj("eV/atom")+lj("Å^2")+lj("mm^2/s")+lj("J/(K*Kg)"))
+    file.write(lj(" ")+lj(" ")+lj("eV/atom")+lj("Å^2")+lj("mm^2/s")+lj("J/(K*Kg)"))
 
     if settings['vol_relax']:
         file.write(lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Pa"))
@@ -199,7 +199,7 @@ def plot_properties():
     bulk_m_filtered = []
     latt_c_filtered = []
     for i, value in enumerate(bulk_m):
-        if value != 0 and abs(value) < 1000 and value > 0:
+        if value != 0 and abs(value) < 15000 and value > 0:
             bulk_m_filtered.append(value)
             latt_c_filtered.append(latt_c[i])
 
