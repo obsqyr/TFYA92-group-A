@@ -190,11 +190,11 @@ def plot_properties():
         selfd.append(float(x.split()[4]))
         spec_h.append(float(x.split()[5]))
         latt_c.append(float(x.split()[6]))
-        inter_latt_c.append(float(x.split()[7]))
-        bulk_m.append(float(x.split()[8]))
-        if len(x.split()) > 9:
-            debye.append(float(x.split()[9]))
-            linde.append(float(x.split()[10]))
+        inter_latt_c.append(float(x.split()[9]))
+        bulk_m.append(float(x.split()[12]))
+        if len(x.split()) > 13:
+            debye.append(float(x.split()[13]))
+            linde.append(float(x.split()[14]))
 
     bulk_m_filtered = []
     latt_c_filtered = []
