@@ -2,7 +2,7 @@
     "time_step": 1,
     "max_steps": 1000,
     "temperature": 200,
-    "ensemble": "NVT",
+    "ensemble": "NVE",
     "friction": 0.001,
     "decimals": 5,
     "interval": 100,
