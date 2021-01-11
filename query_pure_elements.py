@@ -35,18 +35,17 @@ def filter(arg_list, nsitemin, nsitemax):
     Returns:
     list: filtered list.
     """
+    respond_filter_list = []
     for i,el in enumerate(arg_list):
         nsites = el["nsites"]
         if nsites > nsitemax or nsites < nsitemin:
-            # remove
-            del arg_list[i]
-        else:
             pass
+        else:
+            respond_filter_list.append(el)
 
-    respond_filter_list = arg_list
     return respond_filter_list
 
-def make_json_file(material_list, filename="pure_elements.json"):
+def make_json_file(material_list, filename="pure_elements_99.json"):
     """Make the json file. Default name pure_elements.jsonself.
 
     Parameters:
