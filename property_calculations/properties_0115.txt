@@ -1,0 +1,12 @@
+Material ID: 0115
+Unit cell composition: Cu750
+Material:  Cu
+Site positions of initial unit cell:
+ Cu          Cu          Cu          Cu          Cu          Cu         
+ 1.27030     0.00000     0.00000     1.27030     0.00000     0.00000    
+ 0.73341     0.00000     1.46681     0.73341     0.00000     1.46681    
+ 22.70256    0.04679     20.62708    16.47537    18.55082    14.38716   
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         78.34277    0.02502     78.36779    193.56   0.0         0.0         2.439     2.439     23.754    20.396    -3385199287434.2373 inf      0.0        

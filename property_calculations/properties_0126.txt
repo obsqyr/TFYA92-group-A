@@ -1,0 +1,12 @@
+Material ID: 0126
+Unit cell composition: Zn375
+Material:  Zn
+Site positions of initial unit cell:
+ Zn          Zn          Zn         
+ 0.00000     4.83683     16.95108   
+ 0.00000     0.86092     3.01716    
+ 0.00000     0.50755     1.77875    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -1.10327    0.02556     -1.07771    197.75   0.0         0.0         7.421     7.421     7.421     14.193    16359855882.90589 inf      0.0        

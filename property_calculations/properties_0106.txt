@@ -1,0 +1,12 @@
+Material ID: 0106
+Unit cell composition: Cu500
+Material:  Cu
+Site positions of initial unit cell:
+ Cu          Cu          Cu          Cu         
+ 0.00000     -0.00000    0.00000     1.27882    
+ 0.00000     1.47665     0.00000     0.73832    
+ 0.00000     2.08577     4.17154     6.25731    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -16.23894   0.02604     -16.2129    201.45   0.0         0.0         2.506     2.506     8.176     11.121    -208831124281.87085 inf      0.0        

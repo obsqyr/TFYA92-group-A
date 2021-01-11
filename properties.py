@@ -32,8 +32,19 @@ def specific_heat(temp_store, N, atoms):
     ET = sum(temp_store)/steps
     ET2 = sum(np.array(temp_store)**2)/steps
     M = (ET2 - ET**2)/ET**2
-    Cv = ((9*ET**2*N*units._k) / (ET**2 * (6+4*N) - 4*N*ET2)) / z
-    return Cv
+    settings = read_settings_file()
+    N = N / settings['supercell_size']**3
+    #print("M:", M)
+    #print("N:", N)
+    #print("T:", temp_store)
+    #print(sum(np.array(temp_store)**2))
+    #print("ET:", ET)
+    #print("ET2:", ET2)
+    #Cv1 = -9*N*units.kB/(4*N*M-6)/z*units._e * settings['supercell_size']**3 # specific heat J/(K*Kg)
+    Cv2 = ((9*ET**2*N*units._k) / (ET**2 * (6+4*N) - 4*N*ET2)) / z * settings['supercell_size']**3
+    #print("Cv1:", Cv1)
+    #print("Cv2:", Cv2)
+    return Cv2
 
 def distance2(pos1, pos2):
     """Calculates the sqared distance between two atomsx in 3D space"""
@@ -113,7 +124,7 @@ def volume_pressure(a):
     N = len(a.get_chemical_symbols())
     vol = a.get_volume()/N
     stress = a.get_stress()
-    pressure = (stress[0] + stress[1] + stress[2])/3
+    pressure = (stress[0] + stress[1] + stress[2])/3 * units._e * units.m**3  # eV/Å^3 to Pa
     return vol, pressure
 
 def debye_lindemann(a, msd, temp):
@@ -221,7 +232,7 @@ def initialize_properties_file(a, ai, id, d, ma):
     file.write("\n")
     file.write(lj("fs")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
     file.write(lj("mm^2/s")+lj("Å",3)+lj("Å",3)+lj("Å",3))
-    file.write(lj("Å^3/atom")+lj("eV/Å^3"))
+    file.write(lj("Å^3/atom")+lj("Pa"))
     if ma:
         file.write(lj("K",2)+lj("1"))
     file.write("\n")
@@ -342,7 +353,7 @@ def finalize_properties_file(a, id, d, ma):
     file.write("\n")
 
     file.write(lj(" ")+lj("eV/atom")+lj("eV/atom")+lj("eV/atom")+lj("K",2)+lj("Å^2"))
-    file.write(lj("mm^2/s")+lj("eV/Å^3"))
+    file.write(lj("mm^2/s")+lj("Pa"))
     file.write(lj("J/(K*Kg)"))
 
     if ma:

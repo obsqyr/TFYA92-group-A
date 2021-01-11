@@ -1,0 +1,12 @@
+Material ID: 0096
+Unit cell composition: Cu125
+Material:  Cu
+Site positions of initial unit cell:
+ Cu         
+ 1.14480    
+ 8.27375    
+ 11.12788   
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         3.3655      0.02769     3.39319     214.2    0.0         0.0         2.244     11.606    22.293    567.986   -10013957171.5477 inf      0.0        

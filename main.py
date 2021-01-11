@@ -2,7 +2,6 @@
 #-W ignore::VisibleDeprecationWarning ignore::FutureWarning
 # FIX THESE WARNINGS EVENTUALLY?
 # Main Molecular dynamics simulation loop
-print("--- We go INSIDE MAIN.PY ----")
 import os
 import md
 import ase.io
@@ -11,9 +10,7 @@ from read_settings import read_settings_file
 import numpy as np
 import mpi4py
 import copy
-print("Here we do the import")
 from mpi4py import MPI
-print("finished import of mpi4py")
 from read_settings import read_settings_file
 
 # the program throws deprecation warnings
@@ -36,9 +33,7 @@ def main():
     supercomputer_init()
 
     # set up variables for parallelization
-    print("The start of comm = ... ")
     comm = MPI.COMM_WORLD
-    print("The end of comm = ... ")
     rank = comm.Get_rank()
     size = comm.Get_size()
 
@@ -67,9 +62,9 @@ def main():
         f.write(cif)
         f.close()
         atoms = ase.io.read('tmp'+str(rank)+'.cif')
+        lengths = atoms.get_cell_lengths_and_angles()[0:3]
+        angles = atoms.get_cell_lengths_and_angles()[3:6]
         if settings['cubic_only']:
-            lengths = atoms.get_cell_lengths_and_angles()[0:3]
-            angles = atoms.get_cell_lengths_and_angles()[3:6]
             if len(set(lengths)) == 1 and len(set(angles)) == 1 and angles[0] == 90:
                 if settings['vol_relax']:
                     cell = np.array(atoms.get_cell())
@@ -101,7 +96,6 @@ def main():
         #print("we have", size, " processes.")
         for i in range(0, size):
             comm.isend(len(job_array[i]), dest=i, tag=i)
-            print("This is before MPI.INT...")
             comm.Isend([job_array[i],MPI.INT], dest=i, tag=i)
 
     # how do I send in the correct atoms-object to md_run?
@@ -115,6 +109,7 @@ def main():
             md.run_md(atoms_list[id], str(id).zfill(4), 'settings.json')
         except Exception as e:
             print("Run broke!:"+str(e))
+            print("Happened for ID:" + str(id).zfill(4))
     comm.Barrier()
 
 if __name__ == "__main__":

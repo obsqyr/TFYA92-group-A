@@ -1,0 +1,12 @@
+Material ID: 0305
+Unit cell composition: Pd500
+Material:  Pd
+Site positions of initial unit cell:
+ Pd          Pd          Pd          Pd         
+ 0.00000     -0.00000    0.00000     1.39885    
+ 0.00000     1.61525     0.00000     0.80762    
+ 0.00000     2.28701     4.57402     6.86103    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -10.48275   0.02691     -10.45584   208.18   0.0         0.0         2.686     2.686     8.782     13.716    -77428411117.74348 inf      0.0        

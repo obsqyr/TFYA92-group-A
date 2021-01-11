@@ -53,6 +53,7 @@ def find_eq_lc(fnames):
     n = LCa_list[0] * LCb_list[0] * LCc_list[0] * settings['supercell_size']**3 / V_list[0]
     oLCa = LCa_list[settings['LC_steps']] # Original lattice constant a.
     s_list = [x / oLCa for x in LCa_list]
+    oV = V_list[settings['LC_steps']]
     p = np.polyfit(s_list, E_list, 2)
     LCia = 0
     LCib = 0
@@ -62,12 +63,13 @@ def find_eq_lc(fnames):
         B = 0
         LCi = 0
     else:
-        LCia = -p[1]/(2*p[0])*LCa
-        LCib = -p[1]/(2*p[0])*LCb
-        LCic = -p[1]/(2*p[0])*LCc
-        E_interp = np.polyval(p, -p[1]/(2*p[0]))
-        V_interp = LCia * LCib * LCic * settings['supercell_size']**3 / n
-        q = np.polyfit(V_list, E_list,2)
+        i_scaling = -p[1]/(2*p[0]) # interpolated lattice scaling factor
+        LCia = i_scaling*LCa
+        LCib = i_scaling*LCb
+        LCic = i_scaling*LCc
+        E_interp = np.polyval(p, i_scaling)
+        V_interp = oV * i_scaling**3
+        q = np.polyfit(V_list, E_list, 2)
         B = V_interp*(2*q[0])*160.2 # conversion from ev/Å^3 to GigaPa
 
     return LCa, LCb, LCc, B, N, LCia, LCib, LCic
@@ -127,7 +129,7 @@ def extract():
     file.write(lj("Debye",2)+lj("Lindemann"))
     file.write("\n")
 
-    file.write(lj(" ")+lj("eV/atom")+lj("Å^2")+lj("mm^2/s")+lj("J/(K*Kg)"))
+    file.write(lj(" ")+lj(" ")+lj("eV/atom")+lj("Å^2")+lj("mm^2/s")+lj("J/(K*Kg)"))
 
     if settings['vol_relax']:
         file.write(lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Pa"))
@@ -188,16 +190,16 @@ def plot_properties():
         selfd.append(float(x.split()[4]))
         spec_h.append(float(x.split()[5]))
         latt_c.append(float(x.split()[6]))
-        inter_latt_c.append(float(x.split()[7]))
-        bulk_m.append(float(x.split()[8]))
-        if len(x.split()) > 9:
-            debye.append(float(x.split()[9]))
-            linde.append(float(x.split()[10]))
+        inter_latt_c.append(float(x.split()[9]))
+        bulk_m.append(float(x.split()[12]))
+        if len(x.split()) > 13:
+            debye.append(float(x.split()[13]))
+            linde.append(float(x.split()[14]))
 
     bulk_m_filtered = []
     latt_c_filtered = []
     for i, value in enumerate(bulk_m):
-        if value != 0 and abs(value) < 1000 and value > 0:
+        if value != 0 and abs(value) < 15000 and value > 0:
             bulk_m_filtered.append(value)
             latt_c_filtered.append(latt_c[i])
 

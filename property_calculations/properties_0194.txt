@@ -1,0 +1,12 @@
+Material ID: 0194
+Unit cell composition: Ti375
+Material:  Ti
+Site positions of initial unit cell:
+ Ti          Ti          Ti         
+ 0.00000     -0.00000    2.28843    
+ 0.00000     2.64245     1.32122    
+ 0.00000     1.41434     1.41434    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -7.08666    0.02582     -7.06084    199.74   0.0         0.0         4.76      4.76      2.942     19.241    -177894726822.35123 inf      0.0        

@@ -1,0 +1,12 @@
+Material ID: 0170
+Unit cell composition: Ti125
+Material:  Ti
+Site positions of initial unit cell:
+ Ti         
+ 0.00000    
+ 0.00000    
+ 0.00000    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -1.21487    0.02448     -1.19039    189.36   0.0         0.0         2.789     2.789     2.789     15.346    -747114783715.8824 inf      0.0        

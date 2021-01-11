@@ -1,0 +1,12 @@
+Material ID: 0212
+Unit cell composition: Co125
+Material:  Co
+Site positions of initial unit cell:
+ Co         
+ 0.00000    
+ 0.00000    
+ 0.00000    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -10.54738   0.02612     -10.52126   202.1    0.0         0.0         2.49      2.49      2.49      10.913    52516281925.08453 inf      0.0        

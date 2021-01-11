@@ -1,0 +1,12 @@
+Material ID: 0203
+Unit cell composition: Co750
+Material:  Co
+Site positions of initial unit cell:
+ Co          Co          Co          Co          Co          Co         
+ 2.30799     0.00000     4.61598     4.61598     3.46199     5.76998    
+ 1.33252     0.00000     2.66504     1.33252     3.33130     3.33130    
+ 0.94223     0.00000     0.47112     2.35558     2.35558     2.35558    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -8.54025    0.02592     -8.51433    200.53   0.0         0.0         4.708     4.708     4.708     12.301    20397465946.06971 inf      0.0        
