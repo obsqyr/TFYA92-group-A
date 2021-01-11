@@ -9,8 +9,8 @@ import copy
 # http://www-ferp.ucsd.edu/LIB/PROPS/PANOS/cu.html
 # properties of copper
 atoms_l = []
-#atoms_l.append(bulk('Ar', 'fcc', a=5.26, cubic=True))
-atoms_l.append(bulk('Cu', 'fcc', a=3.6, cubic=True))
+atoms_l.append(bulk('Ar', 'fcc', a=5.26, cubic=True))
+#atoms_l.append(bulk('Cu', 'fcc', a=3.6, cubic=True))
 #atoms = bulk('Ar', 'fcc', a=5.26, cubic=True)
 #atoms = bulk('Cu', 'fcc', a=3.6, cubic=True)
 

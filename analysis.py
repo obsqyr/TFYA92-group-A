@@ -127,10 +127,10 @@ def extract():
     file.write(lj("Debye",2)+lj("Lindemann"))
     file.write("\n")
 
-    file.write(lj(" ")+lj("eV/atom")+lj("Å^2")+lj("mm^2/s")+lj("J/(K*Kg)"))
+    file.write(lj(" ")+lj(" ")+lj("eV/atom")+lj("Å^2")+lj("mm^2/s")+lj("J/(K*Kg)"))
 
     if settings['vol_relax']:
-        file.write(lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Pa"))
+        file.write(lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("Å")+lj("GPa"))
 
     file.write(lj("K",2)+lj("1"))
     file.write("\n")
@@ -188,11 +188,11 @@ def plot_properties():
         selfd.append(float(x.split()[4]))
         spec_h.append(float(x.split()[5]))
         latt_c.append(float(x.split()[6]))
-        inter_latt_c.append(float(x.split()[7]))
-        bulk_m.append(float(x.split()[8]))
-        if len(x.split()) > 9:
-            debye.append(float(x.split()[9]))
-            linde.append(float(x.split()[10]))
+        inter_latt_c.append(float(x.split()[9]))
+        bulk_m.append(float(x.split()[12]))
+        if len(x.split()) > 13:
+            debye.append(float(x.split()[13]))
+            linde.append(float(x.split()[14]))
 
     bulk_m_filtered = []
     latt_c_filtered = []

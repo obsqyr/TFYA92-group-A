@@ -26,7 +26,7 @@ def run_md(atoms, id, settings_fn):
     obj:atoms object defined in ase, is returned.
     """
     # Read settings
-    settings = read_settings_file()
+    settings = read_settings_file(settings_fn)
     initial_unitcell_atoms = copy.deepcopy(atoms)
     # Scale atoms object, cubic
     size = settings['supercell_size']
@@ -36,7 +36,8 @@ def run_md(atoms, id, settings_fn):
     N = len(atoms.get_chemical_symbols())
 
     # Use KIM for potentials from OpenKIM
-    use_kim = settings['use_kim']
+    #use_kim = settings['use_kim']
+    use_kim = True
 
     # Use Asap for a huge performance increase if it is installed
     use_asap = True
