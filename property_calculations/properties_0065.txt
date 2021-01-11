@@ -1,0 +1,12 @@
+Material ID: 0065
+Unit cell composition: Fe250
+Material:  Fe
+Site positions of initial unit cell:
+ Fe          Fe         
+ 1.19209     0.00000    
+ 1.21211     0.00000    
+ 1.85485     0.00000    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -6.10314    0.02279     -6.08035    176.35   0.0         0.0         2.326     2.326     3.561     9.632     -620732319308.8925 inf      0.0        

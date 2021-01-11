@@ -1,0 +1,12 @@
+Material ID: 0152
+Unit cell composition: Pt125
+Material:  Pt
+Site positions of initial unit cell:
+ Pt         
+ 0.00000    
+ 0.00000    
+ 0.00000    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -23.65313   0.02402     -23.6291    185.85   0.0         0.0         2.812     2.812     2.812     15.723    228629917481.9072 inf      0.0        

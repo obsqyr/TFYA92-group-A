@@ -52,6 +52,10 @@ def read_settings_file(file= "settings.json"):
             data['tolerance']
         except Exception as e:
             data['tolerance'] = 0.01
+        try:
+            data['use_kim']
+        except Exception as e:
+            data['use_kim'] = True
         return data
 
 if __name__ == "__main__":

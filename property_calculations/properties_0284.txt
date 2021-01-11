@@ -1,0 +1,12 @@
+Material ID: 0284
+Unit cell composition: Mg125
+Material:  Mg
+Site positions of initial unit cell:
+ Mg         
+ 0.00000    
+ 0.00000    
+ 0.00000    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -0.35392    0.02534     -0.32858    196.02   0.0         0.0         3.215     3.215     3.215     25.491    3583909893.64516 inf      0.0        

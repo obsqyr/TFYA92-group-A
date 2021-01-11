@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 #-W ignore::VisibleDeprecationWarning ignore::FutureWarning
 # FIX THESE WARNINGS EVENTUALLY?
 # Main Molecular dynamics simulation loop
@@ -8,7 +7,6 @@ import md
 import ase.io
 from read_mp_project import read_mp_properties
 from read_settings import read_settings_file
-import properties
 import numpy as np
 import mpi4py
 import copy
@@ -38,7 +36,7 @@ def main():
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     size = comm.Get_size()
-    
+
     # read materials from settings file
     settings = read_settings_file()
     mp_properties = read_mp_properties(settings['materials'])
@@ -50,6 +48,13 @@ def main():
     except:
         pass
 
+    # try to create folder 'trajectory_files'
+    # if it already exists, continue with the program
+    try:
+        os.mkdir('trajectory_files')
+    except:
+        pass
+
     # create one list of all atom objects in data-file
     atoms_list = []
     for cif in mp_properties['cif']:
@@ -57,12 +62,10 @@ def main():
         f.write(cif)
         f.close()
         atoms = ase.io.read('tmp'+str(rank)+'.cif')
+        lengths = atoms.get_cell_lengths_and_angles()[0:3]
+        angles = atoms.get_cell_lengths_and_angles()[3:6]
         if settings['cubic_only']:
-            lengths = atoms.get_cell_lengths_and_angles()[0:3]
-            angles = atoms.get_cell_lengths_and_angles()[3:6]
             if len(set(lengths)) == 1 and len(set(angles)) == 1 and angles[0] == 90:
-                #print("cubic")
-                #print(atoms.get_cell_lengths_and_angles())
                 if settings['vol_relax']:
                     cell = np.array(atoms.get_cell())
                     P = settings['LC_steps']
@@ -73,7 +76,15 @@ def main():
                 else:
                     atoms_list.append(atoms)
         else:
-            atoms_list.append(atoms)
+            if settings['vol_relax']:
+                cell = np.array(atoms.get_cell())
+                P = settings['LC_steps']
+                for i in range(-P,1+P):
+                    atoms_v = copy.deepcopy(atoms)
+                    atoms_v.set_cell(cell*(1+i*settings['LC_mod']))
+                    atoms_list.append(atoms_v)
+            else:
+                atoms_list.append(atoms)
     print("Created atoms list of length " + str(len(atoms_list)))
     os.remove("tmp"+str(rank)+".cif")
 
@@ -95,10 +106,11 @@ def main():
         #print("ID: ", id)
         #print(atoms)
         try:
-            md.run_md(atoms_list[id], str(id).zfill(4))
+            md.run_md(atoms_list[id], str(id).zfill(4), 'settings.json')
         except Exception as e:
             print("Run broke!:"+str(e))
+            print("Happened for ID:" + str(id).zfill(4))
     comm.Barrier()
-    
+
 if __name__ == "__main__":
     main()

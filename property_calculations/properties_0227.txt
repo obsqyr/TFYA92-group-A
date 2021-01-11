@@ -1,0 +1,12 @@
+Material ID: 0227
+Unit cell composition: Co500
+Material:  Co
+Site positions of initial unit cell:
+ Co          Co          Co          Co         
+ 1.24425     0.00089     1.24397     0.00060    
+ 5.11995     7.07152     1.05506     3.00645    
+ 0.71800     1.43624     0.71800     1.43624    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -10.44095   0.02509     -10.41586   194.14   0.0         0.0         2.487     8.127     2.487     10.885    39167332809.7074 inf      0.0        

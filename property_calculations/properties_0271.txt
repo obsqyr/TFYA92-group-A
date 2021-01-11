@@ -1,0 +1,12 @@
+Material ID: 0271
+Unit cell composition: Mg375
+Material:  Mg
+Site positions of initial unit cell:
+ Mg          Mg          Mg         
+ 0.00000     4.95089     17.32955   
+ 0.00000     1.03261     3.61442    
+ 0.00000     0.61347     2.14732    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -0.46295    0.02708     -0.43587    209.49   0.0         0.0         7.707     7.707     7.707     21.412    4501784592.863 inf      0.0        

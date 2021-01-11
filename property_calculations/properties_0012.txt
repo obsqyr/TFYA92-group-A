@@ -1,0 +1,12 @@
+Material ID: 0012
+Unit cell composition: Ag500
+Material:  Ag
+Site positions of initial unit cell:
+ Ag          Ag          Ag          Ag         
+ 0.00000     0.00000     -0.00000    1.47560    
+ 0.00000     0.00000     1.70388     0.85194    
+ 0.00000     4.79288     2.39644     7.18932    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -13.00179   0.02681     -12.97498   207.38   0.0         0.0         2.951     2.951     9.586     18.076    87101480458.2628 inf      0.0        

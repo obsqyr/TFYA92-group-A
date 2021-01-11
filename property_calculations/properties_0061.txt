@@ -1,0 +1,12 @@
+Material ID: 0061
+Unit cell composition: Fe125
+Material:  Fe
+Site positions of initial unit cell:
+ Fe         
+ 1.18783    
+ 1.18783    
+ 1.18783    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -4.23722    0.02529     -4.21193    195.65   0.0         0.0         2.328     2.328     2.328     12.619    -310184272542.20294 inf      0.0        

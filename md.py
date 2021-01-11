@@ -14,7 +14,7 @@ import copy
 import math
 
 
-def run_md(atoms, id):
+def run_md(atoms, id, settings_fn):
     """The function does Molecular Dyanamic simulation (MD) on a material, given by argument atoms.
 
     Parameters:
@@ -25,19 +25,18 @@ def run_md(atoms, id):
     Returns:
     obj:atoms object defined in ase, is returned.
     """
-
     # Read settings
-    settings = read_settings_file()
-
+    settings = read_settings_file(settings_fn)
+    initial_unitcell_atoms = copy.deepcopy(atoms)
     # Scale atoms object, cubic
     size = settings['supercell_size']
     atoms = atoms * size * (1,1,1)
     # atoms = atoms * (size,size,size)
     #print(atoms.get_chemical_symbols())
     N = len(atoms.get_chemical_symbols())
-    
+
     # Use KIM for potentials from OpenKIM
-    use_kim = True
+    use_kim = settings['use_kim']
 
     # Use Asap for a huge performance increase if it is installed
     use_asap = True
@@ -66,17 +65,17 @@ def run_md(atoms, id):
 
     interval = settings['interval']
 
-    traj = Trajectory('ar.traj', 'w', atoms)
+    # Creates trajectory files in directory trajectory_files
+    traj = Trajectory("trajectory_files/"+id+".traj", 'w', atoms)
     dyn.attach(traj.write, interval=interval)
 
     # Number of decimals for most calculated properties.
     decimals = settings['decimals']
     # Boolean indicating if the material is monoatomic.
     monoatomic = len(set(atoms.get_chemical_symbols())) == 1
-    # Calculate nnd wherever possible
 
     # Calculation and writing of properties
-    properties.initialize_properties_file(atoms, id, decimals,monoatomic)
+    properties.initialize_properties_file(atoms, initial_unitcell_atoms, id, decimals, monoatomic)
     dyn.attach(properties.calc_properties, 100, old_atoms, atoms, id, decimals, monoatomic)
 
     # unnecessary, used for logging md runs
@@ -103,7 +102,7 @@ def run_md(atoms, id):
         epot, ekin_post, etot, t = properties.energies_and_temp(atoms)
         #print(abs(ekin_pre-ekin_post) / math.sqrt(N))
         #print(counter)
-        if (abs(ekin_pre-ekin_post) / math.sqrt(N)) < settings['tolerance']: 
+        if (abs(ekin_pre-ekin_post) / math.sqrt(N)) < settings['tolerance']:
             counter += 1
         else:
             counter = 0
@@ -114,7 +113,7 @@ def run_md(atoms, id):
 
     if equilibrium:
         dyn.run(settings['max_steps'])
-        properties.finalize_properties_file(atoms, id, decimals, monoatomic) 
+        properties.finalize_properties_file(atoms, id, decimals, monoatomic)
     else:
         properties.delete_properties_file(id)
         raise RuntimeError("MD did not find equilibrium")

@@ -1,0 +1,12 @@
+Material ID: 0042
+Unit cell composition: Fe500
+Material:  Fe
+Site positions of initial unit cell:
+ Fe          Fe          Fe          Fe         
+ 2.45285     0.91599     2.45314     0.91570    
+ -0.00013    1.18586     -0.00036    1.18609    
+ 3.92871     5.89678     7.85942     1.96614    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -9.2548     0.02639     -9.22841    204.18   0.0         0.0         2.453     2.453     7.86      11.435    -90378752680.63498 inf      0.0        
