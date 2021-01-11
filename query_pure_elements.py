@@ -45,7 +45,7 @@ def filter(arg_list, nsitemin, nsitemax):
 
     return respond_filter_list
 
-def make_json_file(material_list, filename="pure_elements_99.json"):
+def make_json_file(material_list, filename="pure_elements.json"):
     """Make the json file. Default name pure_elements.jsonself.
 
     Parameters:
