@@ -1,0 +1,12 @@
+Material ID: 0025
+Unit cell composition: Au250
+Material:  Au
+Site positions of initial unit cell:
+ Au          Au         
+ -0.00000    1.46906    
+ 1.69632     0.84816    
+ 1.21971     3.65913    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -3.77109    0.03545     -3.73564    274.25   0.0         0.0         2.821     2.821     4.684     16.135    -7694771399.94986 inf      0.0        

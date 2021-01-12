@@ -1,0 +1,12 @@
+Material ID: 0098
+Unit cell composition: Pd125
+Material:  Pd
+Site positions of initial unit cell:
+ Pd         
+ 0.00000    
+ 0.00000    
+ 0.00000    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -3.79702    0.0369      -3.76012    285.44   0.0         0.0         2.854     2.854     2.854     16.438    15813321648.9789 inf      0.0        

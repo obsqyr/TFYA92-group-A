@@ -1,0 +1,12 @@
+Material ID: 0079
+Unit cell composition: Ni250
+Material:  Ni
+Site positions of initial unit cell:
+ Ni          Ni         
+ 0.00000     0.00000    
+ 0.00000     0.00000    
+ 6.32249     8.58985    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -3.67526    0.04219     -3.63308    326.38   0.0         0.0         2.477     2.477     15.509    41.214    151926118.84443 inf      0.0        

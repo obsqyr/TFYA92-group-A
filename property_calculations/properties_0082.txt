@@ -1,0 +1,12 @@
+Material ID: 0082
+Unit cell composition: Ni125
+Material:  Ni
+Site positions of initial unit cell:
+ Ni         
+ 0.00000    
+ 0.00000    
+ 0.00000    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -4.40442    0.03649     -4.36793    282.31   0.0         0.0         2.416     2.416     2.416     10.861    2927966963.18845 inf      0.0        

@@ -1,0 +1,12 @@
+Material ID: 0042
+Unit cell composition: Cu250
+Material:  Cu
+Site positions of initial unit cell:
+ Cu          Cu         
+ -0.00000    1.27560    
+ 1.47293     0.73646    
+ 1.04750     3.14251    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -3.51568    0.03919     -3.47648    303.22   0.0         0.0         2.551     2.551     4.19      11.809    2711302201.74682 inf      0.0        

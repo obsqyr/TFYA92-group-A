@@ -66,8 +66,8 @@ def run_md(atoms, id, settings_fn):
     interval = settings['interval']
 
     # Creates trajectory files in directory trajectory_files
-    traj = Trajectory("trajectory_files/"+id+".traj", 'w', atoms)
-    dyn.attach(traj.write, interval=interval)
+    #traj = Trajectory("trajectory_files/"+id+".traj", 'w', atoms)
+    #dyn.attach(traj.write, interval=interval)
 
     # Number of decimals for most calculated properties.
     decimals = settings['decimals']

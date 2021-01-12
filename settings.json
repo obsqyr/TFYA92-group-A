@@ -3,7 +3,7 @@
     "max_steps": 1000,
     "temperature": 300,
     "ensemble": "NVT",
-    "friction": 0.01,
+    "friction": 0.05,
     "decimals": 5,
     "interval": 100,
     "vol_relax": true,
@@ -14,7 +14,7 @@
     "supercell_size": 5,
     "search_interval" : 10,
     "threshold" : 6,
-    "cubic_only" : false,
+    "cubic_only" : true,
     "use_kim": true,
     "potential": "EMT_Asap_Standard_JacobsenStoltzeNorskov_1996_AlAgAuCuNiPdPt__MO_115316750986_001"
 }

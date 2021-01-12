@@ -1,0 +1,12 @@
+Material ID: 0006
+Unit cell composition: Al125
+Material:  Al
+Site positions of initial unit cell:
+ Al         
+ 0.00000    
+ 0.00000    
+ 0.00000    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -3.28341    0.03784     -3.24558    292.73   0.0         0.0         2.799     2.799     2.799     15.503    -1112805062.61762 inf      0.0        

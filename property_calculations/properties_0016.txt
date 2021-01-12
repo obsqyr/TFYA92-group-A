@@ -1,0 +1,12 @@
+Material ID: 0016
+Unit cell composition: Ag250
+Material:  Ag
+Site positions of initial unit cell:
+ Ag          Ag         
+ -0.00000    1.47633    
+ 1.70471     0.85236    
+ 1.19958     3.59874    
+Properties:
+ Time        Epot        Ekin        Etot        Temp     MSD         Self_diff   LC_a      LC_b      LC_c      Volume      Pressure    DebyeT   Lindemann  
+ fs          eV/atom     eV/atom     eV/atom     K        Å^2         mm^2/s      Å         Å         Å         Å^3/atom    Pa          K        1          
+ 500         -2.95416    0.03886     -2.91529    300.65   0.0         0.0         2.894     2.894     4.702     17.049    1327734185.47149 inf      0.0        
