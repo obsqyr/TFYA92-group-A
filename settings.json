@@ -1,9 +1,9 @@
 {
     "time_step": 1,
     "max_steps": 1000,
-    "temperature": 200,
-    "ensemble": "NVE",
-    "friction": 0.001,
+    "temperature": 300,
+    "ensemble": "NVT",
+    "friction": 0.01,
     "decimals": 5,
     "interval": 100,
     "vol_relax": true,
@@ -15,5 +15,6 @@
     "search_interval" : 10,
     "threshold" : 6,
     "cubic_only" : false,
-    "use_kim": true
+    "use_kim": true,
+    "potential": "EMT_Asap_Standard_JacobsenStoltzeNorskov_1996_AlAgAuCuNiPdPt__MO_115316750986_001"
 }

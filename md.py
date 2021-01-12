@@ -46,7 +46,7 @@ def run_md(atoms, id, settings_fn):
 
     # Describe the interatomic interactions with OpenKIM potential
     if use_kim: # use KIM potential
-        atoms.calc = KIM("LJ_ElliottAkerson_2015_Universal__MO_959249795837_003")
+        atoms.calc = KIM(settings['potential'])
     else: # otherwise, default to asap3 LennardJones
         atoms.calc = LennardJones([18], [0.010323], [3.40], rCut = 6.625, modified = True)
 

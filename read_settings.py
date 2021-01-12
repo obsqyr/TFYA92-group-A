@@ -56,6 +56,10 @@ def read_settings_file(file= "settings.json"):
             data['use_kim']
         except Exception as e:
             data['use_kim'] = True
+        try:
+            data['potential']
+        except Exception as e:
+            data['potential'] = "LJ_ElliottAkerson_2015_Universal__MO_959249795837_003"
         return data
 
 if __name__ == "__main__":

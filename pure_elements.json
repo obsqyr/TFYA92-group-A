@@ -1,6 +1,422 @@
 {
     "response": [
         {
+            "material_id": "mp-1239196",
+            "pretty_formula": "Al",
+            "elements": [
+                "Al"
+            ],
+            "nelements": 1,
+            "energy": -13.77135701,
+            "energy_per_atom": -3.4428392525,
+            "density": 1.8629219591315038,
+            "volume": 96.20134370666497,
+            "nsites": 4,
+            "band_gap": 0.0,
+            "total_magnetization": 1.155e-05,
+            "elasticity": null,
+            "piezo": null,
+            "diel": null,
+            "copyright": null,
+            "cif": "# generated using pymatgen\ndata_Al\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   6.78847897\n_cell_length_b   6.78847897\n_cell_length_c   6.78847897\n_cell_angle_alpha   146.23965279\n_cell_angle_beta   146.23965279\n_cell_angle_gamma   48.49093514\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Al\n_chemical_formula_sum   Al4\n_cell_volume   96.20134371\n_cell_formula_units_Z   4\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Al  Al0  1  0.75000000  0.25000000  0.50000000  1\n  Al  Al1  1  0.25000000  0.75000000  0.50000000  1\n  Al  Al2  1  0.60299900  0.60299900  0.00000000  1\n  Al  Al3  1  0.39700100  0.39700100  0.00000000  1\n"
+        },
+        {
+            "material_id": "mp-1183144",
+            "pretty_formula": "Al",
+            "elements": [
+                "Al"
+            ],
+            "nelements": 1,
+            "energy": -14.93651943,
+            "energy_per_atom": -3.7341298575,
+            "density": 2.726704024337018,
+            "volume": 65.7260905802487,
+            "nsites": 4,
+            "band_gap": 0.0,
+            "total_magnetization": 3.025e-06,
+            "elasticity": null,
+            "piezo": null,
+            "diel": null,
+            "copyright": null,
+            "cif": "# generated using pymatgen\ndata_Al\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.85714685\n_cell_length_b   2.85714685\n_cell_length_c   9.29698500\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   120.00001969\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Al\n_chemical_formula_sum   Al4\n_cell_volume   65.72609058\n_cell_formula_units_Z   4\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Al  Al0  1  0.00000000  0.00000000  0.00000000  1\n  Al  Al1  1  0.33333300  0.66666700  0.25000000  1\n  Al  Al2  1  0.00000000  0.00000000  0.50000000  1\n  Al  Al3  1  0.66666700  0.33333300  0.75000000  1\n"
+        },
+        {
+            "material_id": "mp-134",
+            "pretty_formula": "Al",
+            "elements": [
+                "Al"
+            ],
+            "nelements": 1,
+            "energy": -3.74557583,
+            "energy_per_atom": -3.74557583,
+            "density": 2.7200495853324616,
+            "volume": 16.471721384740732,
+            "nsites": 1,
+            "band_gap": 0.0,
+            "total_magnetization": 0.0004155,
+            "elasticity": {
+                "G_Reuss": 22.0,
+                "G_VRH": 24.0,
+                "G_Voigt": 25.0,
+                "G_Voigt_Reuss_Hill": 24.0,
+                "K_Reuss": 83.0,
+                "K_VRH": 83.0,
+                "K_Voigt": 83.0,
+                "K_Voigt_Reuss_Hill": 83.0,
+                "elastic_anisotropy": 0.68,
+                "elastic_tensor": [
+                    [
+                        104.0,
+                        73.0,
+                        73.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        73.0,
+                        104.0,
+                        73.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        73.0,
+                        73.0,
+                        104.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        0.0,
+                        0.0,
+                        32.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        32.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        32.0
+                    ]
+                ],
+                "homogeneous_poisson": 0.37,
+                "poisson_ratio": 0.37,
+                "universal_anisotropy": 0.68,
+                "elastic_tensor_original": [
+                    [
+                        103.79541297937077,
+                        73.055717348289,
+                        73.055717348289,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        73.05577027405549,
+                        103.79544312198902,
+                        73.05577027405549,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        73.05576535441078,
+                        73.05576535441078,
+                        103.79544491431736,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        -1.3483375870149107e-06,
+                        -3.6199967961962553e-06,
+                        -5.778337458483288e-06,
+                        32.02547002706259,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        2.8499563292140795e-07,
+                        -5.483348679538448e-07,
+                        1.0816629843174456e-06,
+                        0.0,
+                        32.025471780397375,
+                        0.0
+                    ],
+                    [
+                        3.865005663341756e-06,
+                        2.7783343267737836e-06,
+                        1.3300047012332138e-06,
+                        0.0,
+                        0.0,
+                        32.0254808637227
+                    ]
+                ],
+                "compliance_tensor": [
+                    [
+                        23.0,
+                        -9.5,
+                        -9.5,
+                        -0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        -9.5,
+                        23.0,
+                        -9.5,
+                        0.0,
+                        -0.0,
+                        0.0
+                    ],
+                    [
+                        -9.5,
+                        -9.5,
+                        23.0,
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    [
+                        -0.0,
+                        0.0,
+                        -0.0,
+                        31.2,
+                        -0.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        -0.0,
+                        0.0,
+                        -0.0,
+                        31.2,
+                        -0.0
+                    ],
+                    [
+                        0.0,
+                        0.0,
+                        -0.0,
+                        0.0,
+                        -0.0,
+                        31.2
+                    ]
+                ],
+                "warnings": [],
+                "nsites": 1
+            },
+            "piezo": null,
+            "diel": null,
+            "copyright": null,
+            "cif": "# generated using pymatgen\ndata_Al\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.85595479\n_cell_length_b   2.85595479\n_cell_length_c   2.85595479\n_cell_angle_alpha   60.00000000\n_cell_angle_beta   60.00000000\n_cell_angle_gamma   60.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Al\n_chemical_formula_sum   Al1\n_cell_volume   16.47172138\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Al  Al0  1  0.00000000  0.00000000  0.00000000  1\n"
+        },
+        {
+            "material_id": "mp-998860",
+            "pretty_formula": "Al",
+            "elements": [
+                "Al"
+            ],
+            "nelements": 1,
+            "energy": -3.65313185,
+            "energy_per_atom": -3.65313185,
+            "density": 2.6827233788539964,
+            "volume": 16.7009015075625,
+            "nsites": 1,
+            "band_gap": 0.0,
+            "total_magnetization": 0.0002383,
+            "elasticity": {
+                "G_Reuss": -531.0,
+                "G_VRH": -258.0,
+                "G_Voigt": 15.0,
+                "G_Voigt_Reuss_Hill": -258.0,
+                "K_Reuss": 69.0,
+                "K_VRH": 69.0,
+                "K_Voigt": 69.0,
+                "K_Voigt_Reuss_Hill": 69.0,
+                "elastic_anisotropy": -5.14,
+                "elastic_tensor": [
+                    [
+                        36.0,
+                        86.0,
+                        86.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        86.0,
+                        36.0,
+                        86.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        86.0,
+                        86.0,
+                        36.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        0.0,
+                        0.0,
+                        42.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        42.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        42.0
+                    ]
+                ],
+                "homogeneous_poisson": -7.22,
+                "poisson_ratio": -7.22,
+                "universal_anisotropy": -5.14,
+                "elastic_tensor_original": [
+                    [
+                        36.211482165869185,
+                        85.8412905927401,
+                        85.8412905927401,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        85.84117236245282,
+                        36.2114268794559,
+                        85.84117236245282,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        85.8413595798134,
+                        85.8413595798134,
+                        36.21157059075702,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        5.246690660592944e-06,
+                        -3.039995289924299e-06,
+                        4.610006138553858e-06,
+                        42.14134266786807,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        -5.4733430479080606e-06,
+                        -2.1966755921316065e-06,
+                        -1.140003790714798e-06,
+                        0.0,
+                        42.14134495120485,
+                        0.0
+                    ],
+                    [
+                        4.456670189117918e-06,
+                        -7.76665933610645e-07,
+                        5.170009999583186e-06,
+                        0.0,
+                        0.0,
+                        42.14134151121075
+                    ]
+                ],
+                "compliance_tensor": [
+                    [
+                        -11.8,
+                        8.3,
+                        8.3,
+                        -0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    [
+                        8.3,
+                        -11.8,
+                        8.3,
+                        0.0,
+                        -0.0,
+                        0.0
+                    ],
+                    [
+                        8.3,
+                        8.3,
+                        -11.8,
+                        0.0,
+                        0.0,
+                        -0.0
+                    ],
+                    [
+                        -0.0,
+                        0.0,
+                        0.0,
+                        23.7,
+                        0.0,
+                        -0.0
+                    ],
+                    [
+                        0.0,
+                        -0.0,
+                        0.0,
+                        0.0,
+                        23.7,
+                        0.0
+                    ],
+                    [
+                        -0.0,
+                        0.0,
+                        -0.0,
+                        -0.0,
+                        0.0,
+                        23.7
+                    ]
+                ],
+                "warnings": [
+                    "Elastic tensor has a negative eigenvalue",
+                    "c11 and c12 are within 5% or c12 is greater than c11",
+                    "c11 and c13 are within 5% or c13 is greater than c11",
+                    "c11 and c23 are within 5% or c23 is greater than c11",
+                    "One or more K, G below 2 GPa"
+                ],
+                "nsites": 1
+            },
+            "piezo": null,
+            "diel": null,
+            "copyright": null,
+            "cif": "# generated using pymatgen\ndata_Al\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.78903481\n_cell_length_b   2.78903481\n_cell_length_c   2.78903481\n_cell_angle_alpha   109.47122063\n_cell_angle_beta   109.47122063\n_cell_angle_gamma   109.47122063\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Al\n_chemical_formula_sum   Al1\n_cell_volume   16.70090151\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Al  Al0  1  0.00000000  0.00000000  0.00000000  1\n"
+        },
+        {
             "material_id": "mp-10597",
             "pretty_formula": "Ag",
             "elements": [
@@ -946,835 +1362,6 @@
             "cif": "# generated using pymatgen\ndata_Au\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.94954603\n_cell_length_b   2.94954603\n_cell_length_c   2.94954603\n_cell_angle_alpha   60.00000000\n_cell_angle_beta   60.00000000\n_cell_angle_gamma   60.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Au\n_chemical_formula_sum   Au1\n_cell_volume   18.14473112\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Au  Au0  1  0.00000000  0.00000000  0.00000000  1\n"
         },
         {
-            "material_id": "mp-1271693",
-            "pretty_formula": "Fe",
-            "elements": [
-                "Fe"
-            ],
-            "nelements": 1,
-            "energy": -33.6601167,
-            "energy_per_atom": -8.415029175,
-            "density": 8.705804454618942,
-            "volume": 42.607345321236465,
-            "nsites": 4,
-            "band_gap": 0.0,
-            "total_magnetization": 1.4e-05,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Fe\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.44199437\n_cell_length_b   3.97660440\n_cell_length_c   4.38761833\n_cell_angle_alpha   90.02450917\n_cell_angle_beta   90.05195404\n_cell_angle_gamma   90.13439780\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Fe\n_chemical_formula_sum   Fe4\n_cell_volume   42.60734532\n_cell_formula_units_Z   4\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Fe  Fe0  1  0.37590400  0.99996700  0.46614800  1\n  Fe  Fe1  1  0.37412500  0.50003200  0.78382900  1\n  Fe  Fe2  1  0.87589300  0.99996600  0.96615700  1\n  Fe  Fe3  1  0.87407700  0.50003500  0.28386600  1\n"
-        },
-        {
-            "material_id": "mp-136",
-            "pretty_formula": "Fe",
-            "elements": [
-                "Fe"
-            ],
-            "nelements": 1,
-            "energy": -16.74429473,
-            "energy_per_atom": -8.372147365,
-            "density": 9.03122455085898,
-            "volume": 20.536042183882355,
-            "nsites": 2,
-            "band_gap": 0.0,
-            "total_magnetization": 0.00430985,
-            "elasticity": {
-                "G_Reuss": 184.0,
-                "G_VRH": 185.0,
-                "G_Voigt": 186.0,
-                "G_Voigt_Reuss_Hill": 185.0,
-                "K_Reuss": 294.0,
-                "K_VRH": 294.0,
-                "K_Voigt": 295.0,
-                "K_Voigt_Reuss_Hill": 294.0,
-                "elastic_anisotropy": 0.06,
-                "elastic_tensor": [
-                    [
-                        538.0,
-                        170.0,
-                        153.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        170.0,
-                        538.0,
-                        153.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        153.0,
-                        153.0,
-                        622.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        168.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        168.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        184.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.24,
-                "poisson_ratio": 0.24,
-                "universal_anisotropy": 0.06,
-                "elastic_tensor_original": [
-                    [
-                        539.0199032991478,
-                        168.06429327801973,
-                        147.2683185371117,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        168.09684643457808,
-                        542.3076480077555,
-                        149.20368305250025,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        157.6001667574661,
-                        157.5999464171633,
-                        621.9967822775558,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        3.803346723551724e-05,
-                        -8.747364129667742e-05,
-                        0.000119287086634871,
-                        168.34578014603926,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.00019403766173953482,
-                        -2.2160113640901053e-05,
-                        -0.000506265929583897,
-                        0.0,
-                        168.15492991943282,
-                        0.0
-                    ],
-                    [
-                        0.0019114745961784905,
-                        0.002173217509061488,
-                        0.00199440385488209,
-                        0.0,
-                        0.0,
-                        181.63915197359202
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        2.1,
-                        -0.6,
-                        -0.4,
-                        -0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.6,
-                        2.1,
-                        -0.4,
-                        0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.4,
-                        -0.4,
-                        1.8,
-                        -0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        5.9,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        0.0,
-                        -0.0,
-                        5.9,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        0.0,
-                        5.4
-                    ]
-                ],
-                "warnings": [],
-                "nsites": 2
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Fe\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.46575571\n_cell_length_b   2.46575571\n_cell_length_c   3.90019200\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   119.99999220\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Fe\n_chemical_formula_sum   Fe2\n_cell_volume   20.53604218\n_cell_formula_units_Z   2\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Fe  Fe0  1  0.33333300  0.66666700  0.25000000  1\n  Fe  Fe1  1  0.66666700  0.33333300  0.75000000  1\n"
-        },
-        {
-            "material_id": "mp-1271562",
-            "pretty_formula": "Fe",
-            "elements": [
-                "Fe"
-            ],
-            "nelements": 1,
-            "energy": -33.61044852,
-            "energy_per_atom": -8.40261213,
-            "density": 8.109373819647873,
-            "volume": 45.741043013505404,
-            "nsites": 4,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0003058,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Fe\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.45268720\n_cell_length_b   2.45268724\n_cell_length_c   7.86042065\n_cell_angle_alpha   90.00418265\n_cell_angle_beta   89.99591017\n_cell_angle_gamma   104.68529188\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Fe\n_chemical_formula_sum   Fe4\n_cell_volume   45.74104301\n_cell_formula_units_Z   4\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Fe  Fe0  1  0.99996300  0.00003800  0.49980900  1\n  Fe  Fe1  1  0.50003700  0.49996200  0.75018600  1\n  Fe  Fe2  1  0.99996500  0.00003600  0.99987300  1\n  Fe  Fe3  1  0.50003400  0.49996500  0.25013200  1\n"
-        },
-        {
-            "material_id": "mp-1096950",
-            "pretty_formula": "Fe",
-            "elements": [
-                "Fe"
-            ],
-            "nelements": 1,
-            "energy": -7.99321866,
-            "energy_per_atom": -7.99321866,
-            "density": 7.214963345850613,
-            "volume": 12.852844807258572,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 2.4749351,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Fe\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.48995450\n_cell_length_b   2.48995450\n_cell_length_c   2.39378900\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   120.00001339\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Fe\n_chemical_formula_sum   Fe1\n_cell_volume   12.85284481\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Fe  Fe0  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
-            "material_id": "mp-568345",
-            "pretty_formula": "Fe",
-            "elements": [
-                "Fe"
-            ],
-            "nelements": 1,
-            "energy": -7.70860905,
-            "energy_per_atom": -7.70860905,
-            "density": 6.916380718764021,
-            "volume": 13.407706710345558,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 2.4121917,
-            "elasticity": {
-                "G_Reuss": -139.0,
-                "G_VRH": -48.0,
-                "G_Voigt": 43.0,
-                "G_Voigt_Reuss_Hill": -48.0,
-                "K_Reuss": 130.0,
-                "K_VRH": 130.0,
-                "K_Voigt": 130.0,
-                "K_Voigt_Reuss_Hill": 130.0,
-                "elastic_anisotropy": -6.53,
-                "elastic_tensor": [
-                    [
-                        404.0,
-                        -6.0,
-                        -6.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -6.0,
-                        404.0,
-                        -6.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -6.0,
-                        -6.0,
-                        404.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        -66.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        -66.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        -66.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.71,
-                "poisson_ratio": 0.71,
-                "universal_anisotropy": -6.53,
-                "elastic_tensor_original": [
-                    [
-                        403.65763106551947,
-                        -6.385566280919155,
-                        -6.385566280919155,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -6.374991943014858,
-                        403.6680177920102,
-                        -6.374991943014858,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -6.3793186616887985,
-                        -6.3793186616887985,
-                        403.6635272368259,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0008222810737045456,
-                        0.000838864361466731,
-                        0.0007467146146943419,
-                        -65.73780023581952,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0008728809346555072,
-                        -0.0010546971016916749,
-                        -0.0010600304203688276,
-                        0.0,
-                        -65.73785390233876,
-                        0.0
-                    ],
-                    [
-                        -0.0006857981154261378,
-                        -0.0007620645725125931,
-                        -0.000714631369526242,
-                        0.0,
-                        0.0,
-                        -65.73779618583065
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        2.5,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        2.5,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        2.5,
-                        -0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        -0.0,
-                        -15.2,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        -0.0,
-                        -15.2,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        -15.2
-                    ]
-                ],
-                "warnings": [
-                    "Elastic tensor has a negative eigenvalue",
-                    "One or more K, G below 2 GPa"
-                ],
-                "nsites": 1
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Fe\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.37566300\n_cell_length_b   2.37566300\n_cell_length_c   2.37566300\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   90.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Fe\n_chemical_formula_sum   Fe1\n_cell_volume   13.40770671\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Fe  Fe0  1  0.50000000  0.50000000  0.50000000  1\n"
-        },
-        {
-            "material_id": "mp-1271295",
-            "pretty_formula": "Fe",
-            "elements": [
-                "Fe"
-            ],
-            "nelements": 1,
-            "energy": -16.74177322,
-            "energy_per_atom": -8.37088661,
-            "density": 8.517772775708455,
-            "volume": 21.77395584881966,
-            "nsites": 2,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0001452,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Fe\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.42283832\n_cell_length_b   2.42283843\n_cell_length_c   3.70970325\n_cell_angle_alpha   89.97396837\n_cell_angle_beta   90.02561348\n_cell_angle_gamma   90.87490312\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Fe\n_chemical_formula_sum   Fe2\n_cell_volume   21.77395585\n_cell_formula_units_Z   2\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Fe  Fe0  1  0.50000000  0.50000000  0.50000000  1\n  Fe  Fe1  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
-            "material_id": "mp-13",
-            "pretty_formula": "Fe",
-            "elements": [
-                "Fe"
-            ],
-            "nelements": 1,
-            "energy": -8.46929704,
-            "energy_per_atom": -8.46929704,
-            "density": 8.096264696014796,
-            "volume": 11.453776235839058,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 2.1809404,
-            "elasticity": {
-                "G_Reuss": 69.0,
-                "G_VRH": 74.0,
-                "G_Voigt": 78.0,
-                "G_Voigt_Reuss_Hill": 74.0,
-                "K_Reuss": 182.0,
-                "K_VRH": 182.0,
-                "K_Voigt": 182.0,
-                "K_Voigt_Reuss_Hill": 182.0,
-                "elastic_anisotropy": 0.61,
-                "elastic_tensor": [
-                    [
-                        247.0,
-                        150.0,
-                        150.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        150.0,
-                        247.0,
-                        150.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        150.0,
-                        150.0,
-                        247.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        97.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        97.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        97.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.32,
-                "poisson_ratio": 0.32,
-                "universal_anisotropy": 0.61,
-                "elastic_tensor_original": [
-                    [
-                        247.0485492370356,
-                        150.14505016762567,
-                        150.14505016762567,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        150.14454865315312,
-                        247.05217390233383,
-                        150.14454865315312,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        150.14217760139897,
-                        150.14217760139897,
-                        247.04870098545223,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -0.00011041305605398273,
-                        -0.0004022323232104599,
-                        0.00013028967280844363,
-                        97.42530518421479,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.00032187252502282275,
-                        0.0002696026562887867,
-                        0.00014582296713150757,
-                        0.0,
-                        97.42531780751642,
-                        0.0
-                    ],
-                    [
-                        -0.0004279655919254248,
-                        -0.00026886265814320327,
-                        0.00013846298561503398,
-                        0.0,
-                        0.0,
-                        97.42560117013815
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        7.5,
-                        -2.8,
-                        -2.8,
-                        -0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -2.8,
-                        7.5,
-                        -2.8,
-                        0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        -2.8,
-                        -2.8,
-                        7.5,
-                        -0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        10.3,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        0.0,
-                        0.0,
-                        10.3,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        0.0,
-                        0.0,
-                        10.3
-                    ]
-                ],
-                "warnings": [],
-                "nsites": 1
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Fe\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.45957003\n_cell_length_b   2.45935153\n_cell_length_c   2.45920602\n_cell_angle_alpha   109.45958252\n_cell_angle_beta   109.46706290\n_cell_angle_gamma   109.46912204\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Fe\n_chemical_formula_sum   Fe1\n_cell_volume   11.45377624\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Fe  Fe0  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
-            "material_id": "mp-150",
-            "pretty_formula": "Fe",
-            "elements": [
-                "Fe"
-            ],
-            "nelements": 1,
-            "energy": -8.31560958,
-            "energy_per_atom": -8.31560958,
-            "density": 7.655095258003984,
-            "volume": 12.113866783998253,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 2.5663049,
-            "elasticity": {
-                "G_Reuss": 55.0,
-                "G_VRH": 9.0,
-                "G_Voigt": -36.0,
-                "G_Voigt_Reuss_Hill": 9.0,
-                "K_Reuss": 173.0,
-                "K_VRH": 173.0,
-                "K_Voigt": 173.0,
-                "K_Voigt_Reuss_Hill": 173.0,
-                "elastic_anisotropy": -8.29,
-                "elastic_tensor": [
-                    [
-                        -4.0,
-                        262.0,
-                        262.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        262.0,
-                        -4.0,
-                        262.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        262.0,
-                        262.0,
-                        -4.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        28.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        28.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        28.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.47,
-                "poisson_ratio": 0.47,
-                "universal_anisotropy": -8.29,
-                "elastic_tensor_original": [
-                    [
-                        -4.255662472909362,
-                        261.58955623801745,
-                        261.58955623801745,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        261.59702348614314,
-                        -4.246441979242976,
-                        261.59702348614314,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        261.64184636955474,
-                        261.64184636955474,
-                        -4.202436985013524,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0008380766850802504,
-                        -0.0008875566861677994,
-                        -0.0008179200179687078,
-                        28.315720528819277,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -8.060666843767397e-05,
-                        -7.774000170801501e-05,
-                        -6.0083334651640594e-05,
-                        0.0,
-                        28.315617518817007,
-                        0.0
-                    ],
-                    [
-                        -0.00018730333744896007,
-                        -0.0001774300038983937,
-                        -0.00011867333594156127,
-                        0.0,
-                        0.0,
-                        28.31568389548514
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        -1.9,
-                        1.9,
-                        1.9,
-                        0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        1.9,
-                        -1.9,
-                        1.9,
-                        -0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        1.9,
-                        1.9,
-                        -1.9,
-                        0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        -0.0,
-                        0.0,
-                        35.3,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        -0.0,
-                        0.0,
-                        35.3,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        35.3
-                    ]
-                ],
-                "warnings": [
-                    "Elastic tensor has a negative eigenvalue",
-                    "c11 and c12 are within 5% or c12 is greater than c11",
-                    "c11 and c13 are within 5% or c13 is greater than c11",
-                    "c11 and c23 are within 5% or c23 is greater than c11",
-                    "One or more K, G below 2 GPa"
-                ],
-                "nsites": 1
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Fe\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.57789919\n_cell_length_b   2.57789919\n_cell_length_c   2.57789919\n_cell_angle_alpha   60.00000000\n_cell_angle_beta   60.00000000\n_cell_angle_gamma   60.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Fe\n_chemical_formula_sum   Fe1\n_cell_volume   12.11386678\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Fe  Fe0  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
             "material_id": "mp-1010136",
             "pretty_formula": "Cu",
             "elements": [
@@ -2586,1551 +2173,6 @@
             "cif": "# generated using pymatgen\ndata_Cu\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.56061892\n_cell_length_b   2.56061892\n_cell_length_c   2.56061892\n_cell_angle_alpha   60.00000000\n_cell_angle_beta   60.00000000\n_cell_angle_gamma   60.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Cu\n_chemical_formula_sum   Cu1\n_cell_volume   11.87188964\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Cu  Cu0  1  0.00000000  0.00000000  0.00000000  1\n"
         },
         {
-            "material_id": "mp-79",
-            "pretty_formula": "Zn",
-            "elements": [
-                "Zn"
-            ],
-            "nelements": 1,
-            "energy": -2.51892121,
-            "energy_per_atom": -1.259460605,
-            "density": 6.981484851061407,
-            "volume": 31.114928163376767,
-            "nsites": 2,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0014295,
-            "elasticity": {
-                "G_Reuss": 33.0,
-                "G_VRH": 37.0,
-                "G_Voigt": 41.0,
-                "G_Voigt_Reuss_Hill": 37.0,
-                "K_Reuss": 59.0,
-                "K_VRH": 67.0,
-                "K_Voigt": 75.0,
-                "K_Voigt_Reuss_Hill": 67.0,
-                "elastic_anisotropy": 1.5,
-                "elastic_tensor": [
-                    [
-                        163.0,
-                        45.0,
-                        48.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        45.0,
-                        163.0,
-                        48.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        48.0,
-                        48.0,
-                        61.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        32.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        32.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        59.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.27,
-                "poisson_ratio": 0.27,
-                "universal_anisotropy": 1.5,
-                "elastic_tensor_original": [
-                    [
-                        162.27951211609215,
-                        46.415276458980834,
-                        48.817416821556975,
-                        0.0,
-                        0.0,
-                        1.0419149950356348e-05
-                    ],
-                    [
-                        47.41391962259324,
-                        160.32432741683562,
-                        47.900332319618784,
-                        0.0,
-                        0.0,
-                        3.473681120193672e-05
-                    ],
-                    [
-                        48.465874435666535,
-                        48.46588703552585,
-                        61.12665979864038,
-                        0.0,
-                        0.0,
-                        1.047988299171389e-05
-                    ],
-                    [
-                        -0.00014443371731983533,
-                        -5.064244260078405e-07,
-                        -9.121320778819401e-05,
-                        32.32201528262738,
-                        7.006676323156693e-06,
-                        0.0
-                    ],
-                    [
-                        -2.7493336592373174e-05,
-                        7.85666759777162e-06,
-                        -9.580334468918893e-05,
-                        0.0,
-                        32.08668754004762,
-                        0.0
-                    ],
-                    [
-                        0.254206908288351,
-                        -0.22759007742733747,
-                        0.02940100216334772,
-                        0.0,
-                        0.0,
-                        61.03391636934912
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        8.0,
-                        -0.4,
-                        -6.0,
-                        0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.4,
-                        8.0,
-                        -6.0,
-                        0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -6.0,
-                        -6.0,
-                        25.9,
-                        -0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        -0.0,
-                        31.1,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        0.0,
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        31.1,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        16.9
-                    ]
-                ],
-                "warnings": [],
-                "nsites": 2
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Zn\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.62673094\n_cell_length_b   2.62673094\n_cell_length_c   5.20723400\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   120.00002380\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Zn\n_chemical_formula_sum   Zn2\n_cell_volume   31.11492816\n_cell_formula_units_Z   2\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Zn  Zn0  1  0.33333300  0.66666700  0.25000000  1\n  Zn  Zn1  1  0.66666700  0.33333300  0.75000000  1\n"
-        },
-        {
-            "material_id": "mp-1187812",
-            "pretty_formula": "Zn",
-            "elements": [
-                "Zn"
-            ],
-            "nelements": 1,
-            "energy": -3.74668138,
-            "energy_per_atom": -1.2488937933333333,
-            "density": 7.2025879821277154,
-            "volume": 45.23965555578831,
-            "nsites": 3,
-            "band_gap": 0.0,
-            "total_magnetization": 3.966666666666666e-06,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Zn\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   7.57269576\n_cell_length_b   7.57269576\n_cell_length_c   7.57269600\n_cell_angle_alpha   20.18498518\n_cell_angle_beta   20.18498518\n_cell_angle_gamma   20.18498539\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Zn\n_chemical_formula_sum   Zn3\n_cell_volume   45.23965556\n_cell_formula_units_Z   3\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Zn  Zn0  1  0.00000000  0.00000000  0.00000000  1\n  Zn  Zn1  1  0.22199600  0.22199600  0.22199600  1\n  Zn  Zn2  1  0.77800400  0.77800400  0.77800400  1\n"
-        },
-        {
-            "material_id": "mp-126",
-            "pretty_formula": "Pt",
-            "elements": [
-                "Pt"
-            ],
-            "nelements": 1,
-            "energy": -6.07090771,
-            "energy_per_atom": -6.07090771,
-            "density": 20.603420149296728,
-            "volume": 15.722855764781936,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0514353,
-            "elasticity": {
-                "G_Reuss": 48.0,
-                "G_VRH": 49.0,
-                "G_Voigt": 49.0,
-                "G_Voigt_Reuss_Hill": 49.0,
-                "K_Reuss": 247.0,
-                "K_VRH": 247.0,
-                "K_Voigt": 247.0,
-                "K_Voigt_Reuss_Hill": 247.0,
-                "elastic_anisotropy": 0.08,
-                "elastic_tensor": [
-                    [
-                        303.0,
-                        220.0,
-                        220.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        220.0,
-                        303.0,
-                        220.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        220.0,
-                        220.0,
-                        303.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        54.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        54.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        54.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.41,
-                "poisson_ratio": 0.41,
-                "universal_anisotropy": 0.08,
-                "elastic_tensor_original": [
-                    [
-                        306.83595158158795,
-                        215.37448374408362,
-                        219.17572568850875,
-                        0.0,
-                        0.0,
-                        -6.534859658274184
-                    ],
-                    [
-                        215.64071274875468,
-                        311.96190395664144,
-                        215.64074240561598,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        219.9616616126929,
-                        216.33092205694805,
-                        305.840860278601,
-                        0.0,
-                        0.0,
-                        5.134678588754511
-                    ],
-                    [
-                        0.050813385940656666,
-                        -0.3715051746653595,
-                        -0.19727268623339972,
-                        48.1085295335111,
-                        8.486608359669269,
-                        0.03815696945825383
-                    ],
-                    [
-                        -0.22915418316961056,
-                        -0.03293338412743821,
-                        -0.16607102300961546,
-                        8.545359374990085,
-                        55.2497743743722,
-                        0.2806401779331675
-                    ],
-                    [
-                        -10.628552421249132,
-                        -1.5998936246492867,
-                        9.205222922297414,
-                        0.0,
-                        0.0,
-                        50.56491657794394
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        8.5,
-                        -3.6,
-                        -3.6,
-                        0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        -3.6,
-                        8.5,
-                        -3.6,
-                        -0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -3.6,
-                        -3.6,
-                        8.5,
-                        -0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        18.5,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        0.0,
-                        18.5,
-                        -0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        -0.0,
-                        18.5
-                    ]
-                ],
-                "warnings": [],
-                "nsites": 1
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Pt\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.81200103\n_cell_length_b   2.81200103\n_cell_length_c   2.81200103\n_cell_angle_alpha   60.00000000\n_cell_angle_beta   60.00000000\n_cell_angle_gamma   60.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Pt\n_chemical_formula_sum   Pt1\n_cell_volume   15.72285576\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Pt  Pt0  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
-            "material_id": "mp-46",
-            "pretty_formula": "Ti",
-            "elements": [
-                "Ti"
-            ],
-            "nelements": 1,
-            "energy": -15.782105,
-            "energy_per_atom": -7.8910525,
-            "density": 4.579441525890857,
-            "volume": 34.713850172147204,
-            "nsites": 2,
-            "band_gap": 0.0,
-            "total_magnetization": 6.895e-05,
-            "elasticity": {
-                "G_Reuss": 46.0,
-                "G_VRH": 47.0,
-                "G_Voigt": 47.0,
-                "G_Voigt_Reuss_Hill": 47.0,
-                "K_Reuss": 113.0,
-                "K_VRH": 113.0,
-                "K_Voigt": 113.0,
-                "K_Voigt_Reuss_Hill": 113.0,
-                "elastic_anisotropy": 0.06,
-                "elastic_tensor": [
-                    [
-                        177.0,
-                        83.0,
-                        76.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        83.0,
-                        177.0,
-                        76.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        76.0,
-                        76.0,
-                        191.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        42.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        42.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        47.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.32,
-                "poisson_ratio": 0.32,
-                "universal_anisotropy": 0.06,
-                "elastic_tensor_original": [
-                    [
-                        178.60410860034622,
-                        81.64529974077871,
-                        75.9826568759291,
-                        0.0,
-                        0.0,
-                        1.6057983679814703e-05
-                    ],
-                    [
-                        80.4429728753219,
-                        178.9279143931595,
-                        75.91176541797573,
-                        0.0,
-                        0.0,
-                        3.523594374007812e-05
-                    ],
-                    [
-                        77.0027868843754,
-                        77.00274649011227,
-                        191.38337812829482,
-                        0.0,
-                        0.0,
-                        1.5137923755958917e-05
-                    ],
-                    [
-                        0.00013569317140234288,
-                        6.11332603796967e-05,
-                        -0.00013920316721414952,
-                        42.02805503882946,
-                        8.266656801587967e-06,
-                        0.0
-                    ],
-                    [
-                        3.6700195842930385e-05,
-                        9.633321503242453e-05,
-                        4.9339868089074457e-05,
-                        4.200001594092641e-07,
-                        42.04575052191436,
-                        0.0
-                    ],
-                    [
-                        0.03867150285229063,
-                        -0.016685253937777436,
-                        -0.008965294975939798,
-                        0.0,
-                        0.0,
-                        45.846851612844134
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        7.8,
-                        -2.8,
-                        -2.0,
-                        -0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -2.8,
-                        7.8,
-                        -2.0,
-                        0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -2.0,
-                        -2.0,
-                        6.8,
-                        -0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        23.8,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        0.0,
-                        -0.0,
-                        23.8,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        21.1
-                    ]
-                ],
-                "warnings": [],
-                "nsites": 2
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Ti\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.93381361\n_cell_length_b   2.93381361\n_cell_length_c   4.65700900\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   119.99999113\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Ti\n_chemical_formula_sum   Ti2\n_cell_volume   34.71385017\n_cell_formula_units_Z   2\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Ti  Ti0  1  0.33333300  0.66666700  0.25000000  1\n  Ti  Ti1  1  0.66666700  0.33333300  0.75000000  1\n"
-        },
-        {
-            "material_id": "mp-6985",
-            "pretty_formula": "Ti",
-            "elements": [
-                "Ti"
-            ],
-            "nelements": 1,
-            "energy": -7.8334976,
-            "energy_per_atom": -7.8334976,
-            "density": 4.5826421717129815,
-            "volume": 17.344802522783677,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0115522,
-            "elasticity": {
-                "G_Reuss": 23.0,
-                "G_VRH": 30.0,
-                "G_Voigt": 38.0,
-                "G_Voigt_Reuss_Hill": 30.0,
-                "K_Reuss": 107.0,
-                "K_VRH": 107.0,
-                "K_Voigt": 107.0,
-                "K_Voigt_Reuss_Hill": 107.0,
-                "elastic_anisotropy": 3.25,
-                "elastic_tensor": [
-                    [
-                        123.0,
-                        99.0,
-                        99.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        99.0,
-                        123.0,
-                        99.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        99.0,
-                        99.0,
-                        123.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        55.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        55.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        55.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.37,
-                "poisson_ratio": 0.37,
-                "universal_anisotropy": 3.25,
-                "elastic_tensor_original": [
-                    [
-                        123.46769345429816,
-                        98.93011636188173,
-                        98.93011636188173,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        98.93040324829548,
-                        123.46845542118679,
-                        98.93040324829548,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        98.92919634059943,
-                        98.92919634059943,
-                        123.46639434959548,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        7.170664887058349e-05,
-                        -0.0001692599579932658,
-                        9.518664304363935e-05,
-                        55.06978764637535,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0001301766343590767,
-                        -0.00010327664103607144,
-                        -0.00016951995792961817,
-                        0.0,
-                        55.06985784969125,
-                        0.0
-                    ],
-                    [
-                        -0.00012169330313099783,
-                        -0.00022097327849338893,
-                        -9.914330872854072e-05,
-                        0.0,
-                        0.0,
-                        55.06994001967086
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        28.2,
-                        -12.5,
-                        -12.5,
-                        -0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        -12.5,
-                        28.2,
-                        -12.5,
-                        -0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        -12.5,
-                        -12.5,
-                        28.2,
-                        0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        0.0,
-                        18.2,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        -0.0,
-                        18.2,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        -0.0,
-                        18.2
-                    ]
-                ],
-                "warnings": [],
-                "nsites": 1
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Ti\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.90554843\n_cell_length_b   2.90554843\n_cell_length_c   2.90554843\n_cell_angle_alpha   60.00000000\n_cell_angle_beta   60.00000000\n_cell_angle_gamma   60.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Ti\n_chemical_formula_sum   Ti1\n_cell_volume   17.34480252\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Ti  Ti0  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
-            "material_id": "mp-73",
-            "pretty_formula": "Ti",
-            "elements": [
-                "Ti"
-            ],
-            "nelements": 1,
-            "energy": -7.78345455,
-            "energy_per_atom": -7.78345455,
-            "density": 4.624491948033271,
-            "volume": 17.1878390954375,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0073434,
-            "elasticity": {
-                "G_Reuss": 2562.0,
-                "G_VRH": 1287.0,
-                "G_Voigt": 13.0,
-                "G_Voigt_Reuss_Hill": 1287.0,
-                "K_Reuss": 105.0,
-                "K_VRH": 105.0,
-                "K_Voigt": 105.0,
-                "K_Voigt_Reuss_Hill": 105.0,
-                "elastic_anisotropy": -4.98,
-                "elastic_tensor": [
-                    [
-                        70.0,
-                        123.0,
-                        123.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        123.0,
-                        70.0,
-                        123.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        123.0,
-                        123.0,
-                        70.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        39.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        39.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        39.0
-                    ]
-                ],
-                "homogeneous_poisson": -0.7,
-                "poisson_ratio": -0.7,
-                "universal_anisotropy": -4.98,
-                "elastic_tensor_original": [
-                    [
-                        69.6804820235661,
-                        123.3400213553572,
-                        123.3400213553572,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        123.34241706436873,
-                        69.68224278880244,
-                        123.34241706436873,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        123.3421187808193,
-                        123.3421187808193,
-                        69.68293107158361,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -0.00047555368042230653,
-                        -0.0004948869780725653,
-                        -0.0005075470814217608,
-                        39.21803689363633,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -6.463666389610295e-05,
-                        -7.283331753401265e-05,
-                        -4.544329496945971e-05,
-                        0.0,
-                        39.218049223659186,
-                        0.0
-                    ],
-                    [
-                        -0.0002147035777397969,
-                        -0.00018845348954088504,
-                        -0.00024940040814440786,
-                        0.0,
-                        0.0,
-                        39.21802171695611
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        -11.4,
-                        7.3,
-                        7.3,
-                        0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        7.3,
-                        -11.4,
-                        7.3,
-                        0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        7.3,
-                        7.3,
-                        -11.4,
-                        -0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        -0.0,
-                        25.5,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        0.0,
-                        -0.0,
-                        25.5,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        0.0,
-                        25.5
-                    ]
-                ],
-                "warnings": [
-                    "Elastic tensor has a negative eigenvalue",
-                    "c11 and c12 are within 5% or c12 is greater than c11",
-                    "c11 and c13 are within 5% or c13 is greater than c11",
-                    "c11 and c23 are within 5% or c23 is greater than c11"
-                ],
-                "nsites": 1
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Ti\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.81588160\n_cell_length_b   2.81588160\n_cell_length_c   2.81588160\n_cell_angle_alpha   109.47122063\n_cell_angle_beta   109.47122063\n_cell_angle_gamma   109.47122063\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Ti\n_chemical_formula_sum   Ti1\n_cell_volume   17.18783910\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Ti  Ti0  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
-            "material_id": "mp-72",
-            "pretty_formula": "Ti",
-            "elements": [
-                "Ti"
-            ],
-            "nelements": 1,
-            "energy": -23.68515852,
-            "energy_per_atom": -7.895052840000001,
-            "density": 4.646836629961642,
-            "volume": 51.31557003001307,
-            "nsites": 3,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0007181333333333333,
-            "elasticity": {
-                "G_Reuss": 59.0,
-                "G_VRH": 61.0,
-                "G_Voigt": 62.0,
-                "G_Voigt_Reuss_Hill": 61.0,
-                "K_Reuss": 113.0,
-                "K_VRH": 113.0,
-                "K_Voigt": 113.0,
-                "K_Voigt_Reuss_Hill": 113.0,
-                "elastic_anisotropy": 0.27,
-                "elastic_tensor": [
-                    [
-                        196.0,
-                        83.0,
-                        52.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        83.0,
-                        196.0,
-                        52.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        52.0,
-                        52.0,
-                        251.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        52.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        52.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        56.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.27,
-                "poisson_ratio": 0.27,
-                "universal_anisotropy": 0.27,
-                "elastic_tensor_original": [
-                    [
-                        196.73946568788213,
-                        81.99813597494037,
-                        51.45557622807515,
-                        0.0,
-                        0.0,
-                        1.5347025310438906e-05
-                    ],
-                    [
-                        82.3070556333675,
-                        196.66798810826378,
-                        51.79266595666903,
-                        0.0,
-                        0.0,
-                        2.4778125013798534e-05
-                    ],
-                    [
-                        53.32965826006298,
-                        53.32968385827145,
-                        251.1326599841167,
-                        0.0,
-                        0.0,
-                        6.739499634544603e-06
-                    ],
-                    [
-                        0.0003912541672346701,
-                        -0.00017206036672151806,
-                        -0.0002235504764652629,
-                        52.164987002103054,
-                        6.566680662593976e-06,
-                        0.0
-                    ],
-                    [
-                        0.0002327764242910873,
-                        8.95932400454574e-05,
-                        3.063996809657553e-05,
-                        0.0,
-                        52.19490436268338,
-                        0.0
-                    ],
-                    [
-                        0.005409904400093364,
-                        -0.020579444312088104,
-                        -0.018264718617201754,
-                        0.0,
-                        0.0,
-                        55.033292014475315
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        6.4,
-                        -2.5,
-                        -0.8,
-                        -0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        -2.5,
-                        6.4,
-                        -0.8,
-                        0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.8,
-                        -0.8,
-                        4.3,
-                        -0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        -0.0,
-                        19.2,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        -0.0,
-                        19.2,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        0.0,
-                        0.0,
-                        -0.0,
-                        17.8
-                    ]
-                ],
-                "warnings": [],
-                "nsites": 3
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Ti\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   4.57685501\n_cell_length_b   4.57685501\n_cell_length_c   2.82868300\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   120.00001460\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Ti\n_chemical_formula_sum   Ti3\n_cell_volume   51.31557003\n_cell_formula_units_Z   3\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Ti  Ti0  1  0.00000000  0.00000000  0.00000000  1\n  Ti  Ti1  1  0.33333300  0.66666700  0.50000000  1\n  Ti  Ti2  1  0.66666700  0.33333300  0.50000000  1\n"
-        },
-        {
-            "material_id": "mp-102",
-            "pretty_formula": "Co",
-            "elements": [
-                "Co"
-            ],
-            "nelements": 1,
-            "energy": -7.0922038,
-            "energy_per_atom": -7.0922038,
-            "density": 8.967094747426298,
-            "volume": 10.913330947589623,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 1.6215574,
-            "elasticity": {
-                "G_Reuss": 91.0,
-                "G_VRH": 102.0,
-                "G_Voigt": 112.0,
-                "G_Voigt_Reuss_Hill": 102.0,
-                "K_Reuss": 212.0,
-                "K_VRH": 212.0,
-                "K_Voigt": 212.0,
-                "K_Voigt_Reuss_Hill": 212.0,
-                "elastic_anisotropy": 1.11,
-                "elastic_tensor": [
-                    [
-                        289.0,
-                        173.0,
-                        173.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        173.0,
-                        289.0,
-                        173.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        173.0,
-                        173.0,
-                        289.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        148.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        148.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        148.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.29,
-                "poisson_ratio": 0.29,
-                "universal_anisotropy": 1.11,
-                "elastic_tensor_original": [
-                    [
-                        289.27840891125925,
-                        172.71524960462227,
-                        172.71524960462227,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        172.72129175757075,
-                        289.28375239037655,
-                        172.72129175757075,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        172.72431363807132,
-                        172.72431363807132,
-                        289.2864933851248,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0001035806523391689,
-                        -0.00013178379422834182,
-                        -0.00012575060585481228,
-                        147.5467614728742,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.00017834782287772907,
-                        0.00020992104189902864,
-                        0.0002760575680926769,
-                        0.0,
-                        147.54693039310095,
-                        0.0
-                    ],
-                    [
-                        -0.000481658633388576,
-                        -0.00045685508426856905,
-                        -0.000415478619581608,
-                        0.0,
-                        0.0,
-                        147.54683495263112
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        6.2,
-                        -2.3,
-                        -2.3,
-                        0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -2.3,
-                        6.2,
-                        -2.3,
-                        -0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        -2.3,
-                        -2.3,
-                        6.2,
-                        -0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        6.8,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        6.8,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        6.8
-                    ]
-                ],
-                "warnings": [],
-                "nsites": 1
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Co\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.48975975\n_cell_length_b   2.48975975\n_cell_length_c   2.48975975\n_cell_angle_alpha   60.00000000\n_cell_angle_beta   60.00000000\n_cell_angle_gamma   60.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Co\n_chemical_formula_sum   Co1\n_cell_volume   10.91333095\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Co  Co0  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
-            "material_id": "mp-54",
-            "pretty_formula": "Co",
-            "elements": [
-                "Co"
-            ],
-            "nelements": 1,
-            "energy": -14.21663559,
-            "energy_per_atom": -7.108317795,
-            "density": 8.95967619453142,
-            "volume": 21.844734227512735,
-            "nsites": 2,
-            "band_gap": 0.0,
-            "total_magnetization": 1.60663785,
-            "elasticity": {
-                "G_Reuss": 103.0,
-                "G_VRH": 105.0,
-                "G_Voigt": 106.0,
-                "G_Voigt_Reuss_Hill": 105.0,
-                "K_Reuss": 212.0,
-                "K_VRH": 212.0,
-                "K_Voigt": 212.0,
-                "K_Voigt_Reuss_Hill": 212.0,
-                "elastic_anisotropy": 0.15,
-                "elastic_tensor": [
-                    [
-                        358.0,
-                        165.0,
-                        114.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        165.0,
-                        358.0,
-                        114.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        114.0,
-                        114.0,
-                        409.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        95.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        95.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        96.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.29,
-                "poisson_ratio": 0.29,
-                "universal_anisotropy": 0.15,
-                "elastic_tensor_original": [
-                    [
-                        358.1994984201094,
-                        164.49032029262557,
-                        114.50374318703736,
-                        0.0,
-                        0.0,
-                        -5.7449635590618444e-05
-                    ],
-                    [
-                        164.0449065822264,
-                        358.6464283508554,
-                        114.01664992873638,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        113.07793915508275,
-                        113.07799685593601,
-                        408.70372158207056,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        4.078015411322547e-05,
-                        -5.906022319470769e-05,
-                        -3.5230133137741866e-05,
-                        95.03474195960477,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0002641597185725847,
-                        0.0003380729731605288,
-                        0.00022664642520234666,
-                        0.0,
-                        95.70156826916778,
-                        0.0
-                    ],
-                    [
-                        -0.039976398020254406,
-                        -0.0169000053614209,
-                        0.00024348682678108056,
-                        0.0,
-                        0.0,
-                        95.73067624275541
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        3.7,
-                        -1.5,
-                        -0.6,
-                        -0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        -1.5,
-                        3.7,
-                        -0.6,
-                        0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        -0.6,
-                        -0.6,
-                        2.8,
-                        0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        0.0,
-                        10.5,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        0.0,
-                        0.0,
-                        10.5,
-                        -0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        10.4
-                    ]
-                ],
-                "warnings": [],
-                "nsites": 2
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Co\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.50078359\n_cell_length_b   2.50078359\n_cell_length_c   4.03333100\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   119.99998915\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Co\n_chemical_formula_sum   Co2\n_cell_volume   21.84473423\n_cell_formula_units_Z   2\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Co  Co0  1  0.33333300  0.66666700  0.25000000  1\n  Co  Co1  1  0.66666700  0.33333300  0.75000000  1\n"
-        },
-        {
-            "material_id": "mp-1183710",
-            "pretty_formula": "Co",
-            "elements": [
-                "Co"
-            ],
-            "nelements": 1,
-            "energy": -27.50613666,
-            "energy_per_atom": -6.876534165,
-            "density": 8.985538289516327,
-            "volume": 43.56372182231207,
-            "nsites": 4,
-            "band_gap": 0.0,
-            "total_magnetization": 0.000852475,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Co\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.49420398\n_cell_length_b   2.49420398\n_cell_length_c   8.08593800\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   119.99999940\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Co\n_chemical_formula_sum   Co4\n_cell_volume   43.56372182\n_cell_formula_units_Z   4\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Co  Co0  1  0.00000000  0.00000000  0.00000000  1\n  Co  Co1  1  0.33333300  0.66666700  0.25000000  1\n  Co  Co2  1  0.00000000  0.00000000  0.50000000  1\n  Co  Co3  1  0.66666700  0.33333300  0.75000000  1\n"
-        },
-        {
-            "material_id": "mp-1271679",
-            "pretty_formula": "Co",
-            "elements": [
-                "Co"
-            ],
-            "nelements": 1,
-            "energy": -28.00009248,
-            "energy_per_atom": -7.00002312,
-            "density": 8.99079359563772,
-            "volume": 43.53825791953996,
-            "nsites": 4,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0001658,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Co\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.48696646\n_cell_length_b   8.12657901\n_cell_length_c   2.48696704\n_cell_angle_alpha   90.00406662\n_cell_angle_beta   119.97880905\n_cell_angle_gamma   89.99593412\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Co\n_chemical_formula_sum   Co4\n_cell_volume   43.53825792\n_cell_formula_units_Z   4\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Co  Co0  1  0.66670500  0.63002900  0.33329500  1\n  Co  Co1  1  0.33329600  0.87017900  0.66670400  1\n  Co  Co2  1  0.66670500  0.12983200  0.33329500  1\n  Co  Co3  1  0.33329400  0.36996000  0.66670600  1\n"
-        },
-        {
             "material_id": "mp-10257",
             "pretty_formula": "Ni",
             "elements": [
@@ -4894,59 +2936,51 @@
             "cif": "# generated using pymatgen\ndata_Ni\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.47897354\n_cell_length_b   2.47897354\n_cell_length_c   2.47897354\n_cell_angle_alpha   60.00000000\n_cell_angle_beta   60.00000000\n_cell_angle_gamma   60.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Ni\n_chemical_formula_sum   Ni1\n_cell_volume   10.77210742\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Ni  Ni0  1  0.00000000  0.00000000  0.00000000  1\n"
         },
         {
-            "material_id": "mp-973364",
-            "pretty_formula": "Mg",
+            "material_id": "mp-126",
+            "pretty_formula": "Pt",
             "elements": [
-                "Mg"
+                "Pt"
             ],
             "nelements": 1,
-            "energy": -6.34780932,
-            "energy_per_atom": -1.58695233,
-            "density": 1.7596736078110835,
-            "volume": 91.74292740326406,
-            "nsites": 4,
+            "energy": -6.07090771,
+            "energy_per_atom": -6.07090771,
+            "density": 20.603420149296728,
+            "volume": 15.722855764781936,
+            "nsites": 1,
             "band_gap": 0.0,
-            "total_magnetization": 2.1e-05,
+            "total_magnetization": 0.0514353,
             "elasticity": {
-                "G_Reuss": 18.0,
-                "G_VRH": 18.0,
-                "G_Voigt": 18.0,
-                "G_Voigt_Reuss_Hill": 18.0,
-                "K_Reuss": 35.0,
-                "K_VRH": 35.0,
-                "K_Voigt": 36.0,
-                "K_Voigt_Reuss_Hill": 35.0,
-                "elastic_anisotropy": 0.09,
+                "G_Reuss": 48.0,
+                "G_VRH": 49.0,
+                "G_Voigt": 49.0,
+                "G_Voigt_Reuss_Hill": 49.0,
+                "K_Reuss": 247.0,
+                "K_VRH": 247.0,
+                "K_Voigt": 247.0,
+                "K_Voigt_Reuss_Hill": 247.0,
+                "elastic_anisotropy": 0.08,
                 "elastic_tensor": [
                     [
-                        61.0,
-                        26.0,
-                        20.0,
+                        303.0,
+                        220.0,
+                        220.0,
                         0.0,
                         0.0,
                         0.0
                     ],
                     [
-                        26.0,
-                        61.0,
-                        20.0,
+                        220.0,
+                        303.0,
+                        220.0,
                         0.0,
                         0.0,
                         0.0
                     ],
                     [
-                        20.0,
-                        20.0,
-                        66.0,
+                        220.0,
+                        220.0,
+                        303.0,
                         0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        16.0,
                         0.0,
                         0.0
                     ],
@@ -4954,8 +2988,16 @@
                         0.0,
                         0.0,
                         0.0,
+                        54.0,
                         0.0,
-                        16.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        54.0,
                         0.0
                     ],
                     [
@@ -4964,575 +3006,119 @@
                         0.0,
                         0.0,
                         0.0,
-                        17.0
+                        54.0
                     ]
                 ],
-                "homogeneous_poisson": 0.28,
-                "poisson_ratio": 0.28,
-                "universal_anisotropy": 0.09,
+                "homogeneous_poisson": 0.41,
+                "poisson_ratio": 0.41,
+                "universal_anisotropy": 0.08,
                 "elastic_tensor_original": [
                     [
-                        62.2645647797821,
-                        25.02921156070553,
-                        20.659733791416684,
+                        306.83595158158795,
+                        215.37448374408362,
+                        219.17572568850875,
+                        0.0,
+                        0.0,
+                        -6.534859658274184
+                    ],
+                    [
+                        215.64071274875468,
+                        311.96190395664144,
+                        215.64074240561598,
                         0.0,
                         0.0,
                         0.0
                     ],
                     [
-                        24.932179247986436,
-                        62.43313604436841,
-                        20.515354748240025,
+                        219.9616616126929,
+                        216.33092205694805,
+                        305.840860278601,
                         0.0,
                         0.0,
-                        0.0
+                        5.134678588754511
                     ],
                     [
-                        18.753468663007826,
-                        18.753470163046018,
-                        66.1615729890104,
-                        0.0,
-                        0.0,
-                        0.0
+                        0.050813385940656666,
+                        -0.3715051746653595,
+                        -0.19727268623339972,
+                        48.1085295335111,
+                        8.486608359669269,
+                        0.03815696945825383
                     ],
                     [
-                        1.3166650957630508e-06,
-                        -2.2496639825858564e-05,
-                        -6.013326158706969e-06,
-                        16.257473323197857,
-                        0.0,
-                        0.0
+                        -0.22915418316961056,
+                        -0.03293338412743821,
+                        -0.16607102300961546,
+                        8.545359374990085,
+                        55.2497743743722,
+                        0.2806401779331675
                     ],
                     [
-                        1.1593231447093288e-05,
-                        1.1513232150338483e-05,
-                        1.0306576088137535e-05,
-                        0.0,
-                        16.721852789546695,
-                        0.0
-                    ],
-                    [
-                        2.1806688169876567e-05,
-                        -1.2070028699414903e-05,
-                        5.066660675174563e-06,
+                        -10.628552421249132,
+                        -1.5998936246492867,
+                        9.205222922297414,
                         0.0,
                         0.0,
-                        16.246101516523076
+                        50.56491657794394
                     ]
                 ],
                 "compliance_tensor": [
                     [
-                        20.9,
-                        -7.7,
-                        -3.9,
+                        8.5,
+                        -3.6,
+                        -3.6,
                         0.0,
-                        0.0,
+                        -0.0,
                         0.0
                     ],
                     [
-                        -7.7,
-                        20.9,
-                        -3.9,
+                        -3.6,
+                        8.5,
+                        -3.6,
                         -0.0,
                         0.0,
                         0.0
                     ],
                     [
-                        -3.9,
-                        -3.9,
-                        17.5,
+                        -3.6,
+                        -3.6,
+                        8.5,
                         -0.0,
                         -0.0,
                         -0.0
                     ],
                     [
                         0.0,
-                        0.0,
                         -0.0,
-                        60.6,
+                        -0.0,
+                        18.5,
                         0.0,
-                        0.0
+                        -0.0
                     ],
                     [
                         -0.0,
                         0.0,
                         -0.0,
                         0.0,
-                        60.6,
+                        18.5,
                         -0.0
                     ],
                     [
                         0.0,
                         0.0,
                         -0.0,
-                        0.0,
                         -0.0,
-                        57.3
+                        -0.0,
+                        18.5
                     ]
                 ],
                 "warnings": [],
-                "nsites": 4
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Mg\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   3.20371648\n_cell_length_b   3.20371648\n_cell_length_c   10.32128700\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   120.00000997\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Mg\n_chemical_formula_sum   Mg4\n_cell_volume   91.74292740\n_cell_formula_units_Z   4\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Mg  Mg0  1  0.00000000  0.00000000  0.00000000  1\n  Mg  Mg1  1  0.33333300  0.66666700  0.25000000  1\n  Mg  Mg2  1  0.00000000  0.00000000  0.50000000  1\n  Mg  Mg3  1  0.66666700  0.33333300  0.75000000  1\n"
-        },
-        {
-            "material_id": "mp-1094122",
-            "pretty_formula": "Mg",
-            "elements": [
-                "Mg"
-            ],
-            "nelements": 1,
-            "energy": -4.79068775,
-            "energy_per_atom": -1.5968959166666667,
-            "density": 1.7740551923933052,
-            "volume": 68.24940202553526,
-            "nsites": 3,
-            "band_gap": 0.0,
-            "total_magnetization": 0.00010333333333333333,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Mg\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   7.86392161\n_cell_length_b   7.86392161\n_cell_length_c   7.86392107\n_cell_angle_alpha   23.56252642\n_cell_angle_beta   23.56252642\n_cell_angle_gamma   23.56251851\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Mg\n_chemical_formula_sum   Mg3\n_cell_volume   68.24940203\n_cell_formula_units_Z   3\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Mg  Mg0  1  0.00000000  0.00000000  0.00000000  1\n  Mg  Mg1  1  0.22220800  0.22220800  0.22220800  1\n  Mg  Mg2  1  0.77779200  0.77779200  0.77779200  1\n"
-        },
-        {
-            "material_id": "mp-1056702",
-            "pretty_formula": "Mg",
-            "elements": [
-                "Mg"
-            ],
-            "nelements": 1,
-            "energy": -1.58285368,
-            "energy_per_atom": -1.58285368,
-            "density": 1.765008555285139,
-            "volume": 22.866405883904,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0003688,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Mg\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   3.18594031\n_cell_length_b   3.18594031\n_cell_length_c   3.18594031\n_cell_angle_alpha   60.00000000\n_cell_angle_beta   60.00000000\n_cell_angle_gamma   60.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Mg\n_chemical_formula_sum   Mg1\n_cell_volume   22.86640588\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Mg  Mg0  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
-            "material_id": "mp-1056351",
-            "pretty_formula": "Mg",
-            "elements": [
-                "Mg"
-            ],
-            "nelements": 1,
-            "energy": -1.57155674,
-            "energy_per_atom": -1.57155674,
-            "density": 1.7810050334772547,
-            "volume": 22.661026361567792,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 0.002651,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Mg\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   3.09107835\n_cell_length_b   3.09107835\n_cell_length_c   3.09107835\n_cell_angle_alpha   107.61582054\n_cell_angle_beta   107.61582054\n_cell_angle_gamma   113.24937604\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Mg\n_chemical_formula_sum   Mg1\n_cell_volume   22.66102636\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Mg  Mg0  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
-            "material_id": "mp-110",
-            "pretty_formula": "Mg",
-            "elements": [
-                "Mg"
-            ],
-            "nelements": 1,
-            "energy": -1.57447816,
-            "energy_per_atom": -1.57447816,
-            "density": 1.7602893333027019,
-            "volume": 22.92770924083804,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0001585,
-            "elasticity": {
-                "G_Reuss": -14.0,
-                "G_VRH": 2.0,
-                "G_Voigt": 17.0,
-                "G_Voigt_Reuss_Hill": 2.0,
-                "K_Reuss": 36.0,
-                "K_VRH": 36.0,
-                "K_Voigt": 36.0,
-                "K_Voigt_Reuss_Hill": 36.0,
-                "elastic_anisotropy": -11.33,
-                "elastic_tensor": [
-                    [
-                        30.0,
-                        39.0,
-                        39.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        39.0,
-                        30.0,
-                        39.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        39.0,
-                        39.0,
-                        30.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        32.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        32.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        32.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.47,
-                "poisson_ratio": 0.47,
-                "universal_anisotropy": -11.33,
-                "elastic_tensor_original": [
-                    [
-                        29.788713215457868,
-                        38.55915328578418,
-                        38.55915328578418,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        38.55855567860938,
-                        29.78813247611594,
-                        38.55855567860938,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        38.55801824184178,
-                        38.55801824184178,
-                        29.787575483899126,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -6.698015430156434e-05,
-                        -6.269014441863135e-05,
-                        -6.50168164454448e-05,
-                        32.01768336217806,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.00010042689801989334,
-                        9.770355841217083e-05,
-                        0.0001033069046537472,
-                        0.0,
-                        32.01768350551173,
-                        0.0
-                    ],
-                    [
-                        -0.00012505695475859287,
-                        -0.00011792027165187486,
-                        -0.00011798027178983786,
-                        0.0,
-                        0.0,
-                        32.017680738838685
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        -72.9,
-                        41.1,
-                        41.1,
-                        0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        41.1,
-                        -72.9,
-                        41.1,
-                        -0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        41.1,
-                        41.1,
-                        -72.9,
-                        -0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        31.2,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        0.0,
-                        31.2,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        31.2
-                    ]
-                ],
-                "warnings": [
-                    "Elastic tensor has a negative eigenvalue",
-                    "c11 and c12 are within 5% or c12 is greater than c11",
-                    "c11 and c13 are within 5% or c13 is greater than c11",
-                    "c11 and c23 are within 5% or c23 is greater than c11",
-                    "One or more K, G below 2 GPa"
-                ],
                 "nsites": 1
             },
             "piezo": null,
             "diel": null,
             "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Mg\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   3.09975607\n_cell_length_b   3.09975607\n_cell_length_c   3.09975607\n_cell_angle_alpha   109.47122063\n_cell_angle_beta   109.47122063\n_cell_angle_gamma   109.47122063\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Mg\n_chemical_formula_sum   Mg1\n_cell_volume   22.92770924\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Mg  Mg0  1  0.00000000  0.00000000  0.00000000  1\n"
-        },
-        {
-            "material_id": "mp-153",
-            "pretty_formula": "Mg",
-            "elements": [
-                "Mg"
-            ],
-            "nelements": 1,
-            "energy": -3.18169033,
-            "energy_per_atom": -1.590845165,
-            "density": 1.7720891684001192,
-            "volume": 45.550080360967776,
-            "nsites": 2,
-            "band_gap": 0.0,
-            "total_magnetization": 0.00012955,
-            "elasticity": {
-                "G_Reuss": 17.0,
-                "G_VRH": 18.0,
-                "G_Voigt": 18.0,
-                "G_Voigt_Reuss_Hill": 18.0,
-                "K_Reuss": 37.0,
-                "K_VRH": 37.0,
-                "K_Voigt": 37.0,
-                "K_Voigt_Reuss_Hill": 37.0,
-                "elastic_anisotropy": 0.17,
-                "elastic_tensor": [
-                    [
-                        58.0,
-                        30.0,
-                        22.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        30.0,
-                        58.0,
-                        22.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        22.0,
-                        22.0,
-                        66.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        20.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        20.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        14.0
-                    ]
-                ],
-                "homogeneous_poisson": 0.29,
-                "poisson_ratio": 0.29,
-                "universal_anisotropy": 0.17,
-                "elastic_tensor_original": [
-                    [
-                        54.25850068701717,
-                        34.04181709946782,
-                        21.358035934025427,
-                        0.0,
-                        0.0,
-                        3.3355176509950866e-06
-                    ],
-                    [
-                        34.10200261163346,
-                        54.009604323151386,
-                        21.67441870679448,
-                        0.0,
-                        0.0,
-                        9.759605982187e-06
-                    ],
-                    [
-                        22.271689053071132,
-                        22.27168265332047,
-                        65.85652170337328,
-                        0.0,
-                        0.0,
-                        4.0397689278631675e-06
-                    ],
-                    [
-                        0.09214826031389811,
-                        -0.07805800661677288,
-                        0.005059606539777449,
-                        19.607223427448275,
-                        3.5399975790248513e-06,
-                        -1.3333324214782853e-08
-                    ],
-                    [
-                        -0.057528174264213375,
-                        0.002529083081173755,
-                        -0.02606373406800847,
-                        0.0,
-                        19.89670688621961,
-                        0.0
-                    ],
-                    [
-                        -0.015577234166171353,
-                        0.005186244100330866,
-                        -0.009905021045166822,
-                        0.0,
-                        0.0,
-                        18.474830446171197
-                    ]
-                ],
-                "compliance_tensor": [
-                    [
-                        24.3,
-                        -10.8,
-                        -4.5,
-                        -0.0,
-                        -0.0,
-                        -0.0
-                    ],
-                    [
-                        -10.8,
-                        24.3,
-                        -4.5,
-                        0.0,
-                        0.0,
-                        -0.0
-                    ],
-                    [
-                        -4.5,
-                        -4.5,
-                        18.2,
-                        0.0,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        -0.0,
-                        0.0,
-                        0.0,
-                        50.6,
-                        -0.0,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        -0.0,
-                        -0.0,
-                        -0.0,
-                        50.6,
-                        -0.0
-                    ],
-                    [
-                        -0.0,
-                        -0.0,
-                        0.0,
-                        0.0,
-                        -0.0,
-                        70.2
-                    ]
-                ],
-                "warnings": [],
-                "nsites": 2
-            },
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Mg\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   3.20302747\n_cell_length_b   3.20302747\n_cell_length_c   5.12669100\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   119.99998896\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Mg\n_chemical_formula_sum   Mg2\n_cell_volume   45.55008036\n_cell_formula_units_Z   2\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Mg  Mg0  1  0.33333300  0.66666700  0.25000000  1\n  Mg  Mg1  1  0.66666700  0.33333300  0.75000000  1\n"
-        },
-        {
-            "material_id": "mp-1055956",
-            "pretty_formula": "Mg",
-            "elements": [
-                "Mg"
-            ],
-            "nelements": 1,
-            "energy": -1.36375803,
-            "energy_per_atom": -1.36375803,
-            "density": 1.5801956208360088,
-            "volume": 25.540763106507466,
-            "nsites": 1,
-            "band_gap": 0.0,
-            "total_magnetization": 0.0001737,
-            "elasticity": null,
-            "piezo": null,
-            "diel": null,
-            "copyright": null,
-            "cif": "# generated using pymatgen\ndata_Mg\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   3.05509845\n_cell_length_b   3.05509845\n_cell_length_c   3.15975100\n_cell_angle_alpha   90.00000000\n_cell_angle_beta   90.00000000\n_cell_angle_gamma   120.00000977\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Mg\n_chemical_formula_sum   Mg1\n_cell_volume   25.54076311\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Mg  Mg0  1  0.00000000  0.00000000  0.00000000  1\n"
+            "cif": "# generated using pymatgen\ndata_Pt\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   2.81200103\n_cell_length_b   2.81200103\n_cell_length_c   2.81200103\n_cell_angle_alpha   60.00000000\n_cell_angle_beta   60.00000000\n_cell_angle_gamma   60.00000000\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Pt\n_chemical_formula_sum   Pt1\n_cell_volume   15.72285576\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Pt  Pt0  1  0.00000000  0.00000000  0.00000000  1\n"
         },
         {
             "material_id": "mp-2",

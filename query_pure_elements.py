@@ -62,7 +62,7 @@ def make_json_file(material_list, filename="pure_elements.json"):
     return
 
 if __name__ == "__main__":
-    els_list = ["Ag", "Au", "Fe", "Cu", "Zn", "Pt", "Ti", "Co", "Ni", "Mg", "Pd"]
+    els_list = ["Al", "Ag", "Au", "Cu", "Ni", "Pt", "Pd"]
     nsitesmin = 1
     nsitesmax = 4
     respond_list = make_pure_elements(els_list)
