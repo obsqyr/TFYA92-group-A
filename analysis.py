@@ -49,7 +49,7 @@ def find_eq_lc(fnames):
             N = name
         f.close()
 
-    settings = read_settings_file()
+    settings = read_settings_file('acc_test_setting.json')
     n = LCa_list[0] * LCb_list[0] * LCc_list[0] * settings['supercell_size']**3 / V_list[0]
     oLCa = LCa_list[settings['LC_steps']] # Original lattice constant a.
     s_list = [x / oLCa for x in LCa_list]
@@ -81,7 +81,7 @@ def sort_properties_files():
     tuple: returns a tuple of lists of lattice constants, bulk moduli,
     interpolated lattice constants and file paths.
     """
-    settings = read_settings_file()
+    settings = read_settings_file('acc_test_setting.json')
     filenames = sorted(glob.glob("property_calculations/properties_*"))
     steps = 1 + 2*settings['LC_steps']
     LC_list = []
@@ -111,7 +111,7 @@ def extract():
     None
     """
     file = open("property_calculations/collected_data.txt", "w+")
-    settings = read_settings_file()
+    settings = read_settings_file('acc_test_setting.json')
     d = settings['decimals']
 
     def lj(str, k = d):
