@@ -166,7 +166,6 @@ def extract():
                 debye = lines[-1].split()[8]
                 linde = lines[-1].split()[9]
                 file.write(pr.ss(debye,d+4)+pr.ss(linde,d+4))
-            file.write(pr.ss(lines[11].split(8) / lines[11].split(9)))
             file.write("\n")
             file.close()
     return
