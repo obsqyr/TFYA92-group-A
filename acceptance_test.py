@@ -1,6 +1,7 @@
 from ase.build import molecule
 from ase.visualize import view
 from ase.build import bulk
+from ase.lattice.cubic import FaceCenteredCubic
 import md
 from read_settings import read_settings_file
 import numpy as np
@@ -9,7 +10,8 @@ import copy
 # http://www-ferp.ucsd.edu/LIB/PROPS/PANOS/cu.html
 # properties of copper
 atoms_l = []
-atoms_l.append(bulk('Ar', 'fcc', a=5.26, cubic=True))
+#atoms_l.append(bulk('Ar', 'fcc', a=5.26, cubic=True))
+atoms_l.append(FaceCenteredCubic(directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]], symbol='Ar',size=(1, 1, 1),pbc=True, latticeconstant = 5.256))
 #atoms_l.append(bulk('Cu', 'fcc', a=3.6, cubic=True))
 #atoms = bulk('Ar', 'fcc', a=5.26, cubic=True)
 #atoms = bulk('Cu', 'fcc', a=3.6, cubic=True)
@@ -17,7 +19,7 @@ atoms_l.append(bulk('Ar', 'fcc', a=5.26, cubic=True))
 settings = read_settings_file('acc_test_setting.json')
 
 atoms_list = []
-for atoms in atoms_l: 
+for atoms in atoms_l:
     if settings['vol_relax']:
         cell = np.array(atoms.get_cell())
         P = settings['LC_steps']

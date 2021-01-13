@@ -32,7 +32,7 @@ def specific_heat(temp_store, N, atoms):
     ET = sum(temp_store)/steps
     ET2 = sum(np.array(temp_store)**2)/steps
     M = (ET2 - ET**2)/ET**2
-    settings = read_settings_file()
+    settings = read_settings_file('acc_test_setting.json')
     N = N / settings['supercell_size']**3
     #print("M:", M)
     #print("N:", N)
@@ -108,7 +108,7 @@ def lattice_constants(a):
     list: returns the lattice_constants, in the 3 dimensions.
     """
 
-    s = read_settings_file()['supercell_size']
+    s = read_settings_file('acc_test_setting.json')['supercell_size']
     lc = list(a.get_cell_lengths_and_angles())
     return [lc[0]/s, lc[1]/s, lc[2]/s]
 
@@ -139,7 +139,7 @@ def debye_lindemann(a, msd, temp):
     Returns
     list: list of debye temperature and lindemann criterion.
     """
-    s = read_settings_file()
+    s = read_settings_file('acc_test_setting.json')
     debye = math.sqrt(9 * units._hbar**2 * temp / (units._k * a.get_masses()[0] * units._amu * msd) * units.m**2)
     z = s['supercell_size']
     n = len(a) / z**3
@@ -266,7 +266,7 @@ def calc_properties(a_old, a, id, d, ma):
 
     epot, ekin, etot, temp = energies_and_temp(a)
     msd =  meansquaredisp(a, a_old)
-    settings = read_settings_file()
+    settings = read_settings_file('acc_test_setting.json')
     ln = sum(1 for line in f)
     time = settings['time_step']*settings['interval']*(ln-6)
     selfd = self_diff(a, msd, time)
@@ -309,7 +309,7 @@ def finalize_properties_file(a, id, d, ma):
     debye = []
     linde = []
 
-    settings = read_settings_file()
+    settings = read_settings_file('acc_test_setting.json')
     f=open("property_calculations/properties_"+id+".txt", "r")
     f_lines = f.readlines()
     steps = math.floor(settings['max_steps'] / settings['interval'])
